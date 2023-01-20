@@ -21,17 +21,6 @@ import AddOfficerProfile from "../components/Application/Content Managament/AddO
 import AddContent from "../components/Application/Content Managament/AddContent";
 import Assignwork from "../components/Application/Work/Assignwork";
 
-import FreeCoupon from '../Pages/FreeCoupan';
-import SubAccount from "../Pages/SubAccount";
-import LicenceeAccount from "../Pages/LicenceeAccount";
-import DownloaadReporrts from "../Pages/DownloaadReporrts";
-import UpdateBankDetails from "../Pages/UpdateBankDetails";
-import Tutorials from "../Pages/Tutorials";
-import Promote from "../Pages/Promote";
-import AddNewsPaper from "../Pages/AddNewsPaper";
-import AddNewItems from "../Pages/AddNewItems";
-import AddnewEBook from "../components/Body/AddNewEBook";
-import AddNewUser from "../components/Body/AddNewUser";
 
 
 
