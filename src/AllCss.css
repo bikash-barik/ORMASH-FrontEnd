@@ -1,0 +1,601 @@
+.desktop-display{
+  display: none;
+}
+
+form label {
+  color: #000 !important;
+}
+
+
+/* Dashbord part */
+.card-container {
+  display: flex;
+  grid-template-columns: auto;
+  justify-content: space-between;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 30% !important;
+  height: 210px !important;
+  margin: 15px;
+}
+
+.card.inactive {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 150%;
+  height: 910px !important;
+  margin: 15px;
+  color: aqua;
+}
+
+.card img {
+  height: 75% !important;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card .card-body {
+  text-align: center;
+  font-size: 28px;
+}
+
+/* End Of Dashboard */
+
+/* Add New Magazines */
+
+/* Add padding to containers */
+.magazin-container {
+  padding: 2px;
+}
+
+.magazin-container label {
+  font-size: larger;
+  margin-bottom: 5px;
+}
+/* Full-width input fields */
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+height: 35px;
+padding: 2px 10px !important;
+margin: 5px 0 0 0 !important;
+display: inline-block;
+border: 1px solid #333;
+border-radius: 5px;
+background: transparent;
+}
+
+
+input[type="text"]:focus {
+  background-color: #fff;
+  outline: none;
+}
+.design_das_p_2 {
+  font-size: 13px;
+  color: #494848;
+}
+
+textarea {
+  width: 101.5%;
+  border-radius: 5px;
+  background-color: transparent;
+  font-size: 12px;
+padding: 10px !important;
+}
+
+textarea:focus {
+  background-color: #eee;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+ 
+  margin-top: 25px !important;
+  color:inherit;
+  opacity: .25;
+}
+
+/* Set a style for the submit button */
+.Submit-btn {
+  background: #0171a5;
+color: #fff;
+font-size: 16px;
+padding: 10px 40px !important;
+border: 1px solid #0171a5;
+border-radius: 5px;
+margin-right: 5px !important;
+}
+
+.Cancle-btn {
+  background-color: #302b2bec; /* Green */
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 40px !important;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.Submit-btn:hover,
+.Cancle-btn:hover {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #0171a5;
+}
+/*End of Add New Magazines *#0171a5/
+
+/* ==============Free Coupon ========== */
+.btn-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px !important;
+}
+
+.btn-position {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px !important;
+}
+
+.btn-coupon-free {
+  background: #0171a5;
+  color: #fff;
+  height: 180%;
+  font-size: 16px;
+  padding: 10px 10px !important;
+  border: 1px solid #0171a5;
+  border-radius: 5px;
+  margin-right: 5px !important;
+}
+.maga_name {
+  border: 1px solid #d0cccc !important;
+  width: 30% !important;
+  background-color: #fff !important;
+  color: #111;
+}
+.design_icon {
+  color: #fff;
+  background-color: #0171a5;
+  padding: 5px 10px !important;
+  border-radius: 50%;
+  border: 1px solid #0171a5;
+  font-size: 20px;
+}
+.btn-coupon-analytics {
+  background: #0171a5;
+  color: #fff;
+  height: 100%;
+  font-size: 16px;
+  padding: 0px 10px !important;
+  border: 1px solid #0171a5;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.btn-position .btn-coupon-analytics:hover,
+.btn-coupon-free:hover {
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+}
+
+.magazinName .magazin-btn {
+  border: none;
+  font-size: 30px;
+  margin-top: 30px !important;
+}
+
+.magazin-btn:hover {
+  background: #0171a5;
+  color: rgb(255, 255, 255);
+}
+
+.Entries {
+  color: gray;
+}
+
+.coupon-data .coupon-table {
+  width: 100%;
+  background-color: rgb(253, 253, 253);
+  font-size: large;
+  text-align: left;
+  margin: 10px 0px !important;
+}
+
+.coupon-data .coupon-table .coupon-tr {
+  margin-bottom: 10px !important;
+}
+
+.coupon-data .coupon-table td {
+  margin: 10000px !important;
+}
+
+.coupon-hr {
+  margin-bottom: 10px !important;
+}
+
+.show-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-Previous {
+  background: #0171a5 !important;
+color: rgb(255, 250, 250) !important;
+font-size: 16px;
+padding: 10px 40px !important;
+border-radius: 5px;
+margin-right: 5px !important;
+border: 1px solid #0171a5 !important;
+}
+
+.btn-Next {
+  background: #ffffff;
+  color: #0171a5;
+font-size: 16px;
+padding: 10px 48px !important;
+border-radius: 5px;
+border: 1px solid #0171a5 !important;
+}
+
+.btn-Previous:hover,
+.btn-Next:hover {
+  background: #0171a5;
+  color: #fff ;
+}
+
+/* ===========DownloaadReporrts=================== */
+
+.DownloaadReporrts {
+  display: flex;
+  background-color: #fff;
+  justify-content: center;
+  justify-items: center !important;
+  justify-content: space-between;
+  margin: 40px !important;
+  height: 100px;
+}
+.DownloaadReporrts-input {
+  display: flex;
+  justify-content: space-between !important;
+  margin: 30px !important;
+}
+
+.DownloaadReporrts-input select {
+  width: 300px;
+}
+
+.DownloaadReporrts-input input[type="text"] {
+  width: 300px;
+  height: 35px;
+  padding: 2px 10px !important;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  background: transparent;
+  margin-right: 10px !important;
+}
+
+.DownloaadReporrts-input input[type="text"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.btn-DownloaadReporrts {
+  margin: 30px !important;
+  background: #0171a5;
+  color: rgb(255, 250, 250);
+  font-size: 16px;
+  height: 45%;
+  padding: 15px 25px !important;
+  border-radius: 5px;
+  margin-right: 5px !important;
+  border: 1px solid #0171a5;
+}
+
+.btn-DownloaadReporrts:hover {
+  background: #fcfcfc;
+  color: rgb(0, 0, 0);
+}
+
+/* ============== UpdateBankDetails ===================== */
+.UpdateBank-container {
+}
+
+.UpdateBank-container input[type="text"],
+input[type="number"] {
+  width: 50%;
+  height: 35px;
+  padding: 2px 10px !important;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background: transparent;
+}
+
+.UpdateBank-container input[type="text"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+.UpdateBank-container input[type="number"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.UpdateBank-container select {
+  width: 52%;
+  height: 40px !important;
+  border-radius: 5px;
+}
+
+/* ==================== Promote-container =============== */
+
+.Promote-container .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 100% !important;
+  height: auto !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  border-radius: 5px;
+  text-align: justify;
+  text-justify: inter-word;
+  background-color: white;
+  padding:15px !important;
+}
+.Promote-container .card .card-div {
+  border: 1px solid rgb(7, 0, 0) !important;
+}
+
+.card-heading {
+  margin-top: 40px !important;
+}
+
+.Promote-container .Promote-title span{
+  color: gray;
+  font-size: larger;
+}
+
+.Promote-container .card-title span {
+  color: gray;
+  font-size: large;
+}
+
+
+
+/* ============Tutorial-container ================== */
+
+.Tutorial-container {
+  display: flex;
+}
+
+.Tutorial-container .card-Tutorial{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 50% !important;
+  height: auto !important;
+  margin:10px !important;
+  padding: auto;
+  border-radius: 5px;
+  color: #fff;
+}
+ .card-Tutorial .card-title{
+  margin-left:40px !important;
+}
+
+.Tutorial-container .card-Tutorial .card-head{
+  background-color: #0171a5;
+  border-radius: 5px 5px 0px 0px;
+  margin-top: -29px !important;
+}
+
+.Tutorial-container .card-Tutorial .card-title a{
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+}
+
+
+
+/* ======= Responsive ======= */
+@media only screen and (max-width: 769px) {
+.mob-display{
+  display: none;
+}
+  .card-container {
+    display: block;
+    margin-top: -100px !important;
+    overflow: hidden;
+    position: fixed;
+  }
+
+  .card {
+    width: 50% !important;
+    height: 20% !important;
+    margin: 10px !important;
+  }
+
+  textarea {
+    width: 107.5%;
+  }
+
+  .magazin-container label {
+    font-size: small;
+    margin-bottom: 5px;
+  }
+
+  .magazin-container .magazin-heading {
+    font-size: 18px;
+    font-weight: bolder;
+  }
+
+  .btn {
+    display: flex;
+  }
+
+  .heading {
+    font-size: 28px;
+    font-weight: bolder;
+  }
+
+  .btn-position {
+    display: block;
+    direction: row;
+    display: inline-block;
+  }
+  .btn-position .btn-coupon {
+    font-size: 10px;
+    width: 100% !important;
+    padding: 15px 25px !important;
+    margin-bottom: 5px !important;
+  }
+ 
+ .SubAccount{
+   display: block;
+ }
+ .magazin-btn{
+   display: none;
+ }
+ .btn-position .btn-coupon-free{
+   margin: 5px 0px 5px 0px !important;
+ }
+
+ .btn-coupon-free  {
+  padding: 15px 20px !important;
+}
+.btn-coupon-analytics{
+  padding: 15px 33px !important;
+
+}
+ .coupon-data .coupon-table{
+   overflow: hidden !important;
+   overflow-x: scroll;
+ }
+ .coupon-data {
+   overflow: hidden;
+   overflow-x: scroll;
+   width: 120% !important;
+ }
+ .coupon-data .coupon-table .coupon-tr{
+  font-size:large;
+  display: inline-block;
+ }
+
+th {
+  /* background-color: rgb(102, 102, 102); */
+  /* color: #fff; */
+  /* margin:2px 5px 2px 100px !important; */
+}
+.show-row {
+  display: block;
+}
+
+.Entries {
+  font-size: 16px;
+  margin-bottom: 15px !important;
+}
+
+
+ .btn-row{
+   display: block;
+ }
+
+
+ .Downl-container .heading{
+   font-size:x-large;
+ }
+
+ .DownloaadReporrts {
+  overflow: hidden;
+  display: block;
+  margin: 0px !important;
+  height: auto !important;
+}
+.DownloaadReporrts-input {
+  display: block;
+  margin-bottom: 10px !important;
+}
+
+.DownloaadReporrts-input select {
+  margin-bottom: 10px !important;
+  width: 170px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.UpdateBank-container input[type="text"],
+input[type="number"] {
+  width: 100%;
+}
+.UpdateBank-container select {
+  width: 110%;
+  
+}
+
+
+.Tuto-Container .heading{
+  font-size: 23px;
+}
+
+.Tutorial-container {
+  display: block;
+  width: 220% !important;
+  overflow: hidden;
+}
+
+.card-Tutorial .card-heading{
+  font-size: larger;
+}
+
+.Promote-container .Promote-title span{
+  font-size: small;
+  text-align: justify !important;
+}
+
+.Promote-container .card{
+ margin: 0px !important;
+}
+
+.Promote-container .card .card-title span{
+  font-size: 16px !important;
+  line-height: 1.6;
+}
+.Promote-container .card {
+  box-shadow: none;
+  width: 130% !important;
+}
+
+}
+.input_box {
+  width: 100%;
+  height: 35px;
+  padding: 2px 10px !important;
+  display: inline-block;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background: transparent;
+}
+.design_icon {
+  color: #fff;
+  background-color: #0171a5;
+  padding: 5px 10px !important;
+  border-radius: 50%;
+  border: 1px solid #0171a5;
+  font-size: 20px;
+}
+.pd-10 {
+  padding: 10px !important;
+}
+.white-bg2 {
+  padding: 25px !important;
+  background-color: white !important;
+}

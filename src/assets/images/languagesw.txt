@@ -1,0 +1,14 @@
+1. Assamese - অসমীয়া 
+2. Bengali - বাংলা 
+3.Gujarati - ગુજરાતી
+4. Hindi - हिन्दी
+5. Kannada - ಕನ್ನಡ
+6. Malayalam- മലയാളം
+7. Manipuri - ꯃꯅꯤꯄꯨꯔꯤꯗꯥ꯫
+8. Marathi - मराठी
+9. Oriya - ଓଡିଆ
+10. Punjabi - ਪੰਜਾਬੀ
+11. Sanskrit - संस्कृत
+12. Tamil - தமிழ்
+13. Telugu - తెలుగు
+
