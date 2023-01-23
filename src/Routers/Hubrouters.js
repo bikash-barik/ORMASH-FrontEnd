@@ -8,6 +8,7 @@ import Dashboard from "../Pages/Dashboard";
 import UserProfile from "../Pages/Application/UserProfile";
 import Employee from "../Pages/Application/Employee";
 import Work from "../Pages/Application/Work";
+import Tender from "../Pages/Application/Tender";
 import AddEmployee from "../components/Application/Employee/AddEmployee";
 import AddUserProfile from "../components/Application/Manage User Profile/AddUserProfile";
 import SetPermission from "../components/Application/Manage User Profile/SetPermission";
@@ -20,6 +21,10 @@ import OfficerProfileDetails from "../components/Application/Content Managament/
 import AddOfficerProfile from "../components/Application/Content Managament/AddOfficerProfile";
 import AddContent from "../components/Application/Content Managament/AddContent";
 import Assignwork from "../components/Application/Work/Assignwork";
+import AddTender from "../components/Application/Manage Application/AddTender";
+import Addendum from "../components/Application/Manage Application/Addendum";
+import Corrigendum from "../components/Application/Manage Application/Corrigendum";
+import NewsUpdate from "../components/Application/Manage Application/NewsUpdate";
 
 
 
@@ -102,6 +107,21 @@ function Hubrouters() {
             </Route>
             <Route path={"/hub/Employee"}>
               <Employee />
+            </Route>
+            <Route path={"/hub/Tender"}>
+              <Tender />
+            </Route>
+            <Route path={"/hub/AddTender"}>
+              <AddTender />
+            </Route>
+            <Route path={"/hub/Addendum"}>
+              <Addendum />
+            </Route>
+            <Route path={"/hub/Corrigendum"}>
+              <Corrigendum />
+            </Route>
+            <Route path={"/hub/NewsUpdate"}>
+              <NewsUpdate />
             </Route>
           </Switch>
         </div>

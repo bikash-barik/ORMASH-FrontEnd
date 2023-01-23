@@ -75,11 +75,11 @@ export const menuItems = [
   {
     name: "Manage Application",
     exact: true,
-    to: `/hub/Analytics`,
+    to: ``,
     iconClassName: "bi bi-kanban",
     subMenus: [
-      { name: "Tender", to: "/hub/ReadingSection" },
-      { name: "News Updates", to: "/hub/PageReads" },
+      { name: "Tender", to: "/hub/Tender" },
+      { name: "News Updates", to: "/hub/NewsUpdate" },
       { name: "Document", to: "/hub/Events" },
       { name: "Important Links", to: "/hub/Events" },
       { name: "Gallery", to: "/hub/Events" },
