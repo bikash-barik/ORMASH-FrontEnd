@@ -9,6 +9,10 @@ import UserProfile from "../Pages/Application/UserProfile";
 import Employee from "../Pages/Application/Employee";
 import Work from "../Pages/Application/Work";
 import Tender from "../Pages/Application/Tender";
+import Document from "../Pages/Application/Document";
+import ImportantLink from "../Pages/Application/ImportantLink";
+import Gallery from "../Pages/Application/Gallery";
+import Video from "../Pages/Application/Video";
 import AddEmployee from "../components/Application/Employee/AddEmployee";
 import AddUserProfile from "../components/Application/Manage User Profile/AddUserProfile";
 import SetPermission from "../components/Application/Manage User Profile/SetPermission";
@@ -25,6 +29,11 @@ import AddTender from "../components/Application/Manage Application/AddTender";
 import Addendum from "../components/Application/Manage Application/Addendum";
 import Corrigendum from "../components/Application/Manage Application/Corrigendum";
 import NewsUpdate from "../components/Application/Manage Application/NewsUpdate";
+import AddNews from "../components/Application/Manage Application/AddNews";
+import AddDocument from "../components/Application/Manage Application/AddDocument";
+import AddImportantLink from "../components/Application/Manage Application/AddImportantLink";
+import AddGallery from "../components/Application/Manage Application/AddGallery";
+import AddVideo from "../components/Application/Manage Application/AddVideo";
 
 
 
@@ -122,6 +131,36 @@ function Hubrouters() {
             </Route>
             <Route path={"/hub/NewsUpdate"}>
               <NewsUpdate />
+            </Route>
+            <Route path={"/hub/AddNews"}>
+              <AddNews />
+            </Route>
+            <Route path={"/hub/Document"}>
+              <Document />
+            </Route>
+            <Route path={"/hub/AddDocument"}>
+              <AddDocument />
+            </Route>
+            <Route path={"/hub/ImportantLink"}>
+              <ImportantLink />
+            </Route>
+            <Route path={"/hub/AddImportantLink"}>
+              <AddImportantLink />
+            </Route>
+            <Route path={"/hub/Gallery"}>
+              <Gallery />
+            </Route>
+            <Route path={"/hub/Gallery"}>
+              <Gallery />
+            </Route>
+            <Route path={"/hub/AddGallery"}>
+              <AddGallery />
+            </Route>
+            <Route path={"/hub/Video"}>
+              <Video />
+            </Route>
+            <Route path={"/hub/AddVideo"}>
+              <AddVideo />
             </Route>
           </Switch>
         </div>
