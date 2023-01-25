@@ -69,7 +69,7 @@ const ViewContent = ({ dispatch }) => {
               bordered
               hover
               responsive
-              className="border rounded text-center mt-5"
+              className="border rounded table-secondary text-center mt-5"
             >
               <thead>
                 <tr>

@@ -32,7 +32,7 @@ const Work = ({ dispatch }) => {
             <input type="text" placeholder="Name" className="maga_name"></input>
           </div>
           <div class="text-center coupon-data mobileresponsive table-responsive">
-            <table class="table table-success table-striped align-middle  table-hover align-middle coupon-table table-bordered border text-center">
+            <table class="table table-secondary table-striped align-middle  table-hover align-middle coupon-table table-bordered border text-center">
               <thead class="text-center">
                 <tr class="text-center">
                   <th scope="col" className="px-5">SL. No.</th>

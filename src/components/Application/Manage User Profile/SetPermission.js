@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 const SetPermission = ({ dispatch }) => {
   const history = useHistory();
 
-  const Cancle = () => {
+  const Cancel = () => {
     history.push("/hub/SetPermission");
   };
   return (
@@ -35,9 +35,9 @@ const SetPermission = ({ dispatch }) => {
                   striped
                   bordered
                   hover
-                  variant="dark"
+                  
                   responsive
-                  className="justify-content-center text-center"
+                  className="justify-content-center table-secondary text-center"
                 >
                   <thead>
                     <tr>
@@ -109,7 +109,7 @@ const SetPermission = ({ dispatch }) => {
                   bordered
                   hover
                   responsive
-                  className="border rounded text-center"
+                  className="border rounded table-secondary text-center"
                 >
                   <thead>
                     <tr>
@@ -183,7 +183,7 @@ const SetPermission = ({ dispatch }) => {
                   bordered
                   hover
                   responsive
-                  className="border rounded text-center"
+                  className="border rounded table-secondary text-center"
                 >
                   <thead>
                     <tr>
@@ -257,7 +257,7 @@ const SetPermission = ({ dispatch }) => {
                   bordered
                   hover
                   responsive
-                  className="border rounded text-center"
+                  className="border rounded table-secondary text-center"
                 >
                   <thead>
                     <tr>
@@ -547,7 +547,7 @@ const SetPermission = ({ dispatch }) => {
             <button type="submit" className="Submit-btn">
               Submit
             </button>
-            <button onClick={Cancle} type="submit" className="Cancle-btn">
+            <button onClick={Cancel} type="submit" className="Cancel-btn">
               Reset
             </button>
           </div>

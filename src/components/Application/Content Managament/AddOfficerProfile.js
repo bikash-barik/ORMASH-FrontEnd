@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 const AddOfficerProfile = ({ dispatch }) => {
   const history = useHistory();
 
-  const Cancle = () => {
+  const Cancel = () => {
     history.push("/hub/OfficerProfileDetails");
   };
   return (
@@ -83,8 +83,8 @@ const AddOfficerProfile = ({ dispatch }) => {
             <button type="submit" className="Submit-btn">
               Submit
             </button>
-            <button onClick={Cancle} type="submit" className="Cancle-btn">
-              Cancle   
+            <button onClick={Cancel} type="submit" className="Cancel-btn">
+              Cancel   
             </button>
           </div>
         </div>

@@ -181,7 +181,7 @@ font-size: 13px;
 
 
 .side-menu .main-menu .sub-menu.active{
-    max-height: 200px !important;
+    max-height: 450px !important;
 }
 
 .side-menu .main-menu .sub-menu a{

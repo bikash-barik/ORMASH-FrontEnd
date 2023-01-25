@@ -5,7 +5,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 const AddContent = ({ dispatch }) => {
   const history = useHistory();
 
-  const Cancle = () => {
+  const Cancel = () => {
     history.push("/hub/OfficerProfileDetails");
   };
   return (
@@ -79,8 +79,8 @@ const AddContent = ({ dispatch }) => {
             <button type="submit" className="Submit-btn">
               Submit
             </button>
-            <button onClick={Cancle} type="submit" className="Cancle-btn">
-              Cancle
+            <button onClick={Cancel} type="submit" className="Cancel-btn">
+              Cancel
             </button>
           </div>
         </div>

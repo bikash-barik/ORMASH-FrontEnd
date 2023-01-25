@@ -32,7 +32,7 @@ const UserProfiles = ({ dispatch }) => {
             <input type="text" placeholder="Name" className="maga_name"></input>
           </div>
           <div class="text-center coupon-data mobileresponsive">
-            <table class="table table-dark table-striped align-middle coupon-table table-bordered border text-center">
+            <table class="table table-secondary table-striped align-middle coupon-table table-bordered border text-center">
               <thead>
                 <tr class="text-center">
                   <th scope="col">SL. No.</th>

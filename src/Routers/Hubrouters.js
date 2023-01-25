@@ -13,6 +13,11 @@ import Document from "../Pages/Application/Document";
 import ImportantLink from "../Pages/Application/ImportantLink";
 import Gallery from "../Pages/Application/Gallery";
 import Video from "../Pages/Application/Video";
+import Achivement from "../Pages/Application/Achivement";
+import ManageLogo from "../Pages/Application/ManageLogo";
+import WhatsNew from "../Pages/Application/WhatsNew";
+import ManageBanner from "../Pages/Application/ManageBanner";
+import Feedback from "../Pages/Application/Feedback";
 import AddEmployee from "../components/Application/Employee/AddEmployee";
 import AddUserProfile from "../components/Application/Manage User Profile/AddUserProfile";
 import SetPermission from "../components/Application/Manage User Profile/SetPermission";
@@ -34,6 +39,10 @@ import AddDocument from "../components/Application/Manage Application/AddDocumen
 import AddImportantLink from "../components/Application/Manage Application/AddImportantLink";
 import AddGallery from "../components/Application/Manage Application/AddGallery";
 import AddVideo from "../components/Application/Manage Application/AddVideo";
+import AddAchivement from "../components/Application/Manage Application/AddAchivement";
+import AddWhatsNew from "../components/Application/Manage Application/AddWhatsNew";
+import AddManageBanner from "../components/Application/Manage Application/AddManageBanner";
+import UpdateContactDetails from "../components/Application/Manage Application/UpdateContactDetails";
 
 
 
@@ -161,6 +170,33 @@ function Hubrouters() {
             </Route>
             <Route path={"/hub/AddVideo"}>
               <AddVideo />
+            </Route>
+            <Route path={"/hub/Achivement"}>
+              <Achivement />
+            </Route>
+            <Route path={"/hub/AddAchivement"}>
+              <AddAchivement />
+            </Route>
+            <Route path={"/hub/ManageLogo"}>
+              <ManageLogo />
+            </Route>
+            <Route path={"/hub/WhatsNew"}>
+              <WhatsNew />
+            </Route>
+            <Route path={"/hub/AddWhatsNew"}>
+              <AddWhatsNew />
+            </Route>
+            <Route path={"/hub/ManageBanner"}>
+              <ManageBanner />
+            </Route>
+            <Route path={"/hub/AddManageBanner"}>
+              <AddManageBanner />
+            </Route>
+            <Route path={"/hub/Feedback"}>
+              <Feedback />
+            </Route>
+            <Route path={"/hub/UpdateContactDetails"}>
+              <UpdateContactDetails />
             </Route>
           </Switch>
         </div>
