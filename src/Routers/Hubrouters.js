@@ -1,4 +1,4 @@
-import "../App.css";
+// import "../App.css";
 import SideMenu, { menuItems } from "../components/SideMenu";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState } from "react";

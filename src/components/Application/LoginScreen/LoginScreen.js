@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Row, Col,Container} from "react-bootstrap";
+import { Form, Button, Row, Col, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loading from "../../Loading";
@@ -20,7 +20,7 @@ function LoginScreen({ history }) {
   useEffect(() => {
     if (userInfo) {
       history.push("/hub/Dashbord");
-      // window.location.reload(false);
+      window.location.reload(false);
     }
   }, [history, userInfo]);
 
@@ -30,62 +30,60 @@ function LoginScreen({ history }) {
   };
 
   return (
-   <div>
-    <Container className="justify-content-md-center">
-      <Row className="justify-content-md-center">
-        <Col>1 of 2</Col>
-        <Col>2 of 2</Col>
-      </Row>
-      <Row>
-        <Col>1 of 3</Col>
-        <Col>2 of 3</Col>
-        <Col>3 of 3</Col>
-      </Row>
-    </Container>
     <div>
+      <Container fluid  className="w-100">
+        <Row className="justify-content-md-center">
+          <Col>
+            <MainScreen title="LOGIN">
+              <div className="loginContainer ">
+                {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+                {loading && <Loading />}
+                <Form onSubmit={submitHandler}>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                      type="email"
+                      value={email}
+                      className="p-2"
+                      placeholder="Enter email"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </Form.Group>
 
+                  <Form.Group controlId="formBasicPassword" className="mb-2">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      value={password}
+                      className="p-2"
+                      placeholder="Password"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </Form.Group>
+
+                  <Button variant="primary" type="submit" className="p-2">
+                    Submit
+                  </Button>
+                </Form>
+                <Row className="py-3">
+                  <Col>
+                    New Customer ? <Link to="/register">Register Here</Link>
+                  </Col>
+                </Row>
+              </div>
+            </MainScreen>
+          </Col>
+          <Col>
+            <img
+              className="d-block w-100"
+              src="https://images.squarespace-cdn.com/content/v1/5ade0eb85cfd79247926399a/1628025398906-UGAHWXAJLGZFZ5Y48N1A/Cybersecurity_1.gif"
+              alt="First slide"
+            />
+          </Col>
+        </Row>
+      </Container>
+      
     </div>
-<MainScreen title="LOGIN">
-<div className="loginContainer ">
-  {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-  {loading && <Loading />}
-  <Form onSubmit={submitHandler} >
-    <Form.Group controlId="formBasicEmail">
-      <Form.Label>Email address</Form.Label>
-      <Form.Control
-        type="email"
-        value={email}
-        className="p-2"
-        placeholder="Enter email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-    </Form.Group>
-
-    <Form.Group controlId="formBasicPassword" className="mb-2">
-      <Form.Label>Password</Form.Label>
-      <Form.Control
-        type="password"
-        value={password}
-        className="p-2"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-    </Form.Group>
-
-    <Button variant="primary" type="submit" className="p-2">
-      Submit
-    </Button>
-  </Form>
-  <Row className="py-3">
-    <Col>
-      New Customer ? <Link to="/register">Register Here</Link>
-    </Col>
-  </Row>
-</div>
-</MainScreen>
-   </div>
-
-
   );
 }
 

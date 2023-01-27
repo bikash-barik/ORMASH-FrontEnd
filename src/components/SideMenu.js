@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/logo/ORMAS_Logo_with_CM.jpg";
+import logo from "../assets/images/logo.png";
 import user from "../assets/userimg.png";
-
+import { useDispatch, useSelector } from "react-redux";
 import MenuItem from "./MenuItem";
+import { logout } from "../Redux/actions/userActions";
+import "../Style/SideBar.css"
 
 /**
  * @author
@@ -133,6 +135,24 @@ export const menuItems = [
 const SideMenu = (props) => {
   const [inactive, setInactive] = useState(false);
 
+//Login Credentials
+const dispatch = useDispatch();
+
+const userLogin = useSelector((state) => state.userLogin);
+const { userInfo } = userLogin;
+
+const logoutHandler = () => {
+  if (window.confirm("Are you sure to logout?")) {
+    dispatch(logout());
+  }
+
+
+};
+
+useEffect(() => {}, [userInfo]);
+//end of the login 
+
+
   useEffect(() => {
     if (inactive) {
       removeActiveClassFromSubMenu();
@@ -166,6 +186,9 @@ const SideMenu = (props) => {
       });
     });
   }, []);
+
+
+
 
   return (
     <div className={`side-menu ${inactive ? "inactive" : ""}`}>
@@ -220,7 +243,7 @@ const SideMenu = (props) => {
               <div className="menu-icon">
                 <i class="bi bi-box-arrow-left"></i>
               </div>
-              <span>Logout</span>
+              <span onClick={logoutHandler}>Logout</span>
             </a>
           </li>
           </a>
@@ -249,10 +272,10 @@ const SideMenu = (props) => {
 
       <div className="side-menu-footer">
         <div className="avatar">
-          <img src={user} alt="user" />
+          <img src={`${userInfo.pic}`} alt="user" />
         </div>
         <div className="user-info">
-          <h5> ORMAS Administrator</h5>
+          <h5> {`${userInfo.name}`}</h5>
           <p>Wednesday, Jan 18, 2023 4:19PM</p>
         </div>
       </div>

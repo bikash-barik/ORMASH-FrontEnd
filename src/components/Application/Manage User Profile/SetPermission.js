@@ -544,10 +544,10 @@ const SetPermission = ({ dispatch }) => {
           </Accordion>
 
           <div className="btn">
-            <button type="submit" className="Submit-btn">
+            <button type="submit" className="btn-Previous">
               Submit
             </button>
-            <button onClick={Cancel} type="submit" className="Cancel-btn">
+            <button onClick={Cancel} type="submit" className="btn-Next ">
               Reset
             </button>
           </div>

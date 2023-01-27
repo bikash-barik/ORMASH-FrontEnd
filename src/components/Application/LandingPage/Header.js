@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import logo from "../../../assets/logo/logo1.png";
 import {
   Container,
   Form,
@@ -24,9 +25,11 @@ function Header({ setSearch }) {
   useEffect(() => {}, [userInfo]);
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" className="p-5">
+    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" className="p-1">
       <Container>
-        <Navbar.Brand href="/">ORMAS</Navbar.Brand>
+        <Navbar.Brand href="/">
+            <img src={logo} alt="logo" width="180px" />
+        </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -68,7 +71,7 @@ function Header({ setSearch }) {
                 </NavDropdown>
               </>
             ) : (
-              <Nav.Link href="/login">Login</Nav.Link>
+              <Nav.Link href="/">Login</Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../../AllCss.css";
 
 function DashboardPart() {
   const [inactive, setInactive] = useState(false);

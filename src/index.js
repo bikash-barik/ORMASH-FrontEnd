@@ -7,12 +7,10 @@ import store from "../src/Redux/store";
 
 import reportWebVitals from "./reportWebVitals";
 
-
 ReactDOM.render(
-
   <Provider store={store}>
     <App />
-    </Provider>,
+  </Provider>,
   document.getElementById("root")
 );
 

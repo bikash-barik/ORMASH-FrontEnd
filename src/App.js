@@ -1,16 +1,16 @@
-import "./App.css";
+// import "./App.css";
 import SideMenu, { menuItems } from "./components/SideMenu";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import "./Style/AllCss.css"
+import "./Style/style.css"
 
 
 
 
 import React from 'react'
 import Hubrouters from "./Routers/Hubrouters";
-import LandingPage from "./Pages/LandingPage";
 import IndexRouter from "./Routers/IndexRouter";
 
 
