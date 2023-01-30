@@ -27,13 +27,13 @@ function Header({ setSearch }) {
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" className="p-1">
       <Container>
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/Login">
             <img src={logo} alt="logo" width="180px" />
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="m-auto">
+        <Navbar.Collapse id="responsive-navbar-nav" >
+          <Nav className="m-auto" >
             {userInfo && (
               <Form inline>
                 <FormControl
@@ -48,12 +48,12 @@ function Header({ setSearch }) {
           <Nav>
             {userInfo ? (
               <>
-                <Nav.Link href="/hub/Dashbord">Dashboard</Nav.Link>
+                <Nav.Link href="/hub/Dashbord" className="px-3">Dashboard</Nav.Link>
                 <NavDropdown
                   title={`${userInfo.name}`}
                   id="collasible-nav-dropdown"
                 >
-                  <NavDropdown.Item href="/profile">
+                  <NavDropdown.Item href="/profile" className="px-5"> 
                     {/* <img
                       alt=""
                       src={`${userInfo.pic}`}
@@ -65,13 +65,13 @@ function Header({ setSearch }) {
                   </NavDropdown.Item>
 
                   <NavDropdown.Divider />
-                  <NavDropdown.Item onClick={logoutHandler}>
+                  <NavDropdown.Item onClick={logoutHandler} className="px-5">
                     Logout
                   </NavDropdown.Item>
                 </NavDropdown>
               </>
             ) : (
-              <Nav.Link href="/">Login</Nav.Link>
+              <Nav.Link href="/Login">Login</Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>

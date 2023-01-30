@@ -1,7 +1,5 @@
-// import "./App.css";
-import SideMenu, { menuItems } from "./components/SideMenu";
+import "./index.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Style/AllCss.css"
 import "./Style/style.css"

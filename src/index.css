@@ -1,0 +1,7 @@
+.bgimg{
+    /* background-image: url("../public//images/swaanewbg.jpg"); */
+    background-image: radial-gradient(circle, #5c0067 0%, #00d4ff 100%);
+    /* background:cover; */
+    /* height: 90vh; */
+    /* background: fixed; */
+}

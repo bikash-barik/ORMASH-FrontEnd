@@ -6,8 +6,9 @@ import Sliders from "../../components/UI/Sliders";
 export default function Dashboard() {
   return (
     <>
-    <Header/>
-    <Header/>
+    {/* <Header/> */}
+    {/* <Header/> */}
+    <br/>
     <Sliders/>
      {/* <DashboardPart /> */}
     </>

@@ -2,6 +2,12 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
+  officerProfileDetailCreateReducer,
+  officerProfileDetailDeleteReducer,
+  officerProfileDetailListReducer,
+  officerProfileDetailUpdateReducer,
+} from "./reducers/Content Management/officerProfileDetailsReducers";
+import {
   noteCreateReducer,
   noteDeleteReducer,
   noteListReducer,
@@ -21,6 +27,11 @@ const reducer = combineReducers({
   noteDelete: noteDeleteReducer,
   noteUpdate: noteUpdateReducer,
   userUpdate: userUpdateReducer,
+  // officerProfileDetail
+  officerProfileDetailList: officerProfileDetailListReducer,
+  officerProfileDetailCreate: officerProfileDetailCreateReducer,
+  officerProfileDetailDelete: officerProfileDetailDeleteReducer,
+  officerProfileDetailUpdate: officerProfileDetailUpdateReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

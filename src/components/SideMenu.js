@@ -134,10 +134,9 @@ export const menuItems = [
 
 const SideMenu = (props) => {
   const [inactive, setInactive] = useState(false);
-
+  const [date,setDate] = useState(new Date());
 //Login Credentials
 const dispatch = useDispatch();
-
 const userLogin = useSelector((state) => state.userLogin);
 const { userInfo } = userLogin;
 
@@ -148,6 +147,13 @@ const logoutHandler = () => {
 
 
 };
+useEffect(() => {
+  var timer = setInterval(()=>setDate(new Date()), 1000 )
+  return function cleanup() {
+      clearInterval(timer)
+  }
+
+});
 
 useEffect(() => {}, [userInfo]);
 //end of the login 
@@ -276,7 +282,7 @@ useEffect(() => {}, [userInfo]);
         </div>
         <div className="user-info">
           <h5> {`${userInfo.name}`}</h5>
-          <p>Wednesday, Jan 18, 2023 4:19PM</p>
+          <p>{date.toLocaleDateString()} {date.toLocaleTimeString()}</p>
         </div>
       </div>
     </div>
