@@ -12,6 +12,9 @@ import {
 } from "../constants/userConstants";
 import axios from "axios";
 
+// const APIURL = "http://18.223.134.153:5000";
+import { APIURL } from "../APIURL";
+
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
@@ -19,11 +22,14 @@ export const login = (email, password) => async (dispatch) => {
     const config = {
       headers: {
         "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST,GET,OPTIONS, PUT, DELETE",
+        "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization",
       },
     };
 
     const { data } = await axios.post(
-      "/api/users/login",
+      `${APIURL}/api/users/login`,
       { email, password },
       config
     );
@@ -54,6 +60,7 @@ export const register = (name, email, password, pic) => async (dispatch) => {
     const config = {
       headers: {
         "Content-type": "application/json",
+        'Access-Control-Allow-Origin': '*',
       },
     };
 

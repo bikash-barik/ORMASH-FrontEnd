@@ -33,7 +33,7 @@ function LoginScreen({ history }) {
     <div>
       <Container fluid  className="w-100">
         <Row className="justify-content-md-center">
-          <Col>
+          <Col className="col-sm-12 col-lg-6">
             <MainScreen title="LOGIN">
               <div className="loginContainer ">
                 {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
@@ -73,7 +73,7 @@ function LoginScreen({ history }) {
               </div>
             </MainScreen>
           </Col>
-          <Col>
+          <Col className="col-sm-12 col-lg-6">
             <img
               className="d-block w-100"
               src="https://images.squarespace-cdn.com/content/v1/5ade0eb85cfd79247926399a/1628025398906-UGAHWXAJLGZFZ5Y48N1A/Cybersecurity_1.gif"
