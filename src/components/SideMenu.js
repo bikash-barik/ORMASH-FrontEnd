@@ -281,7 +281,7 @@ useEffect(() => {}, [userInfo]);
           <img src={`${userInfo.pic}`} alt="user" />
         </div>
         <div className="user-info">
-          <h5> {`${userInfo.name}`}</h5>
+          <h5 className="h3 text-white bold"> {`${userInfo.name}`}</h5>
           <p>{date.toLocaleDateString()} {date.toLocaleTimeString()}</p>
         </div>
       </div>

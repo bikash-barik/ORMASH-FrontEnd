@@ -115,6 +115,7 @@ font-size: 13px;
 }
 
 .side-menu .main-menu .menu-item{
+    /* background-color: #000; */
     color: #000 !important;
     text-decoration: none !important;
     font-size: 15px !important;
@@ -133,14 +134,13 @@ font-size: 13px;
 .side-menu .main-menu{
     margin: 5px 0 !important;
     position: relative !important;
-    max-height: 100% !important;
+    max-height: 530px !important;
     overflow-y: scroll !important;
-    overflow-x: hidden !important;
+    overflow-x: scroll !important;
    
 }
 /* not required any more */
 .side-menu.inactive .main-menu{
-
 }
 
 .side-menu .main-menu .menu-item .menu-icon{

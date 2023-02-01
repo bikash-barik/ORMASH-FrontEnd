@@ -2,7 +2,8 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
-
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip"
 const NewsUpdate = ({ dispatch }) => {
   const history = useHistory();
 
@@ -34,7 +35,79 @@ const NewsUpdate = ({ dispatch }) => {
               </div>
             </div>
           </div>
-
+  
+          <div className=" gap-3 d-flex flex-row-reverse">
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={
+                <Tooltip id="button-tooltip-2" className="p-1">
+                  <span className="p-2">UnPublish</span>
+                </Tooltip>
+              }
+            >
+              <button
+                type="button"
+                class="btn btn-secondary p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+              >
+                <i class="bi bi-volume-mute"></i>
+              </button>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={
+                <Tooltip id="button-tooltip-2" className="p-1">
+                  <span className="p-2"> Publish</span>
+                </Tooltip>
+              }
+            >
+              <button type="button" class="btn btn-secondary p-2">
+                <i class="bi bi-megaphone-fill"></i>
+              </button>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={
+                <Tooltip id="button-tooltip-2" className="p-1">
+                  <span className="p-2"> Delete</span>
+                </Tooltip>
+              }
+            >
+              <button type="button" class="btn btn-secondary p-2">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={
+                <Tooltip id="button-tooltip-2" className="p-1">
+                  <span className="p-2"> Archive</span>
+                </Tooltip>
+              }
+            >
+              <button type="button" class="btn btn-secondary p-2">
+                <i class="bi bi-archive-fill"></i>
+              </button>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={
+                <Tooltip id="button-tooltip-2" className="p-1">
+                  <span className="p-2"> Print This Page</span>
+                </Tooltip>
+              }
+            >
+              <button type="button" class="btn btn-secondary p-2">
+                <i class="bi bi-printer-fill"></i>
+              </button>
+            </OverlayTrigger>
+          </div>
           <div class="text-center coupon-data mobileresponsive">
             <Table
               striped

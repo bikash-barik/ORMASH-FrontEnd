@@ -2,10 +2,12 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
-
+import Button from "react-bootstrap/Button";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 const ViewContent = ({ dispatch }) => {
   const history = useHistory();
-
+ 
   const AddTender = () => {
     history.push("/hub/AddTender");
   };
@@ -35,24 +37,98 @@ const ViewContent = ({ dispatch }) => {
                   onClick={AddTender}
                 >
                   Add Tenders
-                </button> 
+                </button>
                 <button
                   type="submit"
                   className="btn-coupon-free"
                   onClick={AddAddendum}
                 >
-                 Addendum
-                </button> 
+                  Addendum
+                </button>
                 <button
                   type="submit"
                   className="btn-coupon-free"
                   onClick={AddCorrigendum}
                 >
-                 Corrigendum
-                </button> 
+                  Corrigendum
+                </button>
               </div>
             </div>
           </div>
+
+          <div className="my-2 gap-3 d-flex flex-row-reverse">
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={
+                <Tooltip id="button-tooltip-2" className="p-1">
+                  <span className="p-2">UnPublish</span>
+                </Tooltip>
+              }
+            >
+              <button
+                type="button"
+                class="btn btn-secondary p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+              >
+                <i class="bi bi-volume-mute"></i>
+              </button>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={
+                <Tooltip id="button-tooltip-2" className="p-1">
+                  <span className="p-2"> Publish</span>
+                </Tooltip>
+              }
+            >
+              <button type="button" class="btn btn-secondary p-2">
+                <i class="bi bi-megaphone-fill"></i>
+              </button>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={
+                <Tooltip id="button-tooltip-2" className="p-1">
+                  <span className="p-2"> Delete</span>
+                </Tooltip>
+              }
+            >
+              <button type="button" class="btn btn-secondary p-2">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={
+                <Tooltip id="button-tooltip-2" className="p-1">
+                  <span className="p-2"> Archive</span>
+                </Tooltip>
+              }
+            >
+              <button type="button" class="btn btn-secondary p-2">
+                <i class="bi bi-archive-fill"></i>
+              </button>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={
+                <Tooltip id="button-tooltip-2" className="p-1">
+                  <span className="p-2"> Print This Page</span>
+                </Tooltip>
+              }
+            >
+              <button type="button" class="btn btn-secondary p-2">
+                <i class="bi bi-printer-fill"></i>
+              </button>
+            </OverlayTrigger>
+          </div>
+
           <div className="magazinName">
             <div className="border border-2 d-flex bg-light   p-2">
               <span className="m-1">Tender Number </span>
@@ -68,7 +144,7 @@ const ViewContent = ({ dispatch }) => {
                 </select>
               </div>
 
-              <span className="m-1">Tender Headline	</span>
+              <span className="m-1">Tender Headline </span>
               <div class="col-md-2">
                 <select id="inputState" class="form-select p-1">
                   <option selected>Choose...</option>
@@ -224,7 +300,7 @@ const ViewContent = ({ dispatch }) => {
               </tbody>
             </Table>
           </div> */}
-<center className="text-danger">No Records Found  </center>
+          <center className="text-danger">No Records Found </center>
           {/* <div className="btn-row">
             <div className="col-md-8">
               <div className="ShowEntries">

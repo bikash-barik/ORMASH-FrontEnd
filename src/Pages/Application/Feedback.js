@@ -2,7 +2,8 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
-
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 const Feedback = ({ dispatch }) => {
   const history = useHistory();
 
@@ -29,17 +30,47 @@ const Feedback = ({ dispatch }) => {
                   className="btn-coupon-free"
                   onClick={UpdateContactDetails}
                 >
-                 Update Contact Details
+                  Update Contact Details
                 </button>
               </div>
             </div>
           </div>
 
+          <div className="my-2 gap-3 d-flex flex-row-reverse">
+          
+          
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={
+                <Tooltip id="button-tooltip-2" className="p-1">
+                  <span className="p-2"> Delete</span>
+                </Tooltip>
+              }
+            >
+              <button type="button" class="btn btn-secondary p-2">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </OverlayTrigger>
+         
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={
+                <Tooltip id="button-tooltip-2" className="p-1">
+                  <span className="p-2"> Print This Page</span>
+                </Tooltip>
+              }
+            >
+              <button type="button" class="btn btn-secondary p-2">
+                <i class="bi bi-printer-fill"></i>
+              </button>
+            </OverlayTrigger>
+          </div>
           <div class="text-center coupon-data mobileresponsive">
             <Table
               striped
               bordered
-              
               hover
               responsive
               className="border rounded table-secondary text-center mt-5"
@@ -78,7 +109,6 @@ const Feedback = ({ dispatch }) => {
                     <i class="bi bi-pencil-square"></i>{" "}
                   </td>
                 </tr>
-
               </tbody>
             </Table>
           </div>
