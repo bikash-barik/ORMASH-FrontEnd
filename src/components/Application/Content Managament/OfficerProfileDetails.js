@@ -1,21 +1,93 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../Loading";
+import ErrorMessage from "../../ErrorMessage";
+import {
+  listOfficerProfileDetails,
+  deleteOfficerProfileDetailAction,
+} from "../../../Redux/actions/Content Management/officerProfileDetailsActions";
 
-const OfficerProfileDetails = ({ dispatch }) => {
+const OfficerProfileDetails = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const CreateMagazin = () => {
     history.push("/hub/AddOfficerProfile");
   };
 
+  const officerProfileDetailList = useSelector(
+    (state) => state.officerProfileDetailList
+  );
+  const { loading, error, officerProfileDetails } = officerProfileDetailList;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const officerProfileDetailDelete = useSelector(
+    (state) => state.officerProfileDetailDelete
+  );
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = officerProfileDetailDelete;
+
+  const officerProfileDetailCreate = useSelector(
+    (state) => state.officerProfileDetailCreate
+  );
+  const { success: successCreate } = officerProfileDetailCreate;
+
+  const officerProfileDetailUpdate = useSelector(
+    (state) => state.officerProfileDetailUpdate
+  );
+  const { success: successUpdate } = officerProfileDetailUpdate;
+
+  useEffect(() => {
+    dispatch(listOfficerProfileDetails());
+    if (!userInfo) {
+      history.push("/");
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    successUpdate,
+  ]);
+
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteOfficerProfileDetailAction(id));
+    }
+  };
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
   return (
     <div>
-      <form action="">
+      <form>
+        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        {errorDelete && (
+          <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>
+        )}
+        {loading && <Loading />}
+        {loadingDelete && <Loading />}
+        {console.log(officerProfileDetails)}
+        {/* {officerProfileDetails
+         &&
+         officerProfileDetails
+          .filter((filteredNote) =>
+            filteredNote.title.toLowerCase().includes(search.toLowerCase())
+          )
+          .reverse()
+          .map((officerProfileDetail) => ( */}
+        {/* { officerProfileDetails  &&
+         officerProfileDetails.reverse()
+          .map((officerProfileDetail) => ( */}
         <div class="">
           <h3 className="magazin-heading">
             <i class="bi bi-people design_icon"></i>OfficerProfileDetails
@@ -34,7 +106,7 @@ const OfficerProfileDetails = ({ dispatch }) => {
               </div>
             </div>
           </div>
-         
+
           <div class="text-center coupon-data mobileresponsive">
             <Table
               striped
@@ -55,72 +127,49 @@ const OfficerProfileDetails = ({ dispatch }) => {
                   <th className="p-2"> Edit</th>
                 </tr>
               </thead>
-              <tbody className="">
-                <tr className="">
-                  <td className="p-5">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-5">1</th>
-                  <td className="p-5"> Shri Pradip Kumar Amat</td>
-                  <td className="p-5"> Honorable Minister, PR & DW Dept.</td>
-                  <td className="p-5"> 1</td>
-                  <td className="p-5"> 14-Oct-2019</td>
-                  <td className="p-1">
-                    <img
-                      src="http://ormas.org/Application/uploadDocuments/OfficerImage/ORMAS_1655542431.jpg"
-                      height="75px"
-                      width="80px"
-                      alt=""
-                    />
-                  </td>
-                  <td className="p-5">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-5">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-5">2</th>
-                  <td className="p-5"> Shri Sushil Kumar Lohani, IAS</td>
-                  <td className="p-5"> Principal Secretary, PR & DW Deptt</td>
-                  <td className="p-5"> 2</td>
-                  <td className="p-5"> 14-Oct-2019</td>
-                  <td className="p-1">
-                    <img
-                      src="http://ormas.org/Application/uploadDocuments/OfficerImage/ORMAS_1662217531.jpg"
-                      height="75px"
-                      width="80px"
-                      alt=""
-                    />
-                  </td>
-                  <td className="p-5">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-
-                <tr>
-                  <td className="p-5">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-5">3</th>
-                  <td className="p-5"> Ms Guha Poonam Tapas Kumar, IAS</td>{" "}
-                  <td className="p-5"> Chief Executive Officer</td>
-                  <td className="p-5">3</td>
-                  <td className="p-5"> 14-Oct-2019</td>
-                  <td className="p-1">
-                    <img
-                      src="http://ormas.org/Application/uploadDocuments/OfficerImage/ORMAS_1665726329.jpg"
-                      height="75px"
-                      width="80px"
-                      alt=""
-                    />
-                  </td>
-                  <td className="p-5">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-              </tbody>
+              {officerProfileDetails &&
+                officerProfileDetails.reverse().map((officerProfileDetail,i) => (
+                  <tbody className="" key={officerProfileDetail._id}>
+                    <tr className="">
+                      <td className="p-5">  
+                        <Form.Check aria-label="option 1" />
+                      </td>
+                      <th className="p-5">{i + 1}</th>
+                      <td className="p-5">
+                        {" "}
+                        {officerProfileDetail.officername}
+                      </td>
+                      <td className="p-5">
+                        {" "}
+                        {officerProfileDetail.designation}
+                      </td>
+                      <td className="p-5"> {officerProfileDetail.serial}</td>
+                      <td className="p-5"> {officerProfileDetail.createdon.substring(0, 10)}</td>
+                      <td className="p-1">
+                        <img
+                          src={officerProfileDetail.photo}
+                          height="75px"
+                          width="80px"
+                          alt=""
+                        />
+                      </td>
+                      <td className="p-5 d-flex justify-content-between">
+                        <a
+                          href={`/hub/UpdateOfficerProfile/${officerProfileDetail._id}`}
+                        >
+                          <i class="bi bi-pencil-square"></i>{" "}
+                        </a>
+                        <a
+                          onClick={() =>
+                            deleteHandler(officerProfileDetail._id)
+                          }
+                        >
+                          <i class="bi bi-trash-fill"></i>{" "}
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                ))}
             </Table>
           </div>
 

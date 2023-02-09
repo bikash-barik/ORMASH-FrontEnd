@@ -8,11 +8,17 @@ import {
   officerProfileDetailUpdateReducer,
 } from "./reducers/Content Management/officerProfileDetailsReducers";
 import {
-  noteCreateReducer,
-  noteDeleteReducer,
-  noteListReducer,
-  noteUpdateReducer,
-} from "./reducers/notesReducers";
+  documentCreateReducer,
+  documentDeleteReducer,
+  documentListReducer,
+  documentUpdateReducer,
+} from "./reducers/Manage Application/documentsReducers";
+import {
+  newsUpdatesCreateReducer,
+  newsUpdatesDeleteReducer,
+  newsUpdatesListReducer,
+  newsUpdatesUpdateReducer,
+} from "./reducers/Manage Application/newsUpdateReducers";
 import {
   userLoginReducer,
   userRegisterReducer,
@@ -20,18 +26,26 @@ import {
 } from "./reducers/userReducers";
 
 const reducer = combineReducers({
-  noteList: noteListReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
-  noteCreate: noteCreateReducer,
-  noteDelete: noteDeleteReducer,
-  noteUpdate: noteUpdateReducer,
   userUpdate: userUpdateReducer,
   // officerProfileDetail
   officerProfileDetailList: officerProfileDetailListReducer,
   officerProfileDetailCreate: officerProfileDetailCreateReducer,
   officerProfileDetailDelete: officerProfileDetailDeleteReducer,
   officerProfileDetailUpdate: officerProfileDetailUpdateReducer,
+
+  // document
+  documentList: documentListReducer,
+  documentCreate: documentCreateReducer,
+  documentDelete: documentDeleteReducer,
+  documentUpdate: documentUpdateReducer,
+
+  // newsUpdates
+  newsUpdatesList: newsUpdatesListReducer,
+  newsUpdatesCreate: newsUpdatesCreateReducer,
+  newsUpdatesDelete: newsUpdatesDeleteReducer,
+  newsUpdatesUpdate: newsUpdatesUpdateReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

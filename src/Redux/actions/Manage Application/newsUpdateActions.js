@@ -1,23 +1,23 @@
 import {
-  OfficerProfileDetails_CREATE_FAIL,
-  OfficerProfileDetails_CREATE_REQUEST,
-  OfficerProfileDetails_CREATE_SUCCESS,
-  OfficerProfileDetails_DELETE_FAIL,
-  OfficerProfileDetails_DELETE_REQUEST,
-  OfficerProfileDetails_DELETE_SUCCESS,
-  OfficerProfileDetails_LIST_FAIL,
-  OfficerProfileDetails_LIST_REQUEST,
-  OfficerProfileDetails_LIST_SUCCESS,
-  OfficerProfileDetails_UPDATE_FAIL,
-  OfficerProfileDetails_UPDATE_REQUEST,
-  OfficerProfileDetails_UPDATE_SUCCESS,
-} from "../../constants/Content Management/officerProfileDetailsConstants";
+  NewsUpdates_CREATE_FAIL,
+  NewsUpdates_CREATE_REQUEST,
+  NewsUpdates_CREATE_SUCCESS,
+  NewsUpdates_DELETE_FAIL,
+  NewsUpdates_DELETE_REQUEST,
+  NewsUpdates_DELETE_SUCCESS,
+  NewsUpdates_LIST_FAIL,
+  NewsUpdates_LIST_REQUEST,
+  NewsUpdates_LIST_SUCCESS,
+  NewsUpdates_UPDATE_FAIL,
+  NewsUpdates_UPDATE_REQUEST,
+  NewsUpdates_UPDATE_SUCCESS,
+} from "../../constants/Manage Application/newsUpdateConstants";
 import axios from "axios";
 
-export const listOfficerProfileDetails = () => async (dispatch, getState) => {
+export const listnewsUpdates = () => async (dispatch, getState) => {
   try {
     dispatch({
-      type: OfficerProfileDetails_LIST_REQUEST,
+      type: NewsUpdates_LIST_REQUEST,
     });
 
     const {
@@ -30,10 +30,10 @@ export const listOfficerProfileDetails = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/officersprofiles`, config);
+    const { data } = await axios.get(`/api/newsUpdates`, config);
 
     dispatch({
-      type: OfficerProfileDetails_LIST_SUCCESS,
+      type: NewsUpdates_LIST_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -42,24 +42,20 @@ export const listOfficerProfileDetails = () => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: OfficerProfileDetails_LIST_FAIL,
+      type: NewsUpdates_LIST_FAIL,
       payload: message,
     });
   }
 };
 
-export const createOfficerProfileDetailAction = ( officername,
-  designation,
-  qualification,
-  serial,
-  createdon,
-  photo) => async (
+export const createNewsUpdatesAction = ( 
+ headline,expiryDate, uploadDocument, description, status) => async (
   dispatch,
   getState
 ) => {
   try {
     dispatch({
-      type: OfficerProfileDetails_CREATE_REQUEST,
+      type: NewsUpdates_CREATE_REQUEST,
     });
 
     const {
@@ -74,18 +70,13 @@ export const createOfficerProfileDetailAction = ( officername,
     };
 
     const { data } = await axios.post(
-      `/api/officersprofiles/create`,
-      {  officername,
-        designation,
-        qualification,
-        serial,
-        createdon,
-        photo },
+      `/api/newsUpdates/create`,
+      {  headline,expiryDate, uploadDocument, description, status },
       config
     );
 
     dispatch({
-      type: OfficerProfileDetails_CREATE_SUCCESS,
+      type: NewsUpdates_CREATE_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -94,16 +85,16 @@ export const createOfficerProfileDetailAction = ( officername,
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: OfficerProfileDetails_CREATE_FAIL,
+      type: NewsUpdates_CREATE_FAIL,
       payload: message,
     });
   }
 };
 
-export const deleteOfficerProfileDetailAction = (id) => async (dispatch, getState) => {
+export const deleteNewsUpdatesAction = (id) => async (dispatch, getState) => {
   try {
     dispatch({
-      type: OfficerProfileDetails_DELETE_REQUEST,
+      type: NewsUpdates_DELETE_REQUEST,
     });
 
     const {
@@ -116,10 +107,10 @@ export const deleteOfficerProfileDetailAction = (id) => async (dispatch, getStat
       },
     };
 
-    const { data } = await axios.delete(`/api/officersprofiles/${id}`, config);
+    const { data } = await axios.delete(`/api/newsUpdates/${id}`, config);
 
     dispatch({
-      type: OfficerProfileDetails_DELETE_SUCCESS,
+      type: NewsUpdates_DELETE_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -128,24 +119,19 @@ export const deleteOfficerProfileDetailAction = (id) => async (dispatch, getStat
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: OfficerProfileDetails_DELETE_FAIL,
+      type: NewsUpdates_DELETE_FAIL,
       payload: message,
     });
   }
 };
 
-export const updateOfficerProfileDetailAction = (id,  officername,
-  designation,
-  qualification,
-  serial,
-  createdon,
-  photo) => async (
+export const updateNewsUpdatesAction = (id, headline,expiryDate, uploadDocument, description, status) => async (
   dispatch,
   getState
 ) => {
   try {
     dispatch({
-      type: OfficerProfileDetails_UPDATE_REQUEST,
+      type: NewsUpdates_UPDATE_REQUEST,
     });
 
     const {
@@ -160,18 +146,13 @@ export const updateOfficerProfileDetailAction = (id,  officername,
     };
 
     const { data } = await axios.put(
-      `/api/officersprofiles/${id}`,
-      {  officername,
-        designation,
-        qualification,
-        serial,
-        createdon,
-        photo },
+      `/api/newsUpdates/${id}`,
+      {  headline,expiryDate, uploadDocument, description, status },
       config
     );
 
     dispatch({
-      type: OfficerProfileDetails_UPDATE_SUCCESS,
+      type: NewsUpdates_UPDATE_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -180,7 +161,7 @@ export const updateOfficerProfileDetailAction = (id,  officername,
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: OfficerProfileDetails_UPDATE_FAIL,
+      type: NewsUpdates_UPDATE_FAIL,
       payload: message,
     });
   }

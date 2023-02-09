@@ -176,7 +176,7 @@ const Gallery = ({ dispatch }) => {
 
                 <tr className="">
                   <td className="p-5">
-                    <Form.Check aria-label="option 1" />
+                    <Form.Check aria-label="option 1"  />
                   </td>
                   <th className="p-5">3</th>
                   <td className="p-5">SISIR SARAS 2023</td>

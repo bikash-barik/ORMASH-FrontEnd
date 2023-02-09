@@ -5,8 +5,13 @@ import Loading from "../../Loading";
 import ErrorMessage from "../../ErrorMessage";
 // import { login } from "../../../Redux/actions/userActions";
 import { createOfficerProfileDetailAction } from "../../../Redux/actions/Content Management/officerProfileDetailsActions";
+import {
+  deleteOfficerProfileDetailAction,
+  updateOfficerProfileDetailAction,
+} from "../../../Redux/actions/Content Management/officerProfileDetailsActions";
+import axios from "axios";
 
-const AddOfficerProfile = () => {
+const UpdateOfficerProfile = ({ match }) => {
   const [officername, setOfficername] = useState("");
   const [designation, setDesignation] = useState("");
   const [qualification, setQualification] = useState("");
@@ -15,14 +20,13 @@ const AddOfficerProfile = () => {
   const [photo, setPhoto] = useState("");
   const [picMessage, setPicMessage] = useState(null);
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const officerProfileDetailCreate = useSelector(
-    (state) => state.officerProfileDetailCreate
+  const officerProfileDetailUpdate = useSelector(
+    (state) => state.officerProfileDetailUpdate
   );
-  const { loading, error, officerProfile } = officerProfileDetailCreate;
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-  console.log(officerProfile);
+  const { loading, error } = officerProfileDetailUpdate;
+
   const postDetails = (pics) => {
     if (
       pics ===
@@ -51,6 +55,7 @@ const AddOfficerProfile = () => {
       return setPicMessage("Please Select an Image");
     }
   };
+
   const resetHandler = () => {
     setOfficername("");
     setQualification("");
@@ -60,10 +65,51 @@ const AddOfficerProfile = () => {
     setPhoto("");
   };
 
-  const submitHandler = (e) => {
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   dispatch(
+  //     createOfficerProfileDetailAction(
+  //       officername,
+  //       designation,
+  //       qualification,
+  //       serial,
+  //       createdon,
+  //       photo
+  //     )
+  //   );
+  //   if (
+  //     !officername ||
+  //     !designation ||
+  //     !qualification ||
+  //     !serial ||
+  //     !createdon ||
+  //     !photo
+  //   )
+  //     return;
+
+  //   resetHandler();
+  //   history.push("/hub/OfficerProfileDetails");
+  // };
+
+  useEffect(() => {
+    const fetching = async () => {
+      const { data } = await axios.get(`/api/officersprofiles/${match.params.id}`);
+      setOfficername(data.officername);
+      setQualification(data.qualification);
+      setDesignation(data.designation);
+      setSerial(data.serial);
+      setCreatedon(data.createdon);
+      setPhoto(data.photo);
+    };
+    fetching();
+  }, [match.params.id, photo]);
+
+  // useEffect(() => {}, []);
+  const updateHandler = (e) => {
     e.preventDefault();
     dispatch(
-      createOfficerProfileDetailAction(
+      updateOfficerProfileDetailAction(
+        match.params.id,
         officername,
         designation,
         qualification,
@@ -86,16 +132,12 @@ const AddOfficerProfile = () => {
     history.push("/hub/OfficerProfileDetails");
   };
 
-  useEffect(() => {}, []);
-
-  const history = useHistory();
-
   const Cancel = () => {
     history.push("/hub/OfficerProfileDetails");
   };
   return (
     <>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={updateHandler}>
         {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
         <div class="magazin-container">
           <h1 className="magazin-heading">Add Officer Profile</h1>
@@ -157,8 +199,8 @@ const AddOfficerProfile = () => {
             </div>
 
             {picMessage && (
-            <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
-          )}
+              <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
+            )}
             <div class="col-md-4 mb-5">
               <label for="inputZip" class="form-label">
                 Upload Image
@@ -173,7 +215,7 @@ const AddOfficerProfile = () => {
             </div>
             <div class="col-md-4 mb-5">
               <label for="inputZip" class="form-label">
-              Creation Date
+                Creation Date
               </label>
               <input
                 type="date"
@@ -184,7 +226,6 @@ const AddOfficerProfile = () => {
                 onChange={(e) => setCreatedon(e.target.value)}
               />
             </div>
-            
           </form>
           {loading && <Loading size={50} />}
           <div className="btn">
@@ -201,4 +242,4 @@ const AddOfficerProfile = () => {
   );
 };
 
-export default AddOfficerProfile;
+export default UpdateOfficerProfile;

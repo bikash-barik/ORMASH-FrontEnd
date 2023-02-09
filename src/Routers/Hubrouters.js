@@ -28,6 +28,7 @@ import AddGlobalLink from "../components/Application/Manage Links/AddGlobalLink"
 import ViewContent from "../components/Application/Content Managament/ViewContent";
 import OfficerProfileDetails from "../components/Application/Content Managament/OfficerProfileDetails";
 import AddOfficerProfile from "../components/Application/Content Managament/AddOfficerProfile";
+import UpdateOfficerProfile from "../components/Application/Content Managament/UpdateOfficerProfile";
 import AddContent from "../components/Application/Content Managament/AddContent";
 import Assignwork from "../components/Application/Work/Assignwork";
 import AddTender from "../components/Application/Manage Application/AddTender";
@@ -85,7 +86,9 @@ function Hubrouters() {
             </Route>
             <Route exact path={"/hub/AddUserProfile"}>
               <AddUserProfile />
-
+            </Route>
+            <Route exact path={"/hub/UpdateOfficerProfile/:id"}>
+              <UpdateOfficerProfile />
             </Route>
             <Route path={"/hub/SetPermission"}>
               <SetPermission />
