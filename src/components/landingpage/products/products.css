@@ -1,0 +1,7 @@
+.slide-container {
+  width: 90%;
+  max-width: 1080px !important;
+  margin: 0 auto !important;
+  padding: 1em !important;
+  background-color: transparent;
+}

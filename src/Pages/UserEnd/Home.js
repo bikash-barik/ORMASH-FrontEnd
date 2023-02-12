@@ -1,16 +1,29 @@
-import React from "react";
-import Header from "../../components/Application/LandingPage/Header";
-import Sliders from "../../components/UI/Sliders";
-// import DashboardPart from "../components/Body/DashboardPart";
+import Hero from '../../components/landingpage/hero/Hero';
+import Header from '../../components/landingpage/home/Header';
+import LogoSection from '../../components/landingpage/logosection/LogoSection';
+import Navbar from '../../components/landingpage/navbar/Navbar';
+import Notification from '../../components/landingpage/Notification';
+import Team from '../../components/landingpage/teams/Team';
+import About from '../../components/landingpage/about/About';
+import Gallery from '../../components/landingpage/gallery/Gallery';
+import VideoGallery from '../../components/landingpage/videogallery/VideoGallery';
+import Products from '../../components/landingpage/products/Products';
+import Footer from '../../components/landingpage/footer/Footer';
 
 export default function Dashboard() {
   return (
     <>
-    {/* <Header/> */}
-    {/* <Header/> */}
-    <br/>
-    <Sliders/>
-     {/* <DashboardPart /> */}
+      <Header />
+      <LogoSection />
+      <Navbar />
+      <Hero />
+      <Notification />
+      <Team />
+      <About />
+      <Gallery />
+      <VideoGallery />
+      <Products />
+      <Footer />
     </>
   );
 }
