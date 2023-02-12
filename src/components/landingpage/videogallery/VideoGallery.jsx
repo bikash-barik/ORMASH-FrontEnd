@@ -22,7 +22,10 @@ const VideoGallery = () => {
   };
 
   return (
-    <div className='gallery_container'>
+    <div className=''  style={{
+      width: "100%",
+      background: "linear-gradient(to top, #5f2c82, #49a09d)",
+    }}>
       <h1 className='text-center mb-8 g-title'>Video Gallery</h1>
       <div className='video_gallery'>
         <div className='video'>

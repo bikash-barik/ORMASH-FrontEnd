@@ -57,7 +57,10 @@ const Products = () => {
   console.log(currentSlideIndex);
 
   return (
-    <section style={{ background: '#5f2c82' }}>
+    <section   style={{
+      width: "100%",
+      background: "linear-gradient(to bottom, #5f2c82, #49a09d)",
+    }}>
       <div class='container-fluid py-8'>
         <div class='row'>
           <div

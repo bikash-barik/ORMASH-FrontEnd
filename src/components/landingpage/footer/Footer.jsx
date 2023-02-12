@@ -4,7 +4,10 @@ import './footer.css';
 
 const Footer = () => {
   return (
-    <div className='footer'>
+    <div className='footer'   style={{
+      width: "100%",
+      background: "linear-gradient(to top, #5f2c82, #49a09d)",
+    }}>
       <Container>
         <Row xs={1} md={3}>
           <Col>
@@ -32,9 +35,9 @@ const Footer = () => {
         </Row>
       </Container>
       <div className='copyright'>
-        <Container>
+        {/* <Container> */}
           <Copyright />
-        </Container>
+        {/* </Container> */}
       </div>
     </div>
   );

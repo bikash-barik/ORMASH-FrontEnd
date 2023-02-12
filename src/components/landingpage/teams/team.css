@@ -2,11 +2,12 @@
   width: 100%;
   display: grid;
   margin: 0 auto !important;
-  max-width: 1080px;
-  justify-content: center !important;
-  grid-template-columns: repeat(3, 1fr);
+  max-width: 1380px;
+  /* justify-content: center !important; */
+  grid-template-columns: repeat(100, 1fr);
   grid-gap: 2em;
   padding: 3em 0 !important;
+  overflow-x: scroll;
 }
 
 @media screen and (min-width: 768px) {

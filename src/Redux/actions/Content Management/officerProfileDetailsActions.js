@@ -30,7 +30,8 @@ export const listOfficerProfileDetails = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/officersprofiles`, config);
+    const { data } = await axios.get(`/api/officersprofiles`);
+    // const { data } = await axios.get(`/api/officersprofiles`, config);
 
     dispatch({
       type: OfficerProfileDetails_LIST_SUCCESS,
