@@ -1,14 +1,19 @@
 .cards_wrapper {
-  width: 90%;
+  width: 100%;
   display: grid;
   margin: 0 auto !important;
-  width: 100%;
   max-width: 1080px;
+  justify-content: center !important;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2em;
   padding: 3em 0 !important;
 }
 
+@media screen and (min-width: 768px) {
+  .profile_card {
+    width: 420px !important;
+  }
+}
 @media screen and (max-width: 768px) {
   .cards_wrapper {
     grid-template-columns: repeat(2, 1fr);
@@ -29,7 +34,6 @@
   border-radius: 8px;
   background-color: linear-gradient(to top, #592f5f, #333985) !important;
   color: #ffffff;
-
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
 }
 
