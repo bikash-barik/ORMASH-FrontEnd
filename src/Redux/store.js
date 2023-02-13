@@ -14,17 +14,37 @@ import {
   documentUpdateReducer,
 } from "./reducers/Manage Application/documentsReducers";
 import {
-  galleryCreateReducer,
-  galleryDeleteReducer,
-  galleryListReducer,
-  galleryUpdateReducer,
-} from "./reducers/Manage Application/gallerysReducers";
+
+  contentCreateReducer,
+  contentDeleteReducer,
+  contentListReducer,
+  contentUpdateReducer,
+} from "./reducers/Content Management/contentsReducers";
 import {
-  tenderCreateReducer,
-  tenderDeleteReducer,
-  tenderListReducer,
-  tenderUpdateReducer,
-} from "./reducers/Manage Application/tendersReducers";
+  achievementCreateReducer,
+  achievementDeleteReducer,
+  achievementListReducer,
+  achievementUpdateReducer,
+} from "./reducers/Manage Application/achievementsReducers";
+import {
+  bannerCreateReducer,
+  bannerDeleteReducer,
+  bannerListReducer,
+  bannerUpdateReducer,
+} from "./reducers/Manage Application/bannersReducers";
+import {
+  logoCreateReducer,
+  logoDeleteReducer,
+  logoListReducer,
+  logoUpdateReducer,
+} from "./reducers/Manage Application/logosReducers";
+import {
+  videoCreateReducer,
+  videoDeleteReducer,
+  videoListReducer,
+  videoUpdateReducer,
+} from "./reducers/Manage Application/videosReducers";
+
 import {
   newsUpdatesCreateReducer,
   newsUpdatesDeleteReducer,
@@ -51,19 +71,39 @@ const reducer = combineReducers({
   documentList: documentListReducer,
   documentCreate: documentCreateReducer,
   documentDelete: documentDeleteReducer,
-  documentUpdate: documentUpdateReducer, 
+  documentUpdate: documentUpdateReducer,
+
+  // content
+  contentList: contentListReducer,
+  contentCreate: contentCreateReducer,
+  contentDelete: contentDeleteReducer,
+  contentUpdate: contentUpdateReducer,
+
+  // achievement
+  achievementList: achievementListReducer,
+  achievementCreate: achievementCreateReducer,
+  achievementDelete: achievementDeleteReducer,
+  achievementUpdate: achievementUpdateReducer,
+
+  // banner
+  bannerList: bannerListReducer,
+  bannerCreate: bannerCreateReducer,
+  bannerDelete: bannerDeleteReducer,
+  bannerUpdate: bannerUpdateReducer,
+
+  // logo
+  logoList: logoListReducer,
+  logoCreate: logoCreateReducer,
+  logoDelete: logoDeleteReducer,
+  logoUpdate: logoUpdateReducer,
+
+  // video
+  videoList: videoListReducer,
+  videoCreate: videoCreateReducer,
+  videoDelete: videoDeleteReducer,
+  videoUpdate: videoUpdateReducer,
   
-  // Gallerys
-  galleryList: galleryListReducer,
-  galleryCreate: galleryCreateReducer,
-  galleryDelete: galleryDeleteReducer,
-  galleryUpdate: galleryUpdateReducer, 
-  
-  //  Tenders
-  tenderList: tenderListReducer,
-  tenderCreate: tenderCreateReducer,
-  tenderDelete: tenderDeleteReducer,
-  tenderUpdate: tenderUpdateReducer,
+ 
   // newsUpdates
   newsUpdatesList: newsUpdatesListReducer,
   newsUpdatesCreate: newsUpdatesCreateReducer,

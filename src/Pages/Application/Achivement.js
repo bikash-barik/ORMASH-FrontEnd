@@ -1,22 +1,76 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip"
-const Achivement = ({ dispatch }) => {
+import Tooltip from "react-bootstrap/Tooltip";
+
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
+import {
+  listachievements,
+  deleteAchievementAction,
+} from "../../Redux/actions/Manage Application/achievementsActions";
+
+const Achivement = () => {
   const history = useHistory();
 
   const AddAchivement = () => {
     history.push("/hub/AddAchivement");
   };
 
+  const dispatch = useDispatch();
+
+  const achievementList = useSelector((state) => state.achievementList);
+  const { loading, error, achievements } = achievementList;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const achievementDelete = useSelector((state) => state.achievementDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = achievementDelete;
+
+  const achievementCreate = useSelector((state) => state.achievementCreate);
+  const { success: successCreate } = achievementCreate;
+
+  const achievementUpdate = useSelector((state) => state.achievementUpdate);
+  const { success: successUpdate } = achievementUpdate;
+
+  useEffect(() => {
+    dispatch(listachievements());
+    if (!userInfo) {
+      history.push("/");
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    successUpdate,
+  ]);
+
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteAchievementAction(id));
+    }
+  };
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
   return (
     <div>
       <form action="">
+        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        {errorDelete && (
+          <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>
+        )}
+        {loadingDelete && loading && <Loading />}
         <div class="">
           <h3 className="magazin-heading">
             <i class="bi bi-people design_icon"></i>View Achivement
@@ -35,7 +89,7 @@ const Achivement = ({ dispatch }) => {
               </div>
             </div>
           </div>
-   
+
           <div className=" gap-3 d-flex flex-row-reverse">
             <OverlayTrigger
               placement="top"
@@ -137,7 +191,6 @@ const Achivement = ({ dispatch }) => {
                   <td className="p-5">Outlet at Bhubaneswar Air Port </td>{" "}
                   <td className="p-5">18-Jun-2022</td>
                   <td className="p-5">Set</td>
-
                   <td className="p-5">
                     <i class="bi bi-pencil-square"></i>{" "}
                   </td>
@@ -151,7 +204,6 @@ const Achivement = ({ dispatch }) => {
                   <td className="p-5">Outlet at Bhubaneswar Air Port </td>{" "}
                   <td className="p-5">18-Jun-2022</td>
                   <td className="p-5">Set</td>
-
                   <td className="p-5">
                     <i class="bi bi-pencil-square"></i>{" "}
                   </td>
@@ -166,7 +218,6 @@ const Achivement = ({ dispatch }) => {
                   <td className="p-5">Outlet at Bhubaneswar Air Port </td>{" "}
                   <td className="p-5">18-Jun-2022</td>
                   <td className="p-5">Set</td>
-
                   <td className="p-5">
                     <i class="bi bi-pencil-square"></i>{" "}
                   </td>
