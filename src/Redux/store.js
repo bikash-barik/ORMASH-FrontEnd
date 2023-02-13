@@ -14,6 +14,12 @@ import {
   documentUpdateReducer,
 } from "./reducers/Manage Application/documentsReducers";
 import {
+  videoCreateReducer,
+  videoDeleteReducer,
+  videoListReducer,
+  videoUpdateReducer,
+} from "./reducers/Manage Application/videosReducers";
+import {
   newsUpdatesCreateReducer,
   newsUpdatesDeleteReducer,
   newsUpdatesListReducer,
@@ -40,6 +46,12 @@ const reducer = combineReducers({
   documentCreate: documentCreateReducer,
   documentDelete: documentDeleteReducer,
   documentUpdate: documentUpdateReducer,
+
+  // video
+  videoList: videoListReducer,
+  videoCreate: videoCreateReducer,
+  videoDelete: videoDeleteReducer,
+  videoUpdate: documentUpdateReducer,
 
   // newsUpdates
   newsUpdatesList: newsUpdatesListReducer,

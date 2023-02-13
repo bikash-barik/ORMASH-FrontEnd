@@ -1,22 +1,76 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip"
-const Video = ({ dispatch }) => {
+import Tooltip from "react-bootstrap/Tooltip";
+
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
+import {
+  listvideos,
+  deleteVideoAction,
+} from "../../Redux/actions/Manage Application/videosActions";
+
+const Video = () => {
   const history = useHistory();
 
   const AddVideo = () => {
     history.push("/hub/AddVideo");
   };
 
+  const dispatch = useDispatch();
+
+  const videoList = useSelector((state) => state.videoList);
+  const { loading, error, videos } = videoList;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const videoDelete = useSelector((state) => state.videoDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = videoDelete;
+
+  const videoCreate = useSelector((state) => state.videoCreate);
+  const { success: successCreate } = videoCreate;
+
+  const videoUpdate = useSelector((state) => state.videoUpdate);
+  const { success: successUpdate } = videoUpdate;
+
+  useEffect(() => {
+    dispatch(listvideos());
+    if (!userInfo) {
+      history.push("/");
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    successUpdate,
+  ]);
+
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteVideoAction(id));
+    }
+  };
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
   return (
     <div>
-      <form action="">
+      <form>
+        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        {errorDelete && (
+          <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>
+        )}
+        {loadingDelete && loading && <Loading />}
         <div class="">
           <h3 className="magazin-heading">
             <i class="bi bi-people design_icon"></i>View Video
@@ -129,7 +183,7 @@ const Video = ({ dispatch }) => {
                 </tr>
               </thead>
               <tbody className="">
-                <tr className="">
+                {/* <tr className="">
                   <td className="p-5">
                     <Form.Check aria-label="option 1" />
                   </td>
@@ -139,7 +193,7 @@ const Video = ({ dispatch }) => {
                     {" "}
                     <a href="" className="text-danger">
                       <img
-                        src="http://ormas.org/Application/uploadDocuments/Gallery/ORMAS_Gallery_1674214826.jpg"
+                        // src="http://ormas.org/Application/uploadDocuments/Gallery/ORMAS_Gallery_1674214826.jpg"
                         height="80px"
                       />{" "}
                     </a>
@@ -161,7 +215,7 @@ const Video = ({ dispatch }) => {
                     {" "}
                     <a href="" className="text-danger">
                       <img
-                        src="http://ormas.org/Application/uploadDocuments/Gallery/ORMAS_Gallery_1674214826.jpg"
+                        // src="http://ormas.org/Application/uploadDocuments/Gallery/ORMAS_Gallery_1674214826.jpg"
                         height="80px"
                       />{" "}
                     </a>
@@ -172,30 +226,33 @@ const Video = ({ dispatch }) => {
                   <td className="p-5">
                     <i class="bi bi-pencil-square"></i>{" "}
                   </td>
-                </tr>
+                </tr> */}
+              {/* {videos &&
+                videos.reverse().map((video, i) => (
+                  <tr className="" key={video._id}>
+                    <td className="p-5">
+                      <Form.Check aria-label="option 1" />
+                    </td>
+                    <th className="p-5">{i+1}</th>
+                    <td className="p-5">{video.headline}</td>
+                    <td className="p-5">
+                      {" "}
+                      <a href="" className="text-danger">
+                        <img
+                          // src="http://ormas.org/Application/uploadDocuments/Gallery/ORMAS_Gallery_1674214826.jpg"
+                          height="80px"
+                        />{" "}
+                      </a>
+                    </td>
+                    <td className="p-5"> Mass Marketing Mission</td>
+                    <td className="p-5"> 19-Oct-2019</td>
+                    <td className="p-5">Set</td>
+                    <td className="p-5">
+                      <i class="bi bi-pencil-square"></i>{" "}
+                    </td>
+                  </tr>
+                ))} */}
 
-                <tr className="">
-                  <td className="p-5">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-5">3</th>
-                  <td className="p-5">SISIR SARAS 2023</td>
-                  <td className="p-5">
-                    {" "}
-                    <a href="" className="text-danger">
-                      <img
-                        src="http://ormas.org/Application/uploadDocuments/Gallery/ORMAS_Gallery_1674214826.jpg"
-                        height="80px"
-                      />{" "}
-                    </a>
-                  </td>
-                  <td className="p-5"> Mass Marketing Mission</td>
-                  <td className="p-5"> 19-Oct-2019</td>
-                  <td className="p-5">Set</td>
-                  <td className="p-5">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
               </tbody>
             </Table>
           </div>
