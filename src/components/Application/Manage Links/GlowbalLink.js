@@ -1,18 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 
 const GlowbalLink = ({ dispatch }) => {
   const history = useHistory();
-
+  const [data, setData] = useState([]);
   const CreateMagazin = () => {
     history.push("/hub/AddGlobalLink");
   };
+  const getData = async () => {
+    try {
+      const response = await axios.get("/api/globallinks/")
+      // console.log(response);
+      setData(response.data.globalLinks);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+
+    getData()
+
+  },[])
+
+const clickHandler = (id) =>{
+  history.push(`/hub/AddGlobalLink/${id}`)
+}
 
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
+
   return (
     <div>
       <form action="">
@@ -29,7 +49,7 @@ const GlowbalLink = ({ dispatch }) => {
                   className="btn-coupon-free"
                   onClick={CreateMagazin}
                 >
-                  Add User Profile
+                  Add GlobalLinks
                 </button>
               </div>
             </div>
@@ -55,189 +75,41 @@ const GlowbalLink = ({ dispatch }) => {
                   <th className="p-2"> Function/URL</th>
                   <th className="p-2"> Window Status</th>
                   <th className="p-2"> View Status </th>
-                  <th className="p-2">Created on</th>
+                  {/* <th className="p-2">Created on</th> */}
                   <th className="p-2"> Edit</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="p-1">
-                  <Form.Check aria-label="option 1"/>
-                  </td>
-                  <th className="p-1">1</th>
-                  <td className="p-1">About Us </td>
 
-                  <td className="p-1">1</td>
-                  <td className="p-1">Internal</td>
-                  <td className="p-1"> Content Management</td>
-                  <td className="p-1"> Same </td>
-                  <td className="p-1"> Main </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                  <Form.Check aria-label="option 1"/>
-                  </td>
-                  <th className="p-1">2</th>
-                  <td className="p-1">DDU-GKY</td>
+                {data.length > 0 && data.map((item) => (
+                  <tr>
+                    <td className="p-1">
+                      <Form.Check aria-label="option 1" />
+                    </td>
+                    <th className="p-1">{`${item._id}`.split(0,5)}
+                  </th>
+                    <td className="p-1">{item.link_name} </td>
 
-                  <td className="p-1">1</td>
-                  <td className="p-1">Internal</td>
-                  <td className="p-1"> Content Management</td>
-                  <td className="p-1"> Same </td>
-                  <td className="p-1"> Main </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                  <Form.Check aria-label="option 1"/>
-                  </td>
-                  <th className="p-1">3</th>
-                  <td className="p-1">Activities</td>
-                  <td className="p-1">1</td>
-                  <td className="p-1">Internal</td>
-                  <td className="p-1"> Content Management</td>
-                  <td className="p-1"> Same </td>
-                  <td className="p-1"> Main </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                  <Form.Check aria-label="option 1"/>
-                  </td>
-                  <th className="p-1">3</th>
-                  <td className="p-1">Activities</td>
-                  <td className="p-1">1</td>
-                  <td className="p-1">Internal</td>
-                  <td className="p-1"> Content Management</td>
-                  <td className="p-1"> Same </td>
-                  <td className="p-1"> Main </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                  <Form.Check aria-label="option 1"/>
-                  </td>
-                  <th className="p-1">4</th>
-                  <td className="p-1">Activities</td>
-                  <td className="p-1">1</td>
-                  <td className="p-1">Internal</td>
-                  <td className="p-1"> Content Management</td>
-                  <td className="p-1"> Same </td>
-                  <td className="p-1"> Main </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                  <Form.Check aria-label="option 1"/>
-                  </td>
-                  <th className="p-1">5</th>
-                  <td className="p-1">Activities</td>
-                  <td className="p-1">1</td>
-                  <td className="p-1">Internal</td>
-                  <td className="p-1"> Content Management</td>
-                  <td className="p-1"> Same </td>
-                  <td className="p-1"> Main </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                  <Form.Check aria-label="option 1"/>
-                  </td>
-                  <th className="p-1">6</th>
-                  <td className="p-1">Activities</td>
-                  <td className="p-1">1</td>
-                  <td className="p-1">Internal</td>
-                  <td className="p-1"> Content Management</td>
-                  <td className="p-1"> Same </td>
-                  <td className="p-1"> Main </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                  <Form.Check aria-label="option 1"/>
-                  </td>
-                  <th className="p-1">7</th>
-                  <td className="p-1">Activities</td>
-                  <td className="p-1">1</td>
-                  <td className="p-1">Internal</td>
-                  <td className="p-1"> Content Management</td>
-                  <td className="p-1"> Same </td>
-                  <td className="p-1"> Main </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                  <Form.Check aria-label="option 1"/>
-                  </td>
-                  <th className="p-1">8</th>
-                  <td className="p-1">Activities</td>
-                  <td className="p-1">1</td>
-                  <td className="p-1">Internal</td>
-                  <td className="p-1"> Content Management</td>
-                  <td className="p-1"> Same </td>
-                  <td className="p-1"> Main </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                  <Form.Check aria-label="option 1"/>
-                  </td>
-                  <th className="p-1">9</th>
-                  <td className="p-1">Activities</td>
-                  <td className="p-1">1</td>
-                  <td className="p-1">Internal</td>
-                  <td className="p-1"> Content Management</td>
-                  <td className="p-1"> Same </td>
-                  <td className="p-1"> Main </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                  <Form.Check aria-label="option 1"/>
-                  </td>
-                  <th className="p-1">10</th>
-                  <td className="p-1">Activities</td>
-                  <td className="p-1">1</td>
-                  <td className="p-1">Internal</td>
-                  <td className="p-1"> Content Management</td>
-                  <td className="p-1"> Same </td>
-                  <td className="p-1"> Main </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
+                    <td className="p-1">{item.sl_no}</td>
+                    <td className="p-1">{item.link_type}</td>
+                    <td className="p-1">{item.function_name}</td>
+                    <td className="p-1"> {item.window_status}</td>
+                    <td className="p-1"> {item.view_in_menu_item}</td>
+                    {/* <td className="p-1">29-Nov-2014</td> */}
+                    <td className="p-1" onClick={() => clickHandler(item._id)}>
+                      <i class="bi bi-pencil-square"></i>{" "}
+                    </td>
+                  </tr>
+                ))}
+
+
+
+
+
+
+
+
+
               </tbody>
             </Table>
 
@@ -269,16 +141,14 @@ const GlowbalLink = ({ dispatch }) => {
                 <p className="Entries">Showing 0 to 1 of 10 entries</p>
               </div>
             </div>
-            <div className="col-md-4">
+            {/* <div className="col-md-4">
               <div className="btn-tagle">
-                <button type="submit"  className="btn-Previous">
+                <button type="submit" className="btn-Previous">
                   Update The Links
                 </button>
-                {/* <button type="submit" className="btn-Next">
-                  Next
-                </button> */}
               </div>
-            </div>
+            </div> */}
+            
           </div>
         </div>
       </form>
