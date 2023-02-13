@@ -24,11 +24,11 @@ const ViewContent = () => {
   return (
     <div>
       <form action="">
-        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        {/* {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
         {errorDelete && (
           <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>
         )}
-        {loadingDelete && loading && <Loading />}
+        {loadingDelete && loading && <Loading />} */}
         <div class="">
           <h3 className="magazin-heading">
             <i class="bi bi-people design_icon"></i>View Content

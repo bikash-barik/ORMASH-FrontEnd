@@ -4,6 +4,6 @@
 }
 
 .heightcard:hover{
-    width: 400px;
+    transform: scale(1.01);
     
 }

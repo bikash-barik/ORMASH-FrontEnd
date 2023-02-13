@@ -9,7 +9,7 @@ const Gallery = () => {
   const galleryList = useSelector((state) => state.galleryList);
   const { gallerys } = galleryList;
 
-  useEffect(async () => {
+  useEffect( () => {
     dispatch(listGallerys());
   }, [dispatch]);
 

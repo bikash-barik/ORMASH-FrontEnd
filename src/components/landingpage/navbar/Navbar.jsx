@@ -1,36 +1,75 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Dropdown from 'react-bootstrap/Dropdown';
 const Navbar = () => {
+  const [data, setData] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const getData = async () => {
+    try {
+      const response = await axios.get("/api/globallinks/");
+      // console.log(response);
+      setData(response.data.globalLinks);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <nav
-      className='navbar navbar-expand-lg w-full navbar-dark bg-dark'
-      id='navigationBar'
-      style={{ zIndex: '999' }}
+      className="navbar navbar-expand-lg w-full bg-dark"
+      id="navigationBar"
+      style={{ zIndex: "999" }}
     >
-      <div className='container d-flex g-2 p-2 align-items-center'>
+      <div className="container d-flex g-2 p-2 align-items-center">
         <button
-          type='button'
-          className='navbar-toggler'
-          data-toggle='collapse'
-          data-target='#navSupportContent'
-          aria-controls='navSupportContent'
-          aria-expanded='false'
-          aria-label='Toggle navigation'
+          type="button"
+          className="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navSupportContent"
+          aria-controls="navSupportContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span>
-            <i className='fa fa-bars'></i>
+            <i className="fa fa-bars"></i>
           </span>
         </button>
 
         <div
-          className='collapse mx-auto navbar-collapse'
-          id='navSupportContent'
+          className="collapse mx-auto navbar-collapse"
+          id="navSupportContent"
         >
-          <ul className='navbar-nav gx-2 mx-auto'>
-            <li className='nav-item'>
-              <a href='#home' className='nav-link active'>
-                Home
-              </a>
-            </li>
-            <li className='nav-item dropdown'>
+          <ul className="navbar-nav gx-2 mx-auto">
+            {data.length > 0 &&
+              data.map((item) => (
+                <li className="nav-item"   onMouseLeave={() => setShowDropdown(false)}
+                onMouseOver={() => setShowDropdown(true)}>
+                  <a href="#home" className="nav-link active"   >
+                    {item.link_name}
+                  </a>
+                  
+                </li>
+               
+              ))}
+
+            {/* <Dropdown
+              onMouseLeave={() => setShowDropdown(false)}
+              onMouseOver={() => setShowDropdown(true)}
+              style={{ width: "166px" }}
+            >
+              <Dropdown.Toggle className="main-style p-1 nav-link" id="dropdown-basic">
+                Dropdown
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu show={showDropdown}>
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown> */}
+            {/* <li className='nav-item dropdown'>
               <a
                 className='nav-link dropdown-toggle'
                 href='/#'
@@ -269,7 +308,7 @@ const Navbar = () => {
               <a href='/#' className='nav-link'>
                 Tender
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

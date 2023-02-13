@@ -14,6 +14,11 @@ const Header = () => {
                     Goverment of Odisha{' '}
                     <span className='px-2'>| ଓଡ଼ିଶା ସରକାର</span>
                   </a>
+                  <a href="javascript:void(0);" onclick="return fontSizer('small');" title="Smaller Size" class="smaller">&#8210;</a>
+
+<a  href="javascript:void(0);" onclick="return fontSizer('default');" title="Default Size" class="switch">A</a>
+
+<a  href="javascript:void(0);" onclick="return fontSizer('larger');" title="Bigger Size" class="switch bigger">+</a>
                 </li>
               </ul>
             </div>

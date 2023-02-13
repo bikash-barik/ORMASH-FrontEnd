@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
@@ -12,6 +12,7 @@ import {
   listbanners,
   deleteBannerAction,
 } from "../../Redux/actions/Manage Application/bannersActions";
+import axios from "axios";
 
 const ManageBanner = () => {
   const history = useHistory();
@@ -24,7 +25,7 @@ const ManageBanner = () => {
 
   const bannerList = useSelector((state) => state.bannerList);
   const { loading, error, banners } = bannerList;
-
+console.log(banners)
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -63,6 +64,19 @@ const ManageBanner = () => {
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
+
+
+
+  // const history = useHistory();
+  
+  // const CreateMagazin = () => {
+  //   history.push("/hub/AddGlobalLink");
+  // };
+
+
+// const clickHandler = (id) =>{
+//   history.push(`/hub/AddGlobalLink/${id}`)
+// }
   return (
     <div>
       <form action="">
@@ -181,7 +195,9 @@ const ManageBanner = () => {
                   <th className="p-2"> Edit</th>
                 </tr>
               </thead>
+              {/* {banners && banners.map((banner) => ( */}
               <tbody className="">
+             
                 <tr className="">
                   <td className="p-5">
                     <Form.Check aria-label="option 1" />
@@ -203,50 +219,9 @@ const ManageBanner = () => {
                     <i class="bi bi-pencil-square"></i>{" "}
                   </td>
                 </tr>
-                <tr className="">
-                  <td className="p-5">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-5">2</th>
-                  <td className="p-5">SISIR SARAS 2023</td>
-                  <td className="p-5">
-                    {" "}
-                    <a href="" className="text-danger">
-                      <img
-                        src="http://ormas.org/Application/uploadDocuments/Gallery/ORMAS_Gallery_1674214826.jpg"
-                        height="80px"
-                      />{" "}
-                    </a>
-                  </td>
-                  <td className="p-5"> 19-Oct-2019</td>
-                  <td className="p-5">Set</td>
-                  <td className="p-5">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-
-                <tr className="">
-                  <td className="p-5">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-5">3</th>
-                  <td className="p-5">SISIR SARAS 2023</td>
-                  <td className="p-5">
-                    {" "}
-                    <a href="" className="text-danger">
-                      <img
-                        src="http://ormas.org/Application/uploadDocuments/Gallery/ORMAS_Gallery_1674214826.jpg"
-                        height="80px"
-                      />{" "}
-                    </a>
-                  </td>
-                  <td className="p-5"> 19-Oct-2019</td>
-                  <td className="p-5">Set</td>
-                  <td className="p-5">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
+           
               </tbody>
+              {/* ))} */}
             </Table>
           </div>
 

@@ -156,6 +156,7 @@ img {
 }
 .bg-dark {
   background: linear-gradient(to bottom, #5f2c82, #49a09d 99%);
+  /* background-color: #5f2c82; */
 }
 
 .height {

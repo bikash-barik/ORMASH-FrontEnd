@@ -37,7 +37,8 @@ import {
   logoDeleteReducer,
   logoListReducer,
   logoUpdateReducer,
-} from "./reducers/Manage Application/logosReducers";
+} from "./reducers/Manage Application/LogosReducers";
+// } from "./reducers/Manage Application/logosReducers";
 import {
   videoCreateReducer,
   videoDeleteReducer,
@@ -56,6 +57,23 @@ import {
   userRegisterReducer,
   userUpdateReducer,
 } from "./reducers/userReducers";
+
+
+import{
+galleryCreateReducer,
+galleryDeleteReducer,
+galleryListReducer,
+galleryUpdateReducer,
+} from "./reducers/Manage Application/gallerysReducers";
+import {
+tenderCreateReducer,
+tenderDeleteReducer,
+tenderListReducer,
+tenderUpdateReducer,
+} from "./reducers/Manage Application/tendersReducers";
+
+
+
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -109,6 +127,20 @@ const reducer = combineReducers({
   newsUpdatesCreate: newsUpdatesCreateReducer,
   newsUpdatesDelete: newsUpdatesDeleteReducer,
   newsUpdatesUpdate: newsUpdatesUpdateReducer,
+
+
+    
+  // Gallerys
+  galleryList: galleryListReducer,
+  galleryCreate: galleryCreateReducer,
+  galleryDelete: galleryDeleteReducer,
+  galleryUpdate: galleryUpdateReducer, 
+  
+  //  Tenders
+  tenderList: tenderListReducer,
+  tenderCreate: tenderCreateReducer,
+  tenderDelete: tenderDeleteReducer,
+  tenderUpdate: tenderUpdateReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

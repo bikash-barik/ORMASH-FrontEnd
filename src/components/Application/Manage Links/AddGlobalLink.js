@@ -32,6 +32,7 @@ const AddGlonalLink = ({ dispatch }) => {
       };
       const data = await axios.post("/api/globallinks/", globalLinks, config);
       console.log(data);
+      history.push("/hub/GlowbalLink");
     } catch (error) {
       console.log(error)
     }
@@ -95,6 +96,7 @@ const AddGlonalLink = ({ dispatch }) => {
               </label>
               <select id="inputState" class="form-select p-1">
                 <option selected>Choose...</option>
+                <option>Home</option>
                 <option>About Us</option>
                 <option>DDU-GKY</option>
                 <option>Activities</option>

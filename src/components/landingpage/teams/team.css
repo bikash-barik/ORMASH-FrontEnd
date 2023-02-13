@@ -7,7 +7,7 @@
   grid-template-columns: repeat(100, 1fr);
   grid-gap: 2em;
   padding: 3em 0 !important;
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
 }
 
 @media screen and (min-width: 768px) {
@@ -28,10 +28,11 @@
 }
 
 .profile_card {
-  padding: 1.5em 1em !important;
+  padding: 1.5em 0.5em !important;
   display: flex;
   align-items: center;
   gap: 1em;
+  border: solid 1px #fff;
   border-radius: 8px;
   background-color: linear-gradient(to top, #592f5f, #333985) !important;
   color: #ffffff;

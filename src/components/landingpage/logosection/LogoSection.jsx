@@ -34,10 +34,12 @@ const LogoSection = () => {
                   behavior=''
                   className='mobile-none'
                   direction=''
+                  // style="color: black; font-family:Brush Script MT; font-size:19px; margin-top: -13px;"
                   style={{
                     color: 'black',
-                    foontSize: '19px',
-                    margintop: '-13px',
+                    fontSize: '19px',
+                    marginTop: '-13px',
+                    fontFamily:"Brush Script MT",
                   }}
                 >
                   Creating Competence and Values in Rural Odisha

@@ -19,7 +19,7 @@ const Team = () => {
   const {  officerProfileDetails } = officerProfileDetailList;
   // console.log(officerProfileDetails )
   
-  useEffect( async ()  => {
+  useEffect( ()  => {
     dispatch(listOfficerProfileDetails());
   //   const data = await axios.get("http://localhost:5000/api/officersprofiles/");
   //  setData(data.data)
@@ -52,7 +52,7 @@ const Team = () => {
         officerProfileDetails.reverse().map((officerProfileDetail, i) => (
           <div  key={officerProfileDetail._id}>
             {/* first */}
-            <div className="profile_card">
+            <div className="profile_card heightcard">
               <div className="profile_card_img">
                 <img src={officerProfileDetail.photo} alt="" />
               </div>

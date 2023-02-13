@@ -30,11 +30,11 @@ export const listbanners = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/banners`, config);
+    const response = await axios.get(`/api/banners`, config);
 
     dispatch({
       type: Banners_LIST_SUCCESS,
-      payload: data,
+      payload: response.data,
     });
   } catch (error) {
     const message =
