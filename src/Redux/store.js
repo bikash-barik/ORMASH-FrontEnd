@@ -14,6 +14,12 @@ import {
   documentUpdateReducer,
 } from "./reducers/Manage Application/documentsReducers";
 import {
+  achievementCreateReducer,
+  achievementDeleteReducer,
+  achievementListReducer,
+  achievementUpdateReducer,
+} from "./reducers/Manage Application/achievementsReducers";
+import {
   bannerCreateReducer,
   bannerDeleteReducer,
   bannerListReducer,
@@ -58,6 +64,12 @@ const reducer = combineReducers({
   documentCreate: documentCreateReducer,
   documentDelete: documentDeleteReducer,
   documentUpdate: documentUpdateReducer,
+
+  // achievement
+  achievementList: achievementListReducer,
+  achievementCreate: achievementCreateReducer,
+  achievementDelete: achievementDeleteReducer,
+  achievementUpdate: achievementUpdateReducer,
 
   // banner
   bannerList: bannerListReducer,
