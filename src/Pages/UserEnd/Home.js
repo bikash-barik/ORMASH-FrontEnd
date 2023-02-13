@@ -9,6 +9,7 @@ import Gallery from '../../components/landingpage/gallery/Gallery';
 import VideoGallery from '../../components/landingpage/videogallery/VideoGallery';
 import Products from '../../components/landingpage/products/Products';
 import Footer from '../../components/landingpage/footer/Footer';
+import ImportantLink from '../../components/landingpage/ImportantLinks/ImportantLink';
 
 export default function Dashboard() {
   return (
@@ -23,6 +24,7 @@ export default function Dashboard() {
       <Gallery />
       <VideoGallery />
       <Products />
+      <ImportantLink/>
       <Footer />
     </>
   );

@@ -3,32 +3,27 @@ import "./team.css";
 import {
   listOfficerProfileDetails,
 } from "../../../Redux/actions/Content Management/officerProfileDetailsActions";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 const Team = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  // const [data, setData] = useState([]);
 
-  const CreateMagazin = () => {
-    history.push("/hub/AddOfficerProfile");
-  };
-
+ 
   const officerProfileDetailList = useSelector(
     (state) => state.officerProfileDetailList
   );
   const {  officerProfileDetails } = officerProfileDetailList;
-
-  // const userLogin = useSelector((state) => state.userLogin);
-  // const { userInfo } = userLogin;
-
+  // console.log(officerProfileDetails )
   
-  useEffect( async () =>{
+  useEffect( async ()  => {
     dispatch(listOfficerProfileDetails());
-    
-    const data = await axios.get("http://localhost:5000/api/officersprofiles/");
-    console.log(data.data[0])
+  //   const data = await axios.get("http://localhost:5000/api/officersprofiles/");
+  //  setData(data.data)
+    // console.log(data.data[0])
   }, [
     dispatch,
    
@@ -42,9 +37,14 @@ const Team = () => {
       }}
      
     >
-      {/* {data.data[].map((e)=>{
+
+      {/* {data.map((e)=>{
   <h1>{e.designation}</h1>
-      } */}
+      )} */}
+
+      {/* {data.map((e) => {
+        return <h1>{e.designation}</h1>
+      })} */}
 
     
       <div  className="cards_wrapper">

@@ -1,29 +1,29 @@
 import {
-  Documents_CREATE_FAIL,
-  Documents_CREATE_REQUEST,
-  Documents_CREATE_SUCCESS,
-  Documents_DELETE_FAIL,
-  Documents_DELETE_REQUEST,
-  Documents_DELETE_SUCCESS,
-  Documents_LIST_FAIL,
-  Documents_LIST_REQUEST,
-  Documents_LIST_SUCCESS,
-  Documents_UPDATE_FAIL,
-  Documents_UPDATE_REQUEST,
-  Documents_UPDATE_SUCCESS,
-} from "../../constants/Manage Application/documentsConstants";
+  Tenders_CREATE_FAIL,
+  Tenders_CREATE_REQUEST,
+  Tenders_CREATE_SUCCESS,
+  Tenders_DELETE_FAIL,
+  Tenders_DELETE_REQUEST,
+  Tenders_DELETE_SUCCESS,
+  Tenders_LIST_FAIL,
+  Tenders_LIST_REQUEST,
+  Tenders_LIST_SUCCESS,
+  Tenders_UPDATE_FAIL,
+  Tenders_UPDATE_REQUEST,
+  Tenders_UPDATE_SUCCESS,
+} from "../../constants/Manage Application/tendersConstants";
 import axios from "axios";
 
-export const listdocuments = () => async (dispatch, getState) => {
+export const listTenders = () => async (dispatch, getState) => {
   try {
     dispatch({
-      type: Documents_LIST_REQUEST,
+      type: Tenders_LIST_REQUEST,
     });
 
-    const response = await axios.get(`/api/documents`);
+    const response = await axios.get(`/api/tenders`);
 
     dispatch({
-      type: Documents_LIST_SUCCESS,
+      type: Tenders_LIST_SUCCESS,
       payload: response.data,
     });
   } catch (error) {
@@ -32,20 +32,20 @@ export const listdocuments = () => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: Documents_LIST_FAIL,
+      type: Tenders_LIST_FAIL,
       payload: message,
     });
   }
 };
 
-export const createDocumentAction = ( 
- headline,expiryDate, uploadDocument, description, status) => async (
+export const createTenderAction = ( 
+ tender_no,tender_headline, closing_date , closing_time, opening_date,opening_time,description, document_one,document_two, document_three  ) => async (
   dispatch,
   getState
 ) => {
   try {
     dispatch({
-      type: Documents_CREATE_REQUEST,
+      type: Tenders_CREATE_REQUEST,
     });
 
     const {
@@ -60,13 +60,13 @@ export const createDocumentAction = (
     };
 
     const { data } = await axios.post(
-      `/api/documents/create`,
-      {  headline,expiryDate, uploadDocument, description, status },
+      `/api/tenders/create`,
+      {tender_no,tender_headline, closing_date , closing_time, opening_date,opening_time,description, document_one,document_two, document_three},
       config
     );
 
     dispatch({
-      type: Documents_CREATE_SUCCESS,
+      type: Tenders_CREATE_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -75,16 +75,16 @@ export const createDocumentAction = (
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: Documents_CREATE_FAIL,
+      type: Tenders_CREATE_FAIL,
       payload: message,
     });
   }
 };
 
-export const deleteDocumentAction = (id) => async (dispatch, getState) => {
+export const deleteTenderAction = (id) => async (dispatch, getState) => {
   try {
     dispatch({
-      type: Documents_DELETE_REQUEST,
+      type: Tenders_DELETE_REQUEST,
     });
 
     const {
@@ -97,10 +97,10 @@ export const deleteDocumentAction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/documents/${id}`, config);
+    const { data } = await axios.delete(`/api/tenders/${id}`, config);
 
     dispatch({
-      type: Documents_DELETE_SUCCESS,
+      type: Tenders_DELETE_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -109,19 +109,19 @@ export const deleteDocumentAction = (id) => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: Documents_DELETE_FAIL,
+      type: Tenders_DELETE_FAIL,
       payload: message,
     });
   }
 };
 
-export const updateDocumentAction = (id, headline,expiryDate, uploadDocument, description, status) => async (
+export const updateTenderAction = (id, tender_no,tender_headline, closing_date , closing_time, opening_date,opening_time,description, document_one,document_two, document_three  ) => async (
   dispatch,
   getState
 ) => {
   try {
     dispatch({
-      type: Documents_UPDATE_REQUEST,
+      type: Tenders_UPDATE_REQUEST,
     });
 
     const {
@@ -136,13 +136,13 @@ export const updateDocumentAction = (id, headline,expiryDate, uploadDocument, de
     };
 
     const { data } = await axios.put(
-      `/api/documents/${id}`,
-      {  headline,expiryDate, uploadDocument, description, status },
+      `/api/tenders/${id}`,
+      {  tender_no,tender_headline, closing_date , closing_time, opening_date,opening_time,description, document_one,document_two, document_three   },
       config
     );
 
     dispatch({
-      type: Documents_UPDATE_SUCCESS,
+      type: Tenders_UPDATE_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -151,7 +151,7 @@ export const updateDocumentAction = (id, headline,expiryDate, uploadDocument, de
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: Documents_UPDATE_FAIL,
+      type: Tenders_UPDATE_FAIL,
       payload: message,
     });
   }

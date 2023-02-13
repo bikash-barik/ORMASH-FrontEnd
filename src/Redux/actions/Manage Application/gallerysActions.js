@@ -1,29 +1,29 @@
 import {
-  Documents_CREATE_FAIL,
-  Documents_CREATE_REQUEST,
-  Documents_CREATE_SUCCESS,
-  Documents_DELETE_FAIL,
-  Documents_DELETE_REQUEST,
-  Documents_DELETE_SUCCESS,
-  Documents_LIST_FAIL,
-  Documents_LIST_REQUEST,
-  Documents_LIST_SUCCESS,
-  Documents_UPDATE_FAIL,
-  Documents_UPDATE_REQUEST,
-  Documents_UPDATE_SUCCESS,
-} from "../../constants/Manage Application/documentsConstants";
+  Gallerys_CREATE_FAIL,
+  Gallerys_CREATE_REQUEST,
+  Gallerys_CREATE_SUCCESS,
+  Gallerys_DELETE_FAIL,
+  Gallerys_DELETE_REQUEST,
+  Gallerys_DELETE_SUCCESS,
+  Gallerys_LIST_FAIL,
+  Gallerys_LIST_REQUEST,
+  Gallerys_LIST_SUCCESS,
+  Gallerys_UPDATE_FAIL,
+  Gallerys_UPDATE_REQUEST,
+  Gallerys_UPDATE_SUCCESS,
+} from "../../constants/Manage Application/gallerysConstants";
 import axios from "axios";
 
-export const listdocuments = () => async (dispatch, getState) => {
+export const listGallerys = () => async (dispatch, getState) => {
   try {
     dispatch({
-      type: Documents_LIST_REQUEST,
+      type: Gallerys_LIST_REQUEST,
     });
 
-    const response = await axios.get(`/api/documents`);
+    const response = await axios.get(`/api/gallerys`);
 
     dispatch({
-      type: Documents_LIST_SUCCESS,
+      type: Gallerys_LIST_SUCCESS,
       payload: response.data,
     });
   } catch (error) {
@@ -32,20 +32,20 @@ export const listdocuments = () => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: Documents_LIST_FAIL,
+      type: Gallerys_LIST_FAIL,
       payload: message,
     });
   }
 };
 
-export const createDocumentAction = ( 
- headline,expiryDate, uploadDocument, description, status) => async (
+export const createGalleryAction = ( 
+ headline,category, photo, status) => async (
   dispatch,
   getState
 ) => {
   try {
     dispatch({
-      type: Documents_CREATE_REQUEST,
+      type: Gallerys_CREATE_REQUEST,
     });
 
     const {
@@ -60,13 +60,13 @@ export const createDocumentAction = (
     };
 
     const { data } = await axios.post(
-      `/api/documents/create`,
-      {  headline,expiryDate, uploadDocument, description, status },
+      `/api/gallerys/create`,
+      {  headline,category, photo, status },
       config
     );
 
     dispatch({
-      type: Documents_CREATE_SUCCESS,
+      type: Gallerys_CREATE_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -75,16 +75,16 @@ export const createDocumentAction = (
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: Documents_CREATE_FAIL,
+      type: Gallerys_CREATE_FAIL,
       payload: message,
     });
   }
 };
 
-export const deleteDocumentAction = (id) => async (dispatch, getState) => {
+export const deleteGalleryAction = (id) => async (dispatch, getState) => {
   try {
     dispatch({
-      type: Documents_DELETE_REQUEST,
+      type: Gallerys_DELETE_REQUEST,
     });
 
     const {
@@ -97,10 +97,10 @@ export const deleteDocumentAction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/documents/${id}`, config);
+    const { data } = await axios.delete(`/api/gallerys/${id}`, config);
 
     dispatch({
-      type: Documents_DELETE_SUCCESS,
+      type: Gallerys_DELETE_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -109,19 +109,19 @@ export const deleteDocumentAction = (id) => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: Documents_DELETE_FAIL,
+      type: Gallerys_DELETE_FAIL,
       payload: message,
     });
   }
 };
 
-export const updateDocumentAction = (id, headline,expiryDate, uploadDocument, description, status) => async (
+export const updateGalleryAction = (id, headline,category, photo, status) => async (
   dispatch,
   getState
 ) => {
   try {
     dispatch({
-      type: Documents_UPDATE_REQUEST,
+      type: Gallerys_UPDATE_REQUEST,
     });
 
     const {
@@ -136,13 +136,13 @@ export const updateDocumentAction = (id, headline,expiryDate, uploadDocument, de
     };
 
     const { data } = await axios.put(
-      `/api/documents/${id}`,
-      {  headline,expiryDate, uploadDocument, description, status },
+      `/api/gallerys/${id}`,
+      {  headline,category, photo, status },
       config
     );
 
     dispatch({
-      type: Documents_UPDATE_SUCCESS,
+      type: Gallerys_UPDATE_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -151,7 +151,7 @@ export const updateDocumentAction = (id, headline,expiryDate, uploadDocument, de
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: Documents_UPDATE_FAIL,
+      type: Gallerys_UPDATE_FAIL,
       payload: message,
     });
   }

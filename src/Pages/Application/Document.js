@@ -20,6 +20,8 @@ const Document = () => {
     history.push("/hub/AddDocument");
   };
 
+
+ 
   const dispatch = useDispatch();
 
   const documentList = useSelector((state) => state.documentList);
@@ -55,11 +57,29 @@ const Document = () => {
     successUpdate,
   ]);
 
+
+
+  let ids = [];
+  const idsHandler = (id) =>{
+   
+    ids.push(id);
+    console.log("ids name " + ids)
+  }
+
+  // const deleteHandler = (ids) => {
+  //   for (var i = 0; i < ids.length; i++) {
+  //     console.log("com" + i)
+  //     dispatch(deleteDocumentAction(ids[i].id));
+  //     console.log(ids[i].id)
+  //   }
+  // };
+
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteDocumentAction(id));
     }
   };
+ 
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
@@ -123,6 +143,7 @@ const Document = () => {
               </button>
             </OverlayTrigger>
             <OverlayTrigger
+            
               placement="top"
               delay={{ show: 250, hide: 400 }}
               overlay={
@@ -131,7 +152,7 @@ const Document = () => {
                 </Tooltip>
               }
             >
-              <button type="button" class="btn btn-secondary p-2">
+              <button type="button" class="btn btn-secondary p-2" onClick={deleteHandler}>
                 <i class="bi bi-trash-fill"></i>
               </button>
             </OverlayTrigger>
@@ -187,7 +208,7 @@ const Document = () => {
                   <tbody className="" key={document._id}>
                     <tr className="">
                       <td className="p-5">
-                        <Form.Check aria-label="option 1" />
+                        <Form.Check aria-label="option 1" onClick={(e) => idsHandler(document._id)} />
                       </td>
                       <th className="p-5">{i + 1}</th>
                       <td className="p-5">

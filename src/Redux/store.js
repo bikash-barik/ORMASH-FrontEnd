@@ -14,6 +14,18 @@ import {
   documentUpdateReducer,
 } from "./reducers/Manage Application/documentsReducers";
 import {
+  galleryCreateReducer,
+  galleryDeleteReducer,
+  galleryListReducer,
+  galleryUpdateReducer,
+} from "./reducers/Manage Application/gallerysReducers";
+import {
+  tenderCreateReducer,
+  tenderDeleteReducer,
+  tenderListReducer,
+  tenderUpdateReducer,
+} from "./reducers/Manage Application/tendersReducers";
+import {
   newsUpdatesCreateReducer,
   newsUpdatesDeleteReducer,
   newsUpdatesListReducer,
@@ -39,8 +51,19 @@ const reducer = combineReducers({
   documentList: documentListReducer,
   documentCreate: documentCreateReducer,
   documentDelete: documentDeleteReducer,
-  documentUpdate: documentUpdateReducer,
-
+  documentUpdate: documentUpdateReducer, 
+  
+  // Gallerys
+  galleryList: galleryListReducer,
+  galleryCreate: galleryCreateReducer,
+  galleryDelete: galleryDeleteReducer,
+  galleryUpdate: galleryUpdateReducer, 
+  
+  //  Tenders
+  tenderList: tenderListReducer,
+  tenderCreate: tenderCreateReducer,
+  tenderDelete: tenderDeleteReducer,
+  tenderUpdate: tenderUpdateReducer,
   // newsUpdates
   newsUpdatesList: newsUpdatesListReducer,
   newsUpdatesCreate: newsUpdatesCreateReducer,
