@@ -14,6 +14,12 @@ import {
   documentUpdateReducer,
 } from "./reducers/Manage Application/documentsReducers";
 import {
+  contentCreateReducer,
+  contentDeleteReducer,
+  contentListReducer,
+  contentUpdateReducer,
+} from "./reducers/Content Management/contentsReducers";
+import {
   achievementCreateReducer,
   achievementDeleteReducer,
   achievementListReducer,
@@ -64,6 +70,12 @@ const reducer = combineReducers({
   documentCreate: documentCreateReducer,
   documentDelete: documentDeleteReducer,
   documentUpdate: documentUpdateReducer,
+
+  // content
+  contentList: contentListReducer,
+  contentCreate: contentCreateReducer,
+  contentDelete: contentDeleteReducer,
+  contentUpdate: contentUpdateReducer,
 
   // achievement
   achievementList: achievementListReducer,

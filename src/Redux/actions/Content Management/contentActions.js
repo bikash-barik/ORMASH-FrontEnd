@@ -1,23 +1,23 @@
 import {
-  Banners_CREATE_FAIL,
-  Banners_CREATE_REQUEST,
-  Banners_CREATE_SUCCESS,
-  Banners_DELETE_FAIL,
-  Banners_DELETE_REQUEST,
-  Banners_DELETE_SUCCESS,
-  Banners_LIST_FAIL,
-  Banners_LIST_REQUEST,
-  Banners_LIST_SUCCESS,
-  Banners_UPDATE_FAIL,
-  Banners_UPDATE_REQUEST,
-  Banners_UPDATE_SUCCESS,
-} from "../../constants/Manage Application/bannersConstants";
+  Contents_CREATE_FAIL,
+  Contents_CREATE_REQUEST,
+  Contents_CREATE_SUCCESS,
+  Contents_DELETE_FAIL,
+  Contents_DELETE_REQUEST,
+  Contents_DELETE_SUCCESS,
+  Contents_LIST_FAIL,
+  Contents_LIST_REQUEST,
+  Contents_LIST_SUCCESS,
+  Contents_UPDATE_FAIL,
+  Contents_UPDATE_REQUEST,
+  Contents_UPDATE_SUCCESS,
+} from "../../constants/Content Management/contentsConstants";
 import axios from "axios";
 
-export const listbanners = () => async (dispatch, getState) => {
+export const listcontents = () => async (dispatch, getState) => {
   try {
     dispatch({
-      type: Banners_LIST_REQUEST,
+      type: Contents_LIST_REQUEST,
     });
 
     const {
@@ -30,10 +30,10 @@ export const listbanners = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/banners`, config);
+    const { data } = await axios.get(`/api/content`, config);
 
     dispatch({
-      type: Banners_LIST_SUCCESS,
+      type: Contents_LIST_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -42,19 +42,19 @@ export const listbanners = () => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: Banners_LIST_FAIL,
+      type: Contents_LIST_FAIL,
       payload: message,
     });
   }
 };
 
-export const createBannerAction = ( sl_no, caption, banner, home_page_status, publish_status ) => async (
+export const createContentAction = ( global_link, primary_link, title, content ) => async (
   dispatch,
   getState
 ) => {
   try {
     dispatch({
-      type: Banners_CREATE_REQUEST,
+      type: Contents_CREATE_REQUEST,
     });
 
     const {
@@ -69,13 +69,13 @@ export const createBannerAction = ( sl_no, caption, banner, home_page_status, pu
     };
 
     const { data } = await axios.post(
-      `/api/banners`,
-      { sl_no, caption, banner, home_page_status, publish_status },
+      `/api/content`,
+      { global_link, primary_link, title, content },
       config
     );
 
     dispatch({
-      type: Banners_CREATE_SUCCESS,
+      type: Contents_CREATE_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -84,16 +84,16 @@ export const createBannerAction = ( sl_no, caption, banner, home_page_status, pu
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: Banners_CREATE_FAIL,
+      type: Contents_CREATE_FAIL,
       payload: message,
     });
   }
 };
 
-export const deleteBannerAction = (id) => async (dispatch, getState) => {
+export const deleteContentAction = (id) => async (dispatch, getState) => {
   try {
     dispatch({
-      type: Banners_DELETE_REQUEST,
+      type: Contents_DELETE_REQUEST,
     });
 
     const {
@@ -106,10 +106,10 @@ export const deleteBannerAction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/banners/${id}`, config);
+    const { data } = await axios.delete(`/api/content/${id}`, config);
 
     dispatch({
-      type: Banners_DELETE_SUCCESS,
+      type: Contents_DELETE_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -118,19 +118,19 @@ export const deleteBannerAction = (id) => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: Banners_DELETE_FAIL,
+      type: Contents_DELETE_FAIL,
       payload: message,
     });
   }
 };
 
-export const updateBannerAction = (id, sl_no, caption, banner, home_page_status, publish_status ) => async (
+export const updateContentAction = (id, global_link, primary_link, title, content ) => async (
   dispatch,
   getState
 ) => {
   try {
     dispatch({
-      type: Banners_UPDATE_REQUEST,
+      type: Contents_UPDATE_REQUEST,
     });
 
     const {
@@ -145,13 +145,13 @@ export const updateBannerAction = (id, sl_no, caption, banner, home_page_status,
     };
 
     const { data } = await axios.put(
-      `/api/banners/${id}`,
-      { sl_no, caption, banner, home_page_status, publish_status },
+      `/api/content/${id}`,
+      { global_link, primary_link, title, content },
       config
     );
 
     dispatch({
-      type: Banners_UPDATE_SUCCESS,
+      type: Contents_UPDATE_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -160,7 +160,7 @@ export const updateBannerAction = (id, sl_no, caption, banner, home_page_status,
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: Banners_UPDATE_FAIL,
+      type: Contents_UPDATE_FAIL,
       payload: message,
     });
   }

@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 
-const ViewContent = ({ dispatch }) => {
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../../components/Loading";
+import ErrorMessage from "../../../components/ErrorMessage";
+import {
+  listcontents,
+  deleteContentAction,
+} from "../../../Redux/actions/Content Management/contentActions";
+
+const ViewContent = () => {
   const history = useHistory();
 
   const CreateMagazin = () => {
@@ -16,6 +24,11 @@ const ViewContent = ({ dispatch }) => {
   return (
     <div>
       <form action="">
+        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        {errorDelete && (
+          <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>
+        )}
+        {loadingDelete && loading && <Loading />}
         <div class="">
           <h3 className="magazin-heading">
             <i class="bi bi-people design_icon"></i>View Content
@@ -36,7 +49,7 @@ const ViewContent = ({ dispatch }) => {
           </div>
           <div className="magazinName">
             <div className="border border-2 d-flex bg-light   p-2">
-              <span className="m-1">Global Link	</span>
+              <span className="m-1">Global Link </span>
               <div class="col-md-2">
                 <select id="inputState" class="form-select p-1">
                   <option selected>Choose...</option>
@@ -49,7 +62,7 @@ const ViewContent = ({ dispatch }) => {
                 </select>
               </div>
 
-              <span className="m-1">Primary Link		</span>
+              <span className="m-1">Primary Link </span>
               <div class="col-md-2">
                 <select id="inputState" class="form-select p-1">
                   <option selected>Choose...</option>
@@ -86,7 +99,7 @@ const ViewContent = ({ dispatch }) => {
                     <Form.Check aria-label="option 1" />
                   </td>
                   <th className="p-1">1</th>
-                  <td className="p-1">	Product - Mayurbhanj Sabai	</td>
+                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
                   <td className="p-1">04-Aug-2020</td>
                   <td className="p-1">
                     <i class="bi bi-pencil-square"></i>{" "}
@@ -97,7 +110,7 @@ const ViewContent = ({ dispatch }) => {
                     <Form.Check aria-label="option 1" />
                   </td>
                   <th className="p-1">2</th>
-                  <td className="p-1">	Product - Mayurbhanj Sabai	</td>
+                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
                   <td className="p-1">29-Nov-2014</td>
                   <td className="p-1">
                     <i class="bi bi-pencil-square"></i>{" "}
@@ -108,7 +121,7 @@ const ViewContent = ({ dispatch }) => {
                     <Form.Check aria-label="option 1" />
                   </td>
                   <th className="p-1">3</th>
-                  <td className="p-1">	Product - Mayurbhanj Sabai	</td>
+                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
                   <td className="p-1">29-Nov-2014</td>
                   <td className="p-1">
                     <i class="bi bi-pencil-square"></i>{" "}
@@ -119,7 +132,7 @@ const ViewContent = ({ dispatch }) => {
                     <Form.Check aria-label="option 1" />
                   </td>
                   <th className="p-1">3</th>
-                  <td className="p-1">	Product - Mayurbhanj Sabai	</td>
+                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
                   <td className="p-1">29-Nov-2014</td>
                   <td className="p-1">
                     <i class="bi bi-pencil-square"></i>{" "}
@@ -130,7 +143,7 @@ const ViewContent = ({ dispatch }) => {
                     <Form.Check aria-label="option 1" />
                   </td>
                   <th className="p-1">4</th>
-                  <td className="p-1">	Product - Mayurbhanj Sabai	</td>
+                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
                   <td className="p-1">29-Nov-2014</td>
                   <td className="p-1">
                     <i class="bi bi-pencil-square"></i>{" "}
@@ -141,7 +154,7 @@ const ViewContent = ({ dispatch }) => {
                     <Form.Check aria-label="option 1" />
                   </td>
                   <th className="p-1">5</th>
-                  <td className="p-1">	Product - Mayurbhanj Sabai	</td>
+                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
                   <td className="p-1">29-Nov-2014</td>
                   <td className="p-1">
                     <i class="bi bi-pencil-square"></i>{" "}
@@ -152,7 +165,7 @@ const ViewContent = ({ dispatch }) => {
                     <Form.Check aria-label="option 1" />
                   </td>
                   <th className="p-1">6</th>
-                  <td className="p-1">	Product - Mayurbhanj Sabai	</td>
+                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
                   <td className="p-1">29-Nov-2014</td>
                   <td className="p-1">
                     <i class="bi bi-pencil-square"></i>{" "}
@@ -163,7 +176,7 @@ const ViewContent = ({ dispatch }) => {
                     <Form.Check aria-label="option 1" />
                   </td>
                   <th className="p-1">7</th>
-                  <td className="p-1">	Product - Mayurbhanj Sabai	</td>
+                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
                   <td className="p-1">29-Nov-2014</td>
                   <td className="p-1">
                     <i class="bi bi-pencil-square"></i>{" "}
@@ -174,7 +187,7 @@ const ViewContent = ({ dispatch }) => {
                     <Form.Check aria-label="option 1" />
                   </td>
                   <th className="p-1">8</th>
-                  <td className="p-1">	Product - Mayurbhanj Sabai	</td>
+                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
                   <td className="p-1">29-Nov-2014</td>
                   <td className="p-1">
                     <i class="bi bi-pencil-square"></i>{" "}
@@ -185,7 +198,7 @@ const ViewContent = ({ dispatch }) => {
                     <Form.Check aria-label="option 1" />
                   </td>
                   <th className="p-1">9</th>
-                  <td className="p-1">	Product - Mayurbhanj Sabai	</td>
+                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
                   <td className="p-1">29-Nov-2014</td>
                   <td className="p-1">
                     <i class="bi bi-pencil-square"></i>{" "}
@@ -196,7 +209,7 @@ const ViewContent = ({ dispatch }) => {
                     <Form.Check aria-label="option 1" />
                   </td>
                   <th className="p-1">10</th>
-                  <td className="p-1">	Product - Mayurbhanj Sabai	</td>
+                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
                   <td className="p-1">29-Nov-2014</td>
                   <td className="p-1">
                     <i class="bi bi-pencil-square"></i>{" "}
@@ -205,7 +218,6 @@ const ViewContent = ({ dispatch }) => {
               </tbody>
             </Table>
           </div>
-          
 
           <div className="btn-row">
             <div className="col-md-8">
@@ -216,7 +228,7 @@ const ViewContent = ({ dispatch }) => {
             <div className="col-md-4">
               <div className="btn-tagle">
                 <button type="submit" className="btn-Previous">
-                 Back
+                  Back
                 </button>
                 <button type="submit" className="btn-Next">
                   Next
