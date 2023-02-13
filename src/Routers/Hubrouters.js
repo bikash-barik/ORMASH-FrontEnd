@@ -105,6 +105,9 @@ function Hubrouters() {
             <Route exact path={"/hub/AddGlobalLink"}>
               <AddGlobalLink />
             </Route>
+            <Route exact path={"/hub/AddGlobalLink/:id"}>
+              <AddGlobalLink />
+            </Route>
             <Route path={"/hub/ViewContent"}>
               <ViewContent />
             </Route>
