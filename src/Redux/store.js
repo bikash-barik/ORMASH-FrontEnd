@@ -14,6 +14,12 @@ import {
   documentUpdateReducer,
 } from "./reducers/Manage Application/documentsReducers";
 import {
+  logoCreateReducer,
+  logoDeleteReducer,
+  logoListReducer,
+  logoUpdateReducer,
+} from "./reducers/Manage Application/logosReducers";
+import {
   videoCreateReducer,
   videoDeleteReducer,
   videoListReducer,
@@ -47,11 +53,17 @@ const reducer = combineReducers({
   documentDelete: documentDeleteReducer,
   documentUpdate: documentUpdateReducer,
 
+  // logo
+  logoList: logoListReducer,
+  logoCreate: logoCreateReducer,
+  logoDelete: logoDeleteReducer,
+  logoUpdate: logoUpdateReducer,
+
   // video
   videoList: videoListReducer,
   videoCreate: videoCreateReducer,
   videoDelete: videoDeleteReducer,
-  videoUpdate: documentUpdateReducer,
+  videoUpdate: videoUpdateReducer,
 
   // newsUpdates
   newsUpdatesList: newsUpdatesListReducer,
