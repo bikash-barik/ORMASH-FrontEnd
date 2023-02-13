@@ -14,6 +14,12 @@ import {
   documentUpdateReducer,
 } from "./reducers/Manage Application/documentsReducers";
 import {
+  bannerCreateReducer,
+  bannerDeleteReducer,
+  bannerListReducer,
+  bannerUpdateReducer,
+} from "./reducers/Manage Application/bannersReducers";
+import {
   logoCreateReducer,
   logoDeleteReducer,
   logoListReducer,
@@ -52,6 +58,12 @@ const reducer = combineReducers({
   documentCreate: documentCreateReducer,
   documentDelete: documentDeleteReducer,
   documentUpdate: documentUpdateReducer,
+
+  // banner
+  bannerList: bannerListReducer,
+  bannerCreate: bannerCreateReducer,
+  bannerDelete: bannerDeleteReducer,
+  bannerUpdate: bannerUpdateReducer,
 
   // logo
   logoList: logoListReducer,
