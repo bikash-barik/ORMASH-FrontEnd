@@ -1,21 +1,128 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-
+import React, { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import ErrorMessage from "../../ErrorMessage";
 const AddPrimaryLink = ({ dispatch }) => {
   const history = useHistory();
-
+  const params = useParams();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  const [primaryLinks, setPrimaryLinks] = useState({
+    global_link:"",
+    link_name: "",
+    sl_no: 0,
+    link_type: "",
+    function_name: "",
+    window_status: "",
+    publish_status: ""
+  });
+  const [errorMsg, setErrorMsg] = useState("");
   const Cancel = () => {
     history.push("/hub/PrimaryLink");
   };
+  const {global_link,link_name,link_type,sl_no,function_name,window_status,publish_status} = primaryLinks
+  const addPrimaryLink = async (e) => {
+    e.preventDefault();
+    try {
+     if(global_link && link_name && link_type && sl_no && function_name && window_status && publish_status){
+       const config = {
+         headers: {
+           "Content-Type": "application/json",
+           Authorization: `Bearer ${userInfo.token}`,
+         },
+       };
+        await axios.post("/api/primarylinks", primaryLinks, config);
+       setPrimaryLinks({
+         global_link: "",
+         link_name: "",
+         sl_no: 0,
+         link_type: "",
+         function_name: "",
+         window_status: "",
+         publish_status: ""
+       })
+       history.push("/hub/PrimaryLink");
+       return;
+     } else{
+      setErrorMsg("Please fill all the fields")
+     }
+    
+    } catch (error) {
+      console.log(error)
+      const msg = error.response?.data?.message
+      setErrorMsg(msg)
+    }
+  }
+  const updatePrimaryLink = async (e) => {
+    e.preventDefault();
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+       await axios.put(`/api/primarylinks/${params.id}`, primaryLinks, config);
+      setPrimaryLinks({
+        global_link: "",
+        link_name: "",
+        sl_no: 0,
+        link_type: "",
+        function_name: "",
+        window_status: "",
+        publish_status: ""
+      });
+      history.push("/hub/PrimaryLink");
+    } catch (error) {
+      console.log(error)
+      const msg = error.response?.data?.message
+      setErrorMsg(msg)
+    }
+  }
+  const handleChange = event => {
+
+    setPrimaryLinks({
+      ...primaryLinks,
+      [event.target.name]: event.target.value
+    });
+  };
+
+  useEffect(() => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    if(params.id){
+      axios.get(`/api/primarylinks/${params.id}`, config)
+        .then(res => {
+
+          setPrimaryLinks(res.data.primaryLink)
+          console.log(primaryLinks)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  
+  }, [params.id,userInfo.token])
+  useEffect(() => {
+    setTimeout(() => {
+      setErrorMsg("");
+    }, 3000);
+  }, [errorMsg])
   return (
     <>
       <form action="">
         <div class="magazin-container">
-          <h1 className="magazin-heading">Add Primary Link</h1>
+          {params.id ? (<h1 className="magazin-heading"> Update Primary Link</h1>) : (<h1 className="magazin-heading">Add Primary Link</h1>)}
+          
 
           <hr />
 
-          
+          {errorMsg && <ErrorMessage variant="danger">{errorMsg}</ErrorMessage>}
           <form class="row g-3 d-flex justify-content-between mb-5 mt-5">
             <div class="col-md-4">
               <label for="inputEmail4" class="form-label">
@@ -26,13 +133,18 @@ const AddPrimaryLink = ({ dispatch }) => {
                 class="form-control"
                 id="inputAddress"
                 placeholder="Link Name"
+                name="link_name"
+                value={link_name}
+                onChange={e => handleChange(e)}
               />
             </div>
             <div class="col-md-2">
               <label for="inputState" class="form-label">
                 Sl. No. of Link
               </label>
-              <select id="inputState" class="form-select p-1">
+              <select id="inputState" class="form-select p-1"
+              name="sl_no" value={sl_no} onChange={e => handleChange(e)}
+              >
                 <option selected>Choose...</option>
                 <option>1</option>
                 <option>2</option>
@@ -52,7 +164,8 @@ const AddPrimaryLink = ({ dispatch }) => {
               <label for="inputState" class="form-label">
                 Select Global Link
               </label>
-              <select id="inputState" class="form-select p-1">
+              <select id="inputState" class="form-select p-1"
+                name="global_link" value={global_link} onChange={e => handleChange(e)}>
                 <option selected>Choose...</option>
                 <option>About Us</option>
                 <option>DDU-GKY</option>
@@ -66,7 +179,8 @@ const AddPrimaryLink = ({ dispatch }) => {
               <label for="inputState" class="form-label">
                 Link Type
               </label>
-              <select id="inputState" class="form-select p-1">
+              <select id="inputState" class="form-select p-1"
+                name="link_type" value={link_type} onChange={e => handleChange(e)}>
                 <option selected>Choose...</option>
                 <option> Internal</option>
                 <option> External</option>
@@ -76,7 +190,7 @@ const AddPrimaryLink = ({ dispatch }) => {
               <label for="inputState" class="form-label">
                 Function Name
               </label>
-              <select id="inputState" class="form-select p-1">
+              <select id="inputState" class="form-select p-1" name="function_name" value={function_name} onChange={e => handleChange(e)}>
                 <option selected>Choose...</option>
                 <option>Achivements</option>
                 <option>ArcNews</option>
@@ -96,30 +210,19 @@ const AddPrimaryLink = ({ dispatch }) => {
               <label for="inputState" class="form-label">
                 Window Status
               </label>
-              <select id="inputState" class="form-select p-1">
+              <select id="inputState" class="form-select p-1" name="window_status" value={window_status} onChange={e => handleChange(e)}>
                 <option selected>Choose...</option>
                 <option>Same</option>
                 <option> New</option>
               </select>
             </div>
-            <div class="col-md-2">
-              <label for="inputState" class="form-label">
-                View in Menu Item
-              </label>
-              <select id="inputState" class="form-select p-1">
-                <option selected>Choose...</option>
-                <option>Main Menu </option>
-                <option> Top Menu </option>
-                <option> Bottom Menu</option>
-            
-              </select>
-            </div>
+           
           
             <div class="col-md-2">
               <label for="inputState" class="form-label">
               Publish Status
               </label>
-              <select id="inputState" class="form-select p-1">
+              <select id="inputState" class="form-select p-1" name="publish_status" value={primaryLinks.publish_status} onChange={e => handleChange(e)}>
                 <option selected>Choose...</option>
                 <option>Active   </option>
                 <option> Inactive</option>
@@ -127,29 +230,15 @@ const AddPrimaryLink = ({ dispatch }) => {
               </select>
             </div>
 
-            <div class="col-md-5">
-              <label for="inputState" class="form-label">
-              View in Footer Link
-              </label>
-              <div class="form-check ">
-                <input
-                  class="form-check-input p-1 m-1"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault"
-                />
-                <label class="form-check-label" for="flexCheckDefault">
-                (Check to add this link to footer menu)
-                </label>
-              </div>
-            </div>
           </form>
 
       
           <div className="btn">
-            <button type="submit" className="Submit-btn">
+            {params.id ? (<button type="submit" className="Submit-btn" onClick={e => updatePrimaryLink(e)} >
+              Update
+            </button>) : (<button type="submit" className="Submit-btn" onClick={e => addPrimaryLink(e)}>
               Submit
-            </button>
+            </button>)}
             <button onClick={Cancel} type="submit" className="Cancel-btn">
               Cancel
             </button>

@@ -93,13 +93,17 @@ function Hubrouters() {
             <Route path={"/hub/SetPermission"}>
               <SetPermission />
             </Route>
-            <Route path={"/hub/GlowbalLink"}>
+            <Route exact  path={"/hub/GlowbalLink"}>
               <GlowbalLink />
             </Route>
-            <Route path={"/hub/PrimaryLink"}>
+            <Route exact  path={"/hub/PrimaryLink"}>
               <PrimaryLink />
             </Route>
-            <Route path={"/hub/AddPrimaryLink"}>
+            
+            <Route  exact path={"/hub/AddPrimaryLink"}>
+              <AddPrimaryLink />
+            </Route>
+            <Route exact path={"/hub/AddPrimaryLink/:id"}>
               <AddPrimaryLink />
             </Route>
             <Route exact path={"/hub/AddGlobalLink"}>
@@ -108,16 +112,19 @@ function Hubrouters() {
             <Route exact path={"/hub/AddGlobalLink/:id"}>
               <AddGlobalLink />
             </Route>
-            <Route path={"/hub/ViewContent"}>
+            <Route exact path={"/hub/ViewContent"}>
               <ViewContent />
             </Route>
-            <Route path={"/hub/OfficerProfileDetails"}>
+            <Route  exact path={"/hub/OfficerProfileDetails"}>
               <OfficerProfileDetails />
             </Route>
             <Route exact path={"/hub/AddOfficerProfile"}>
               <AddOfficerProfile />
             </Route>
-            <Route path={"/hub/AddContent"}>
+            <Route exact path={"/hub/AddContent"}>
+              <AddContent />
+            </Route>
+            <Route exact path={"/hub/AddContent/:id"}>
               <AddContent />
             </Route>
             <Route path={"/hub/Work"}>

@@ -1,4 +1,33 @@
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import {NavDropdown,Nav} from "react-bootstrap"
 const Navbar = () => {
+   const [data, setData] = useState([]);
+   const [primaryLinks, setPrimaryLinks] = useState([]);
+  const getData = async () => {
+    try {
+      const response = await axios.get("/api/globallinks/")
+      setData(response.data.globalLinks);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+
+    getData()
+
+  }, [])
+  const clickHandler = async (globalLink) =>{
+        try {
+          // console.log(globalLink.link_name)
+          const response = await axios.get(`/api/primarylinks?globalLink=${globalLink.link_name}`)
+          setPrimaryLinks(response.data.primaryLinks);
+          // console.log(response.data);
+        } catch (error) {
+          console.log(error)
+        }
+  }
   return (
     <nav
       className='navbar navbar-expand-lg w-full navbar-dark bg-dark'
@@ -25,251 +54,25 @@ const Navbar = () => {
           id='navSupportContent'
         >
           <ul className='navbar-nav gx-2 mx-auto'>
-            <li className='nav-item'>
-              <a href='#home' className='nav-link active'>
-                Home
-              </a>
-            </li>
-            <li className='nav-item dropdown'>
-              <a
-                className='nav-link dropdown-toggle'
-                href='/#'
-                role='button'
-                data-bs-toggle='dropdown'
-                aria-expanded='false'
-              >
-                About
-              </a>
-              <ul
-                className='dropdown-menu'
-                style={{
-                  background:
-                    'linear-gradient(to bottom, #5f2c82 ,#49a09d 99%)',
-                }}
-              >
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/Pages/Organisation.html'
-                  >
-                    Organisation
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/Pages/MissionandVision.html'
-                  >
-                    Mission and Vision
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/Pages/ContactDetailsHQDist.html'
-                  >
-                    Official Contact Details
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/Pages/Organogram.html'
-                  >
-                    Organogram
-                  </a>
-                </li>
-              </ul>
-            </li>
+          {data.length > 0 && data.map((item)=>(
 
-            <li className='nav-item dropdown'>
-              <a
-                className='nav-link dropdown-toggle'
-                href='/#'
-                role='button'
-                data-bs-toggle='dropdown'
-                aria-expanded='false'
-              >
-                DDU-GKY
-              </a>
-              <ul
-                className='dropdown-menu'
-                style={{
-                  background:
-                    'linear-gradient(to bottom, #5f2c82 ,#49a09d 99%)',
-                }}
-              >
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/Pages/DDU-GKY/DDU-GKYTrainingSectors.html'
-                  >
-                    DDU-GKY-Training-Sectors
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/Pages/DDU-GKY/PhysicalMilestone.HTML'
-                  >
-                    DDU-GKY-Physical Milestone
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/Pages/DDU-GKY/DDU-GKY-TrainingTrades.html'
-                  >
-                    DDU-GKY-Training-Trades
-                  </a>
-                </li>
-              </ul>
-            </li>
 
-            <li className='nav-item dropdown'>
-              <a
-                className='nav-link dropdown-toggle'
-                href='/#'
-                role='button'
-                data-bs-toggle='dropdown'
-                aria-expanded='false'
+            <Nav>
+              <NavDropdown
+                id="nav-dropdown-dark-example"
+                title={item.link_name}
+                className="nav-item"
+                menuVariant="dark"
+                style={{backgroundColor:"inherit"}}
+                onClick={() => clickHandler(item)}
               >
-                Activities
-              </a>
-              <ul
-                className='dropdown-menu'
-                style={{
-                  background:
-                    'linear-gradient(to bottom, #5f2c82 ,#49a09d 99%)',
-                }}
-              >
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/#'
-                  >
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/#'
-                  >
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/#'
-                  >
-                    Something else here
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li className='nav-item dropdown'>
-              <a
-                className='nav-link dropdown-toggle'
-                href='/#'
-                role='button'
-                data-bs-toggle='dropdown'
-                aria-expanded='false'
-              >
-                Products
-              </a>
-              <ul
-                className='dropdown-menu'
-                style={{
-                  background:
-                    'linear-gradient(to bottom, #5f2c82 ,#49a09d 99%)',
-                }}
-              >
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/Pages/Products/Product.html'
-                  >
-                    Products
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/Pages/Products/ProductsBrochure.html'
-                  >
-                    Products Brochure
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/Pages/Products/BalasoreProductCatlog.html'
-                  >
-                    Balasore Product Catlog
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/Pages/Products/Product-MayurbhanjSabai.html'
-                  >
-                    Product Catlog Mayurbhanj
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li className='nav-item dropdown'>
-              <a
-                className='nav-link dropdown-toggle'
-                href='/#'
-                role='button'
-                data-bs-toggle='dropdown'
-                aria-expanded='false'
-              >
-                Exhibition
-              </a>
-              <ul
-                className='dropdown-menu'
-                style={{
-                  background:
-                    'linear-gradient(to bottom, #5f2c82 ,#49a09d 99%)',
-                }}
-              >
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-suuces'
-                    href='/Pages/Exhibition/ExhibitionCalender.html'
-                  >
-                    Exhibition Calender
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/Pages/Exhibition/Reports.html'
-                  >
-                    Reports{' '}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className='dropdown-item border border-2 border-info'
-                    href='/Pages/Exhibition/SisirSaras2020.html'
-                  >
-                    SISIR SARAS 2020
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li className='nav-item'>
-              <a href='/#' className='nav-link'>
-                Tender
-              </a>
-            </li>
+              {primaryLinks.length > 0 && primaryLinks.map((el)=>(
+                   <NavDropdown.Item   className="pt-2 px-3" href="#action/3.1">{el.link_name}</NavDropdown.Item>
+              ))}
+             
+              </NavDropdown>
+            </Nav>  
+          ))}
           </ul>
         </div>
       </div>
