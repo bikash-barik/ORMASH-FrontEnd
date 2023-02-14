@@ -1,48 +1,95 @@
-.gallery_container {
-  padding: 3em 0 !important;
+/*************************
+Video Gallery
+*************************/
+* {
+  font-weight: normal;
+}
+.video-con {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 15px;
+  align-items: flex-start;
+  padding: 15px 5%;
+}
+.video-con .main-video {
+  background: linear-gradient(to bottom, #592f5f 35%, #766fb2 85%);
+  border-radius: 5px !important;
+
+}
+.video-con .main-video video {
+  /* width: 40px !important; */
+  border-radius: 5px;
+}
+.video-con .main-video .title {
+  color: rgb(255, 249, 249);
+  font-size: 23px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.video-con .video-list {
+  background: linear-gradient(to bottom, #592f5f 35%, #766fb2 85%);
+  border-radius: 5px;
+  width: 65%;
+  height: 100%;
+  overflow-y: scroll;
+}
+.video-con .video-list::-webkit-scrollbar {
+  width: 7px;
+}
+.video-con .video-list::-webkit-scrollbar-track {
+  background: #ccc;
+  border-radius: 50px;
+}
+.video-con .video-list::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 50px;
 }
 
-video {
-  display: block;
-  width: 100%;
+.video-con .video-list .vid video {
+  width: 100px;
+  border-radius: 5px;
 }
-
-.video_gallery {
+.video-con .video-list .vid {
   display: flex;
-
-  justify-content: space-between;
-
-  width: 90%;
-  margin: 0 auto !important;
-  max-width: 1080px !important;
-  border-radius: 8px;
-  overflow: hidden;
+  align-items: center;
+  gap: 15px !important;
+  /* background: #f7f7f7; */
+  border-radius: 5px;
+  /* margin: 10px; */
+  /* width: 250px; */
+  padding: 5px !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
-
+.video-con .video-list .vid:hover {
+  background: #8e8888;
+}
+.video-con .video-list .vid.active {
+  background: linear-gradient(to bottom, #592f5f 35%, #766fb2 85%);
+}
+.video-con .video-list .vid.active .title {
+  color: #fff;
+}
+.video-con .video-list .vid .title {
+  color: #333;
+  font-size: 17px;
+}
+@media (max-width: 991px) {
+  .video-con {
+    grid-template-columns: 1.5fr 1fr;
+    padding: 10px;
+  }
+}
 @media (max-width: 768px) {
-  .video_gallery {
-    display: block;
+  .video-con {
+    grid-template-columns: 1fr;
   }
 }
 
-.video {
-  flex: 0.6;
-}
-
-.video_list {
-  flex: 0.4;
-  background-color: rgba(227, 212, 212, 0.46);
-  padding: 1em !important;
-}
-
-.video_list .video_item {
-  display: block;
-  width: 100%;
-  background-color: #fff;
-  color: #5f2c82;
-  margin: 0.5em 0 !important;
-  padding: 1em !important;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 18px !important;
+@media (min-width: 768px){
+  .video-con .main-video {
+    width: 70%;
+    margin-left: 230px !important;
+  }
+  
 }

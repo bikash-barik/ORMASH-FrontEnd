@@ -18,7 +18,7 @@ const Navbar = () => {
   }, []);
   return (
     <nav
-      className="navbar navbar-expand-lg w-full bg-dark"
+      className="navbar navbar-expand-lg w-full bg-color"
       id="navigationBar"
       style={{ zIndex: "999" }}
     >

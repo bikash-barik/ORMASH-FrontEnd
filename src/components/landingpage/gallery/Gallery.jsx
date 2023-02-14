@@ -9,7 +9,7 @@ const Gallery = () => {
   const galleryList = useSelector((state) => state.galleryList);
   const { gallerys } = galleryList;
 
-  useEffect( () => {
+  useEffect(() => {
     dispatch(listGallerys());
   }, [dispatch]);
 
@@ -17,13 +17,12 @@ const Gallery = () => {
     <div className="gallery_container">
       <h1 className="text-center mb-8 g-title">Photo Gallery</h1>
       <div className="gallery">
-
-      {gallerys &&
-        gallerys.reverse().map((gallery, i) => (
-          <div className="gallery_card"  key={gallery._id}>
-            <img src={gallery.photo} alt="" />
-          </div>
-        ))}
+        {gallerys &&
+          gallerys.reverse().map((gallery, i) => (
+            <div className="gallery_card" key={gallery._id}>
+              <img src={gallery.photo} alt="" />
+            </div>
+          ))}
       </div>
       <div className="text-center">
         <a href="/#" className="btn  mt-8 bg-primary text-white px-4 py-2">
