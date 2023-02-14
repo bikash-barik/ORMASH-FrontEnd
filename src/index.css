@@ -1,8 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+
+
+
+
 /*********************
 # Genreral
 **********************/
+:root {
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+}
+
+
+.bg-color{
+  background-color: #000081 !important;
+}
+
+.bg-gd-color1{
+  background: linear-gradient(to bottom, #5f2c82, #49a09d 99%);
+  /* background-color: #000081 !important; */
+}
+.bg-gd-color2{
+  background: linear-gradient(to top, #5f2c82, #49a09d 99%);
+  /* background-color: #000081 !important; */
+}
+
 
 * {
   margin: 0;
@@ -154,10 +199,7 @@ img {
   outline: none !important;
   color: white !important;
 }
-.bg-color{
-  /* background: linear-gradient(to bottom, #5f2c82, #49a09d 99%); */
-  background-color: #000081 !important;
-}
+
 
 .height {
   margin-top: -10px;
@@ -218,204 +260,6 @@ img {
 .nav-item:hover {
   box-shadow: 2px 2px #5f2c82;
 }
-
-/****************************************
-Slide Section 
-*****************************************/
-
-/* .hero {
-  width: 100% !important;
-  height: 67vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.hero .carousel-item img {
-  width: 100% !important;
-  height: 67vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-size: 100% 67vh !important;
-}
-
-@media (max-width: 767px) {
-  .hero {
-    width: 100%;
-    height: 20vh;
-  }
-  .hero .carousel-item img {
-    width: 100%;
-    height: 20vh;
-    background-size: 100% 20vh !important;
-  }
-}
-
-.hero .carousel-item img:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-.hero .carousel-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-.cicon {
-  font-size: 10px;
-  width: auto;
-  height: auto;
-  background: blue;
-  border-radius: 20px;
-  margin: 20px 0;
-  padding: 5px;
-  color: #fff;
-} */
-/* 
-.carousel-fade .carousel-item {
-	opacity: 0;
-	transition-duration: .3s;
-	transition-property: opacity;
-}
-
-.carousel-fade .carousel-item.active,
-.carousel-fade .carousel-item-next.carousel-item-left,
-.carousel-fade .carousel-item-prev.carousel-item-right {
-	opacity: 10;
-}
-
-.carousel-fade .active.carousel-item-left,
-.carousel-fade .active.carousel-item-right {
-	opacity: 0;
-}
-
-.carousel-fade .carousel-item-next,
-.carousel-fade .carousel-item-prev,
-.carousel-fade .carousel-item.active,
-.carousel-fade .active.carousel-item-left,
-.carousel-fade .active.carousel-item-prev {
-	transform: translateX(0);
-	transform: translate3d(0, 0, 0);
-} */
-
-/* @-webkit-keyframes zoom {
-  from {
-    -webkit-transform: scale(1, 1);
-  }
-  to {
-    -webkit-transform: scale(1.3, 1.3);
-  }
-}
-
-@keyframes zoom {
-  from {
-    transform: scale(1, 1);
-  }
-  to {
-    transform: scale(1.3, 1.3);
-  }
-}
-
-.carousel-inner .carousel-item > img {
-  -webkit-animation: zoom 10s;
-  animation: zoom 15s;
-} */
-
-/***********
-Card Section
-**********/
-
-/* .text {
-  color: #097e8dfa;
-  font-size: 25px;
-  margin-top: 40px;
-  font-weight: 600;
-  text-transform: uppercase;
-  text-align: center;
-} */
-/* .card {
-  background: linear-gradient(to top, #49a09d, #5f2c82 85%);
-  border: solid 2px rgb(87, 92, 155);
-  box-shadow: 0 5px 8px 0 rgba(231, 227, 227, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.card:hover,
-.img-card1:hover {
-  box-shadow: 0 10px 8px 0 rgba(231, 227, 227, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  transition: all 0.3s ease;
-  border: none;
-}
-.profile-card {
-  background-color: linear-gradient(to top, #592f5f, #333985) !important;
-  color: #ffffff;
-  width: 350px;
-  height: 250px;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
-}
-.profile-card:hover {
-  filter: brightness(80%);
-}
-.profilesection {
-  padding: 2em 0;
-}
-@media (min-width: 768px) {
-  .cardsmam {
-    width: 410px;
-  }
-  .profilesection {
-    margin-left: 120px !important;
-    justify-content: center !important;
-    padding-left: 30px !important;
-    width: 82vw !important;
-  }
-}
-@media (min-width: 768px) {
-  .profile-card {
-    width: 370px;
-    height: 250px;
-  }
-}
-.profile-content {
-  padding:12px;
-}
-.img-card1 {
-  display: block;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: solid 2px #fff;
-  object-fit: cover;
-}
-@media screen and (min-width: 900px) {
-  .box {
-    width: 80px;
-    height: 80px;
-  }
-}
-.profile-image {
-  text-align: center;
-}
-.desc {
-  text-align: left;
-}
-.desc h1 {
-  color: white;
-  font-size: 14px;
-}
-.desc p {
-  font-size: 12px;
-  line-height: 1em;
-  margin-top: -10px;
-  color: white;
-} */
 
 /******************
 Grid Section 

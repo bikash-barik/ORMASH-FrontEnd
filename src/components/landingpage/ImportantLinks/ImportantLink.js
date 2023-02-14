@@ -4,9 +4,7 @@ import logo1 from "../../../assets/images/logoe1.png";
 const ImportantLink = () => {
   return (
     <div>
-      <div className="copyright"
-        style={{  background:" linear-gradient(to bottom, #49a09d, #5f2c82) !important;"}}
-      >
+      <div className="bg-gd-color2" >
         <marquee
           behavior="scroll"
           direction="left"

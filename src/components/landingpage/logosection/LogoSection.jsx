@@ -49,7 +49,7 @@ const LogoSection = () => {
             <div className='col-md-4 d-flex align-items-end justify-content-end height'>
               <div className='d-flex right-logo'>
                 <p>
-                  <strong>Shri Naveen Patnaik</strong>
+               <span className='bold h6'> Shri Naveen Patnaik</span> 
                   <br />
                   Hon'ble Chief Minister
                 </p>

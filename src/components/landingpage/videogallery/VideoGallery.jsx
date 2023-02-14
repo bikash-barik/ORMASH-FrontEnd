@@ -36,7 +36,7 @@ function VideoGallery({ videos }) {
     // </div>
 
     // <!-- Video Gallery -->
-    <div className="bg-color ">
+    <div className="bg-gd-color2 ">
       <section className=" py-5 Container">
         <div class="container">
           <div className="row">
