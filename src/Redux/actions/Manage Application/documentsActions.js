@@ -20,21 +20,11 @@ export const listdocuments = () => async (dispatch, getState) => {
       type: Documents_LIST_REQUEST,
     });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
-
-    const { data } = await axios.get(`/api/documents`, config);
+    const response = await axios.get(`/api/documents`);
 
     dispatch({
       type: Documents_LIST_SUCCESS,
-      payload: data,
+      payload: response.data,
     });
   } catch (error) {
     const message =

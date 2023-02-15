@@ -34,10 +34,12 @@ const LogoSection = () => {
                   behavior=''
                   className='mobile-none'
                   direction=''
+                  // style="color: black; font-family:Brush Script MT; font-size:19px; margin-top: -13px;"
                   style={{
                     color: 'black',
-                    foontSize: '19px',
-                    margintop: '-13px',
+                    fontSize: '19px',
+                    marginTop: '-13px',
+                    fontFamily:"Brush Script MT",
                   }}
                 >
                   Creating Competence and Values in Rural Odisha
@@ -47,7 +49,7 @@ const LogoSection = () => {
             <div className='col-md-4 d-flex align-items-end justify-content-end height'>
               <div className='d-flex right-logo'>
                 <p>
-                  <strong>Shri Naveen Patnaik</strong>
+               <span className='bold h6'> Shri Naveen Patnaik</span> 
                   <br />
                   Hon'ble Chief Minister
                 </p>

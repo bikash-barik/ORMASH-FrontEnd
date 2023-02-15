@@ -26,6 +26,7 @@ const AddGlonalLink = ({ dispatch }) => {
   const addGlobalLink = async (e) => {
     e.preventDefault();
     try {
+
       if (link_name && link_type &&  sl_no && function_name && window_status &&view_in_footer_link && view_in_menu_item && publish_status){
         const config = {
           headers: {
@@ -49,6 +50,7 @@ const AddGlonalLink = ({ dispatch }) => {
       } else{
            setErrorMsg("Please fill all the fields")
       }
+
     } catch (error) {
       console.log(error)
       const msg = error.response?.data?.message
@@ -136,6 +138,7 @@ const AddGlonalLink = ({ dispatch }) => {
                 value={link_name}
                 onChange={(e) => handleChange(e)}>
                 <option selected>Choose...</option>
+                <option>Home</option>
                 <option>About Us</option>
                 <option>DDU-GKY</option>
                 <option>Activities</option>

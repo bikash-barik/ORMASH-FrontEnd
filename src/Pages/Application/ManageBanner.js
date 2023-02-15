@@ -1,22 +1,90 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip"
-const ManageBanner = ({ dispatch }) => {
+import Tooltip from "react-bootstrap/Tooltip";
+
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
+import {
+  listbanners,
+  deleteBannerAction,
+} from "../../Redux/actions/Manage Application/bannersActions";
+import axios from "axios";
+
+const ManageBanner = () => {
   const history = useHistory();
 
   const AddManageBanner = () => {
     history.push("/hub/AddManageBanner");
   };
 
+  const dispatch = useDispatch();
+
+  const bannerList = useSelector((state) => state.bannerList);
+  const { loading, error, banners } = bannerList;
+console.log(banners)
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const bannerDelete = useSelector((state) => state.bannerDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = bannerDelete;
+
+  const bannerCreate = useSelector((state) => state.bannerCreate);
+  const { success: successCreate } = bannerCreate;
+
+  const bannerUpdate = useSelector((state) => state.bannerUpdate);
+  const { success: successUpdate } = bannerUpdate;
+
+  useEffect(() => {
+    dispatch(listbanners());
+    if (!userInfo) {
+      history.push("/");
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    successUpdate,
+  ]);
+
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteBannerAction(id));
+    }
+  };
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
+
+
+
+  // const history = useHistory();
+  
+  // const CreateMagazin = () => {
+  //   history.push("/hub/AddGlobalLink");
+  // };
+
+
+// const clickHandler = (id) =>{
+//   history.push(`/hub/AddGlobalLink/${id}`)
+// }
   return (
     <div>
       <form action="">
+        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        {errorDelete && (
+          <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>
+        )}
+        {loadingDelete && loading && <Loading />}
         <div class="">
           <h3 className="magazin-heading">
             <i class="bi bi-people design_icon"></i>View Manage Banner
@@ -127,7 +195,9 @@ const ManageBanner = ({ dispatch }) => {
                   <th className="p-2"> Edit</th>
                 </tr>
               </thead>
+              {/* {banners && banners.map((banner) => ( */}
               <tbody className="">
+             
                 <tr className="">
                   <td className="p-5">
                     <Form.Check aria-label="option 1" />
@@ -149,50 +219,9 @@ const ManageBanner = ({ dispatch }) => {
                     <i class="bi bi-pencil-square"></i>{" "}
                   </td>
                 </tr>
-                <tr className="">
-                  <td className="p-5">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-5">2</th>
-                  <td className="p-5">SISIR SARAS 2023</td>
-                  <td className="p-5">
-                    {" "}
-                    <a href="" className="text-danger">
-                      <img
-                        src="http://ormas.org/Application/uploadDocuments/Gallery/ORMAS_Gallery_1674214826.jpg"
-                        height="80px"
-                      />{" "}
-                    </a>
-                  </td>
-                  <td className="p-5"> 19-Oct-2019</td>
-                  <td className="p-5">Set</td>
-                  <td className="p-5">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-
-                <tr className="">
-                  <td className="p-5">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-5">3</th>
-                  <td className="p-5">SISIR SARAS 2023</td>
-                  <td className="p-5">
-                    {" "}
-                    <a href="" className="text-danger">
-                      <img
-                        src="http://ormas.org/Application/uploadDocuments/Gallery/ORMAS_Gallery_1674214826.jpg"
-                        height="80px"
-                      />{" "}
-                    </a>
-                  </td>
-                  <td className="p-5"> 19-Oct-2019</td>
-                  <td className="p-5">Set</td>
-                  <td className="p-5">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
+           
               </tbody>
+              {/* ))} */}
             </Table>
           </div>
 

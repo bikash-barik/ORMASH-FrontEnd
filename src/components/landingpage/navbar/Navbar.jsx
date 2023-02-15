@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {NavDropdown,Nav} from "react-bootstrap"
@@ -8,10 +9,12 @@ const Navbar = () => {
   const getData = async () => {
     try {
       const response = await axios.get("/api/globallinks/")
+
       setData(response.data.globalLinks);
     } catch (error) {
       console.log(error);
     }
+
   }
   useEffect(() => {
 
@@ -28,31 +31,33 @@ const Navbar = () => {
           console.log(error)
         }
   }
+
   return (
     <nav
-      className='navbar navbar-expand-lg w-full navbar-dark bg-dark'
-      id='navigationBar'
-      style={{ zIndex: '999' }}
+      className="navbar navbar-expand-lg w-full bg-color"
+      id="navigationBar"
+      style={{ zIndex: "999" }}
     >
-      <div className='container d-flex g-2 p-2 align-items-center'>
+      <div className="container d-flex g-2 p-2 align-items-center">
         <button
-          type='button'
-          className='navbar-toggler'
-          data-toggle='collapse'
-          data-target='#navSupportContent'
-          aria-controls='navSupportContent'
-          aria-expanded='false'
-          aria-label='Toggle navigation'
+          type="button"
+          className="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navSupportContent"
+          aria-controls="navSupportContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span>
-            <i className='fa fa-bars'></i>
+            <i className="fa fa-bars"></i>
           </span>
         </button>
 
         <div
-          className='collapse mx-auto navbar-collapse'
-          id='navSupportContent'
+          className="collapse mx-auto navbar-collapse"
+          id="navSupportContent"
         >
+
           <ul className='navbar-nav gx-2 mx-auto'>
           {data.length > 0 && data.map((item)=>(
 
@@ -66,6 +71,7 @@ const Navbar = () => {
                 style={{backgroundColor:"inherit"}}
                 onClick={() => clickHandler(item)}
               >
+
               {primaryLinks.length > 0 && primaryLinks.map((el)=>(
                    <NavDropdown.Item   className="pt-2 px-3" href="#action/3.1">{el.link_name}</NavDropdown.Item>
               ))}
@@ -73,6 +79,8 @@ const Navbar = () => {
               </NavDropdown>
             </Nav>  
           ))}
+
+               
           </ul>
         </div>
       </div>

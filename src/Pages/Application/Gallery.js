@@ -1,16 +1,82 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip"
-const Gallery = ({ dispatch }) => {
+import Tooltip from "react-bootstrap/Tooltip";
+
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
+import {
+  listGallerys,
+  deleteGalleryAction,
+} from "../../Redux/actions/Manage Application/gallerysActions";
+
+const Gallery = () => {
   const history = useHistory();
 
   const AddGallery = () => {
     history.push("/hub/AddGallery");
   };
+  const dispatch = useDispatch();
 
+  const galleryList = useSelector((state) => state.galleryList);
+  const { loading, error, gallerys } = galleryList;
+
+ 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const galleryDelete = useSelector((state) => state.galleryDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = galleryDelete;
+
+  const galleryCreate = useSelector((state) => state.galleryCreate);
+  const { success: successCreate } = galleryCreate;
+
+  const galleryUpdate = useSelector((state) => state.galleryUpdate);
+  const { success: successUpdate } = galleryUpdate;
+
+  useEffect(() => {
+    dispatch(listGallerys());
+    if (!userInfo) {
+      history.push("/");
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    successUpdate,
+  ]);
+
+
+
+  let ids = [];
+  const idsHandler = (id) =>{
+   
+    ids.push(id);
+    console.log("ids name " + ids)
+  }
+
+  // const deleteHandler = (ids) => {
+  //   for (var i = 0; i < ids.length; i++) {
+  //     console.log("com" + i)
+  //     dispatch(deleteDocumentAction(ids[i].id));
+  //     console.log(ids[i].id)
+  //   }
+  // };
+
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteGalleryAction(id));
+    }
+  };
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
@@ -128,75 +194,44 @@ const Gallery = ({ dispatch }) => {
                   <th className="p-2"> Edit</th>
                 </tr>
               </thead>
-              <tbody className="">
+              
+              {gallerys &&
+                gallerys.reverse().map((gallery, i) => (
+                  <tbody className="" key={gallery._id}>
                 <tr className="">
                   <td className="p-5">
-                    <Form.Check aria-label="option 1" />
+                    <Form.Check aria-label="option 1"  onClick={(e) => idsHandler(gallery._id)}/>
                   </td>
                   <th className="p-5">1</th>
-                  <td className="p-5">SISIR SARAS 2023</td>
+                  <td className="p-5"> {gallery.headline}</td>
                   <td className="p-5">
                     {" "}
                     <a href="" className="text-danger">
                       <img
-                        src="http://ormas.org/Application/uploadDocuments/Gallery/ORMAS_Gallery_1674214826.jpg"
+                        src={gallery.photo}
                         height="80px"
                       />{" "}
                     </a>
                   </td>
-                  <td className="p-5"> Mass Marketing Mission</td>
-                  <td className="p-5"> 19-Oct-2019</td>
-                  <td className="p-5">Set</td>
-                  <td className="p-5">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr className="">
-                  <td className="p-5">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-5">2</th>
-                  <td className="p-5">SISIR SARAS 2023</td>
-                  <td className="p-5">
-                    {" "}
-                    <a href="" className="text-danger">
-                      <img
-                        src="http://ormas.org/Application/uploadDocuments/Gallery/ORMAS_Gallery_1674214826.jpg"
-                        height="80px"
-                      />{" "}
-                    </a>
-                  </td>
-                  <td className="p-5"> Mass Marketing Mission</td>
-                  <td className="p-5"> 19-Oct-2019</td>
-                  <td className="p-5">Set</td>
-                  <td className="p-5">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-
-                <tr className="">
-                  <td className="p-5">
-                    <Form.Check aria-label="option 1"  />
-                  </td>
-                  <th className="p-5">3</th>
-                  <td className="p-5">SISIR SARAS 2023</td>
-                  <td className="p-5">
-                    {" "}
-                    <a href="" className="text-danger">
-                      <img
-                        src="http://ormas.org/Application/uploadDocuments/Gallery/ORMAS_Gallery_1674214826.jpg"
-                        height="80px"
-                      />{" "}
-                    </a>
-                  </td>
-                  <td className="p-5"> Mass Marketing Mission</td>
-                  <td className="p-5"> 19-Oct-2019</td>
-                  <td className="p-5">Set</td>
-                  <td className="p-5">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
+                  <td className="p-5"> {gallery.category}</td>
+                  <td className="p-5">{gallery.createdAt.substring(0, 10)}</td>
+                  <td className="p-5">{gallery.status == true ? <button type="button" class="btn btn-primary px-5">Set</button> : <button type="button" class="btn btn-outline-primary px-5">Unset</button> }</td>
+                  <td className="p-5"> <a
+                          href={`/gallerys/${gallery._id}`}
+                        >
+                          <i class="bi bi-pencil-square"></i>{" "}
+                        </a>
+                        <a
+                          onClick={() =>
+                            deleteHandler(gallery._id)
+                          }
+                        >
+                          <i class="bi bi-trash-fill"></i>{" "}
+                        </a>
+                      </td>
                 </tr>
               </tbody>
+                ))}
             </Table>
           </div>
 

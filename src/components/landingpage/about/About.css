@@ -1,0 +1,9 @@
+.heightcard{
+    overflow-y: scroll !important;
+    
+}
+
+.heightcard:hover{
+    transform: scale(1.01);
+    
+}

@@ -1,13 +1,76 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-const ViewContent = ({ dispatch }) => {
+
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
+import {
+  listTenders,
+  deleteTenderAction,
+} from "../../Redux/actions/Manage Application/tendersActions";
+import axios from "axios";
+const ViewContent = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
- 
+  const [data, setData] = useState([]);
+
+  const tenderList = useSelector((state) => state.tenderList);
+  const { loading, error, tenders } = tenderList;
+  console.log(tenders);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const tenderDelete = useSelector((state) => state.tenderDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = tenderDelete;
+
+  const tenderCreate = useSelector((state) => state.tenderCreate);
+  const { success: successCreate } = tenderCreate;
+
+  const tenderUpdate = useSelector((state) => state.tenderUpdate);
+  const { success: successUpdate } = tenderUpdate;
+
+  useEffect(() => {
+    dispatch(listTenders());
+    if (!userInfo) {
+      history.push("/");
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    successUpdate,
+  ]);
+
+  let ids = [];
+  const idsHandler = (id) => {
+    ids.push(id);
+    console.log("ids name " + ids);
+  };
+
+  // const deleteHandler = (ids) => {
+  //   for (var i = 0; i < ids.length; i++) {
+  //     console.log("com" + i)
+  //     dispatch(deleteDocumentAction(ids[i].id));
+  //     console.log(ids[i].id)
+  //   }
+  // };
+
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteTenderAction(id));
+    }
+  };
+
   const AddTender = () => {
     history.push("/hub/AddTender");
   };
@@ -17,12 +80,30 @@ const ViewContent = ({ dispatch }) => {
   const AddCorrigendum = () => {
     history.push("/hub/Corrigendum");
   };
-  // const UpdatetheLinks = () =>{
-  //   alert("Please select a record!")
-  // }
+  const getData = async () => {
+    try {
+      const response = await axios.get("/api/tenders/")
+      // console.log(response);
+      setData(response.data.tenders);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+
+    getData()
+
+  },[])
+
+
   return (
     <div>
-      <form action="">
+      <form>
+        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        {errorDelete && (
+          <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>
+        )}
+        {loadingDelete && loading && <Loading />}
         <div class="">
           <h3 className="magazin-heading">
             <i class="bi bi-people design_icon"></i>View Tender Details
@@ -158,7 +239,7 @@ const ViewContent = ({ dispatch }) => {
               </div>
             </div>
           </div>
-          {/* <div class="text-center coupon-data mobileresponsive">
+          <div class="text-center coupon-data mobileresponsive">
             <Table
               striped
               bordered
@@ -170,138 +251,54 @@ const ViewContent = ({ dispatch }) => {
                 <tr>
                   <th className="p-2"></th>
                   <th className="p-2">Sl.# </th>
-                  <th className="p-2"> Title</th>
-                  <th className="p-2"> Last Updated</th>
+                  <th className="p-2">Tender No.</th>
+                  <th className="p-2"> Tender Headline</th>
+                  <th className="p-2"> Closing Date</th>
+                  <th className="p-2">Document</th>
+                  <th className="p-2"> Description</th>
                   <th className="p-2"> Edit</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td className="p-1">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-1">1</th>
-                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
-                  <td className="p-1">04-Aug-2020</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-1">2</th>
-                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-1">3</th>
-                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-1">3</th>
-                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-1">4</th>
-                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-1">5</th>
-                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-1">6</th>
-                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-1">7</th>
-                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-1">8</th>
-                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-1">9</th>
-                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-1">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <th className="p-1">10</th>
-                  <td className="p-1"> Product - Mayurbhanj Sabai </td>
-                  <td className="p-1">29-Nov-2014</td>
-                  <td className="p-1">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
-              </tbody>
+              {/* {  tenders.reverse().map((tender, i) => (  <h1>cdvhb</h1>    ))} */}
+              
+                  <tbody>
+                  {data.length > 0 && data.reverse().map((item,i) => (
+                    <tr>
+                      <td className="p-1">
+                        <Form.Check aria-label="option 1" />
+                      </td>
+                      <th className="p-1">{i+1}</th>
+                      <td className="p-1"> {item.tender_no} </td>
+                      <td className="p-1">{item.tender_headline} </td>
+                      <td className="p-1">{item.closing_date.substring(0, 10)} </td>
+                      <td className="p-1">
+                      <a
+                          href={item.document_one} 
+                          target="_blank"
+                          className="text-danger"
+                          download
+                        > 
+                        
+                        {item.document_one.type !== "image/jpg" ? 
+                        <img
+                            src="https://www.psero.com/wp-content/uploads/2020/09/adobe-acrobat-pdf-file-512.png"
+                            height="50px" width="20px"
+                          /> : "not" }
+                          
+                        </a>
+                      </td>
+                      <td className="p-1">{item.description}</td>
+                      <td className="p-1">
+                        <i class="bi bi-pencil-square"></i>{" "}
+                      </td>
+                    </tr>
+                  ))}
+                  </tbody>
+             
             </Table>
-          </div> */}
-          <center className="text-danger">No Records Found </center>
-          {/* <div className="btn-row">
+          </div>
+          {/* <center className="text-danger">No Records Found </center> */}
+          <div className="btn-row">
             <div className="col-md-8">
               <div className="ShowEntries">
                 <p className="Entries">Showing 0 to 1 of 10 entries</p>
@@ -317,7 +314,7 @@ const ViewContent = ({ dispatch }) => {
                 </button>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       </form>
     </div>

@@ -1,22 +1,76 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip"
-const ManageLogo = ({ dispatch }) => {
+import Tooltip from "react-bootstrap/Tooltip";
+
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
+import {
+  listlogos,
+  deleteLogoAction,
+} from "../../Redux/actions/Manage Application/logosActions";
+
+const ManageLogo = () => {
   const history = useHistory();
 
   const AddManageLogo = () => {
     history.push("/hub/AddManageLogo");
   };
 
+  const dispatch = useDispatch();
+
+  const logoList = useSelector((state) => state.logoList);
+  const { loading, error, logos } = logoList;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoDelete = useSelector((state) => state.logoDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = logoDelete;
+
+  const logoCreate = useSelector((state) => state.logoCreate);
+  const { success: successCreate } = logoCreate;
+
+  const logoUpdate = useSelector((state) => state.logoUpdate);
+  const { success: successUpdate } = logoUpdate;
+
+  useEffect(() => {
+    dispatch(listlogos());
+    if (!userInfo) {
+      history.push("/");
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    successUpdate,
+  ]);
+
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteLogoAction(id));
+    }
+  };
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
   return (
     <div>
       <form action="">
+        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        {errorDelete && (
+          <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>
+        )}
+        {loadingDelete && loading && <Loading />}
         <div class="">
           <h3 className="magazin-heading">
             <i class="bi bi-people design_icon"></i>View ManageLogo
@@ -35,7 +89,7 @@ const ManageLogo = ({ dispatch }) => {
               </div>
             </div>
           </div>
-       
+
           <div className="gap-3 d-flex flex-row-reverse">
             <OverlayTrigger
               placement="top"
@@ -149,7 +203,6 @@ const ManageLogo = ({ dispatch }) => {
                     <i class="bi bi-pencil-square"></i>{" "}
                   </td>
                 </tr>
-          
               </tbody>
             </Table>
           </div>

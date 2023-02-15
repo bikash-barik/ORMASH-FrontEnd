@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
@@ -5,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useSelector } from "react-redux";
 const ViewContent = ({ dispatch }) => {
+
   const history = useHistory();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -50,6 +52,11 @@ const ViewContent = ({ dispatch }) => {
   return (
     <div>
       <form action="">
+        {/* {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        {errorDelete && (
+          <ErrorMessage variant="danger">{errorDelete}</ErrorMessage>
+        )}
+        {loadingDelete && loading && <Loading />} */}
         <div class="">
           <h3 className="magazin-heading">
             <i class="bi bi-people design_icon"></i>View Content
@@ -70,7 +77,7 @@ const ViewContent = ({ dispatch }) => {
           </div>
           <div className="magazinName">
             <div className="border border-2 d-flex bg-light   p-2">
-              <span className="m-1">Global Link	</span>
+              <span className="m-1">Global Link </span>
               <div class="col-md-2">
                 <select id="inputState" class="form-select p-1">
                   <option selected>Choose...</option>
@@ -83,7 +90,7 @@ const ViewContent = ({ dispatch }) => {
                 </select>
               </div>
 
-              <span className="m-1">Primary Link		</span>
+              <span className="m-1">Primary Link </span>
               <div class="col-md-2">
                 <select id="inputState" class="form-select p-1">
                   <option selected>Choose...</option>
@@ -122,6 +129,7 @@ const ViewContent = ({ dispatch }) => {
                   <td className="p-1">
                     <Form.Check aria-label="option 1" />
                   </td>
+
                   <th className="p-1">{item.title}</th>
                   <td className="p-1">{item.global_link}</td>
                   <td className="p-1">{item.primary_link}</td>
@@ -131,6 +139,7 @@ const ViewContent = ({ dispatch }) => {
                   </td>
                   <td className="p-1" onClick={() => deleteHandler(item._id)}>
                     <i class="bi bi-trash"></i>{" "}
+
                   </td>
                 </tr>
               ))}
@@ -148,7 +157,6 @@ const ViewContent = ({ dispatch }) => {
               </tbody>
             </Table>
           </div>
-          
 
           <div className="btn-row">
             <div className="col-md-8">
@@ -159,7 +167,7 @@ const ViewContent = ({ dispatch }) => {
             {/* <div className="col-md-4">
               <div className="btn-tagle">
                 <button type="submit" className="btn-Previous">
-                 Back
+                  Back
                 </button>
                 <button type="submit" className="btn-Next">
                   Next

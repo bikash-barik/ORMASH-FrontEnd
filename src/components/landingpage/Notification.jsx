@@ -2,8 +2,8 @@
 const Notification = () => {
   return (
     <div
-      class='d-flex align-items-center p-2  scroll-container text-light text-decoration-none'
-      style={{ background: 'linear-gradient(to top, #347371 ,#49a09d)' }}
+      class='d-flex align-items-center p-2  scroll-container text-light text-decoration-none bg-color'
+     
     >
       &nbsp;
       <marquee
