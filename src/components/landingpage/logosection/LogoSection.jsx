@@ -16,8 +16,6 @@ const LogoSection = () => {
                   src={odishaLogo}
                   alt='Odisha Logo'
                 />
-                {/* <span>Odisha Rural Development &amp; Marketing Society</span>
-                        <span>Goverment of Odisha</span>     */}
               </div>
             </div>
             <div className='col-md-4 col-12 d-flex  align-item-center '>
@@ -26,13 +24,13 @@ const LogoSection = () => {
                   <img
                     src={headerLogo}
                     alt=''
-                    className='mobile-none'
+                    // className='mobile-none'
                     style={{ height: '84px', width: '100%' }}
                   />{' '}
                 </a>
                 <marquee
                   behavior=''
-                  className='mobile-none'
+                  // className='mobile-none'
                   direction=''
                   // style="color: black; font-family:Brush Script MT; font-size:19px; margin-top: -13px;"
                   style={{

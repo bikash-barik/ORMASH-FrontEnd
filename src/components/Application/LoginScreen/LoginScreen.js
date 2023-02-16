@@ -65,11 +65,11 @@ function LoginScreen({ history }) {
                     Submit
                   </Button>
                 </Form>
-                <Row className="py-3">
+                {/* <Row className="py-3">
                   <Col>
                     New Customer ? <Link to="/register">Register Here</Link>
                   </Col>
-                </Row>
+                </Row> */}
               </div>
             </MainScreen>
           </Col>

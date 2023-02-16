@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MenuItem from "./MenuItem";
 import { logout } from "../Redux/actions/userActions";
 import "../Style/SideBar.css"
+import { useHistory } from "react-router";
 
 /**
  * @author
@@ -93,29 +94,31 @@ export const menuItems = [
       { name: "Feedback", to: "/hub/Feedback" },
     ],
   },
+  // {
+  //   name: "Employee",
+  //   to: `/hub/Employee`,
+  //   iconClassName: "bi bi-person",
+  // },
+  // {
+  //   name: "Work",
+  //   to: `/hub/Work`,
+  //   iconClassName: "bi bi-list-task",
+  // },
+  // {
+  //   name: "Send SMS",
+  //   to: ``,
+  //   iconClassName: "bi bi-phone",
+  // },
   {
-    name: "Employee",
-    to: `/hub/Employee`,
-    iconClassName: "bi bi-person",
-  },
-  {
-    name: "Work",
-    to: `/hub/Work`,
-    iconClassName: "bi bi-list-task",
-  },
-  {
-    name: "Send SMS",
-    to: ``,
-    iconClassName: "bi bi-phone",
-  },
-  {
-    name: "E-Mail",
+    name: "More Application",
     exact: true,
     to: `/hub/Analytics`,
     iconClassName: "bi bi-briefcase",
     subMenus: [
-      { name: "Create New MailId", to: "/hub/ReadingSection" },
-      { name: "Change Password", to: "/hub/PageReads" },
+      { name: "Employee", to: "/hub/Employee" },
+      { name: "Work", to: "/hub/work" },
+      { name: "Send SMS", to: "/hub/Send" },
+      { name: "E-Mail", to: "/hub/email" },
     ],
   },
   {
@@ -126,7 +129,7 @@ export const menuItems = [
     subMenus: [
       { name: "Change Password", to: "/hub/ReadingSection" },
       { name: "View Profile", to: "/hub/progile" },
-      // { name: "Logout", to: "/" },
+     
     ],
   },
   // { name: "E-Mail", to: `https://tanumanasa.com/`, iconClassName: "bi bi-briefcase" },
@@ -139,10 +142,14 @@ const SideMenu = (props) => {
 const dispatch = useDispatch();
 const userLogin = useSelector((state) => state.userLogin);
 const { userInfo } = userLogin;
+const history = useHistory(); 
 
 const logoutHandler = () => {
   if (window.confirm("Are you sure to logout?")) {
     dispatch(logout());
+   history.push("/");
+   window.location.reload(true)
+
   }
 
 
@@ -243,14 +250,14 @@ useEffect(() => {}, [userInfo]);
               }}
             />
           ))}
-          <a href="/" className="text-decoration-none">
-          <li>
-            <a className="menu-item">
+          <a onClick={logoutHandler} className="text-decoration-none">
+          <li >
+            <samp className="menu-item">
               <div className="menu-icon">
                 <i class="bi bi-box-arrow-left"></i>
               </div>
-              <span onClick={logoutHandler}>Logout</span>
-            </a>
+              <span >Logout</span>
+            </samp>
           </li>
           </a>
           {/* <li>

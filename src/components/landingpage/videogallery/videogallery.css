@@ -30,7 +30,7 @@ Video Gallery
   background: linear-gradient(to bottom, #592f5f 35%, #766fb2 85%);
   border-radius: 5px;
   width: 65%;
-  height: 100%;
+  height: 55%;
   overflow-y: scroll;
 }
 .video-con .video-list::-webkit-scrollbar {

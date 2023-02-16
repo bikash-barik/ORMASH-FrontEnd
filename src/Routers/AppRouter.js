@@ -12,7 +12,7 @@ const AppRouter = () => {
       <Router>
         {/* <Header/> */}
         <Switch>
-          <Route exact path='/' component={Home} />
+          <Route exact path='/' component={Home}  />
           <Route exact path='/Login' component={LandingPage} />
           <Route path='/register' component={RegisterScreen} />
         </Switch>

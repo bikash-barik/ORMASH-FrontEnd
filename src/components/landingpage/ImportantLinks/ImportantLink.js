@@ -1,6 +1,11 @@
 import React from "react";
 import logo from "../../../assets/images/logo3.png";
 import logo1 from "../../../assets/images/logoe1.png";
+import logo2 from "../../../assets/images/logo.png";
+import logo3 from "../../../assets/images/logoe2.png";
+import logo4 from "../../../assets/images/logoe5.png";
+import logo5 from "../../../assets/images/logoe6.png";
+import logo6 from "../../../assets/images/logoe7.png";
 const ImportantLink = () => {
   return (
     <div>
@@ -12,7 +17,7 @@ const ImportantLink = () => {
           onmouseout="this.start();"
          
         >
-          <p className="d-flex">
+          <p className="d-flex justify-content-between">
             <a href="#">
               <img
                 className="home-page-links"
@@ -29,34 +34,52 @@ const ImportantLink = () => {
                 src={logo1}
               />
             </a>
+            <a href="#">
+              <img
+                className="home-page-links"
+                width="30px"
+                height="80px"
+                src={logo2}
+              />
+            </a>
+            <a href="#">
+              <img
+                className="home-page-links"
+                width="20px"
+                height="80px"
+                src={logo3}
+              />
+            </a>
+            <a href="#">
+              <img
+                className="home-page-links"
+                width="20px"
+                height="80px"
+                src={logo4}
+              />
+            </a>
+            <a href="#">
+              <img
+                className="home-page-links"
+                width="20px"
+                height="80px"
+                src={logo5}
+              />
+            </a>
+            <a href="#">
+              <img
+                className="home-page-links"
+                width="20px"
+                height="80px"
+                src={logo6}
+              />
+            </a>
+            
           </p>
 
-          {/* <a href="#" class="home-page-links"> <img src="https://i.gadgets360cdn.com/large/jpg_to_pdf_1591980583835.jpg"
-                            style={{height: "8px;" ,paddinglft:"40px"}}/></a>
-                    <a href="#" class="home-page-links"> <img src="https://i.gadgets360cdn.com/large/jpg_to_pdf_1591980583835.jpg"
-                            style={{height: "8px;" ,paddinglft:"40px"}}/></a>
-                    <a href="#" class="home-page-links"> <img src="https://i.gadgets360cdn.com/large/jpg_to_pdf_1591980583835.jpg"
-                            style={{height: "8px;" ,paddinglft:"40px"}}/></a>
-                    <a href="#" class="home-page-links"> <img src="https://i.gadgets360cdn.com/large/jpg_to_pdf_1591980583835.jpg"
-                            style={{height: "8px;" ,paddinglft:"40px"}}/></a>
-                    <a href="#" class="home-page-links"> <img src="https://i.gadgets360cdn.com/large/jpg_to_pdf_1591980583835.jpg"
-                            style={{height: "8px;" ,paddinglft:"40px"}}/></a>
-                    <a href="#" class="home-page-links"> <img src="https://i.gadgets360cdn.com/large/jpg_to_pdf_1591980583835.jpg"
-                            style={{height: "8px;" ,paddinglft:"40px"}}/></a> */}
-          {/* </p> */}
+         
         </marquee>
-        {/* <marquee
-                  behavior=''
-                  className='mobile-none'
-                  direction=''
-                  style={{
-                    color: 'black',
-                    foontSize: '19px',
-                    margintop: '-13px',
-                  }}
-                >
-                  Creating Competence and Values in Rural Odisha
-                </marquee> */}
+      
       </div>
     </div>
   );

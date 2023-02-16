@@ -37,11 +37,11 @@ const Footer = () => {
           </Col>
         </Row>
       </Container>
-      <div className="copyright">
+      {/* <div className="copyright"> */}
         {/* <Container> */}
-        <Copyright />
+        {/* <Copyright /> */}
         {/* </Container> */}
-      </div>
+      {/* </div> */}
     </div>
   );
 };

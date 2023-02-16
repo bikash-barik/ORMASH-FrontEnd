@@ -20,8 +20,6 @@ const Document = () => {
     history.push("/hub/AddDocument");
   };
 
-
- 
   const dispatch = useDispatch();
 
   const documentList = useSelector((state) => state.documentList);
@@ -57,14 +55,11 @@ const Document = () => {
     successUpdate,
   ]);
 
-
-
   let ids = [];
-  const idsHandler = (id) =>{
-   
+  const idsHandler = (id) => {
     ids.push(id);
-    console.log("ids name " + ids)
-  }
+    console.log("ids name " + ids);
+  };
 
   // const deleteHandler = (ids) => {
   //   for (var i = 0; i < ids.length; i++) {
@@ -79,7 +74,7 @@ const Document = () => {
       dispatch(deleteDocumentAction(id));
     }
   };
- 
+
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
@@ -92,115 +87,179 @@ const Document = () => {
         )}
         {loadingDelete && loading && <Loading />}
         <div class="">
-          <h3 className="magazin-heading">
-            <i class="bi bi-people design_icon"></i>View Document
+          <h3 className="fs-15">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span> Home / Manage Application / Document /</span>View Document
           </h3>
-          <div className="btn-row">
-            <div className="col-md-8"></div>
-            <div className="col-md-4">
-              <div className="btn-position">
-                <button
-                  type="submit"
-                  className="btn-coupon-free"
-                  onClick={AddDocument}
-                >
-                  Add Document
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className=" gap-3 d-flex flex-row-reverse">
-            <OverlayTrigger
-              placement="top"
-              delay={{ show: 250, hide: 400 }}
-              overlay={
-                <Tooltip id="button-tooltip-2" className="p-1">
-                  <span className="p-2">UnPublish</span>
-                </Tooltip>
-              }
-            >
+          <div className="mt-5 d-flex justify-content-between">
+            <div className="gap-2 d-flex justify-content-between">
               <button
                 type="button"
-                class="btn btn-secondary p-2"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
+                onClick={AddDocument}
+                style={{ backgroundColor: "#000081", color: "#fff" }}
+                class="btn p-2"
               >
-                <i class="bi bi-volume-mute"></i>
+                Add
               </button>
-            </OverlayTrigger>
-            <OverlayTrigger
-              placement="top"
-              delay={{ show: 250, hide: 400 }}
-              overlay={
-                <Tooltip id="button-tooltip-2" className="p-1">
-                  <span className="p-2"> Publish</span>
-                </Tooltip>
-              }
-            >
-              <button type="button" class="btn btn-secondary p-2">
-                <i class="bi bi-megaphone-fill"></i>
+              <button type="button" class="btn btn-outline-secondary p-2">
+                View
               </button>
-            </OverlayTrigger>
-            <OverlayTrigger
-            
-              placement="top"
-              delay={{ show: 250, hide: 400 }}
-              overlay={
-                <Tooltip id="button-tooltip-2" className="p-1">
-                  <span className="p-2"> Delete</span>
-                </Tooltip>
-              }
-            >
-              <button type="button" class="btn btn-secondary p-2" onClick={deleteHandler}>
-                <i class="bi bi-trash-fill"></i>
-              </button>
-            </OverlayTrigger>
-            <OverlayTrigger
-              placement="top"
-              delay={{ show: 250, hide: 400 }}
-              overlay={
-                <Tooltip id="button-tooltip-2" className="p-1">
-                  <span className="p-2"> Archive</span>
-                </Tooltip>
-              }
-            >
-              <button type="button" class="btn btn-secondary p-2">
-                <i class="bi bi-archive-fill"></i>
-              </button>
-            </OverlayTrigger>
-            <OverlayTrigger
-              placement="top"
-              delay={{ show: 250, hide: 400 }}
-              overlay={
-                <Tooltip id="button-tooltip-2" className="p-1">
-                  <span className="p-2"> Print This Page</span>
-                </Tooltip>
-              }
-            >
-              <button type="button" class="btn btn-secondary p-2">
-                <i class="bi bi-printer-fill"></i>
-              </button>
-            </OverlayTrigger>
+            </div>
+            <div className="gap-3 d-flex flex-row-reverse d-flex align-items-center">
+              {/* <div className="ShowEntries d-flex align-items-center">
+                {data.length > 0 ? (
+                  <p className="Entries">
+                    {" "}
+                    All Results:
+                    <span className="text-primary">{data.length}</span>{" "}
+                  </p>
+                ) : (
+                  <p className="Entries"> All Results: 0</p>
+                )}
+              </div> */}
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2">UnPublish</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                >
+                  <i class="bi bi-volume-mute-fill"></i>
+                </button>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2"> Publish</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-megaphone-fill"></i>
+                </button>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2"> Delete</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2"> Archive</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-archive-fill"></i>
+                </button>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2"> Print This Page</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-printer-fill"></i>
+                </button>
+              </OverlayTrigger>
+            </div>
           </div>
-          <div class="text-center coupon-data mobileresponsive">
+          <div class=" coupon-data mobileresponsive">
             <Table
-              striped
+              // striped
               bordered
               hover
               responsive
-              className="border rounded table-secondary text-center mt-5"
+              className="border rounded   "
             >
               <thead>
-                <tr>
+                <tr  style={{
+                    backgroundColor: "#eaebed",
+                    fontWeight: "bold",
+                    fontSize: "13px",
+                    color: "#000",
+                  }}>
                   <th className="p-2"></th>
-                  <th className="p-2">Sl.# </th>
+                  <th className="p-2 text-center">Sl.# </th>
                   <th className="p-2">Headline</th>
                   <th className="p-2"> Document</th>
 
                   <th className="p-2">Created on</th>
                   <th className="p-2"> Home Page Status </th>
                   <th className="p-2"> Edit</th>
+                  <th className="p-2"> Delete</th>
                 </tr>
               </thead>
               {documents &&
@@ -208,41 +267,56 @@ const Document = () => {
                   <tbody className="" key={document._id}>
                     <tr className="">
                       <td className="p-5">
-                        <Form.Check aria-label="option 1" onClick={(e) => idsHandler(document._id)} />
+                        <Form.Check
+                          aria-label="option 1"
+                          onClick={(e) => idsHandler(document._id)}
+                        />
                       </td>
                       <th className="p-5">{i + 1}</th>
-                      <td className="p-5">
-                      {document.headline}
-                      </td>
-                      <td className="p-5">
+                      <td className="p-5">{document.headline}</td>
+                      <td className="p-3">
                         {" "}
                         <a
                           href={document.uploadDocument}
                           target="_blank"
                           className="text-danger"
                           download
-                        > 
-                        
-                        {document.uploadDocument.type !== "image/jpg" ? 
-                        <img
-                            src="https://www.psero.com/wp-content/uploads/2020/09/adobe-acrobat-pdf-file-512.png"
-                            height="50px"
-                          /> : "not" }
-                          
+                        >
+                          {document.uploadDocument.type !== "image/jpg" ? (
+                             <img
+                             src="https://play-lh.googleusercontent.com/BkRfMfIRPR9hUnmIYGDgHHKjow-g18-ouP6B2ko__VnyUHSi1spcc78UtZ4sVUtBH4g"
+                             height="40px"
+                           />
+                          ) : (
+                            "not"
+                          )}
                         </a>
                       </td>
-                      <td className="p-5">{document.expiryDate.substring(0, 10)} </td>
-                      <td className="p-5">{document.status == true ? <button type="button" class="btn btn-primary px-5">Set</button> : <button type="button" class="btn btn-outline-primary px-5">Unset</button> }</td>
-                      <td className="p-5"> <a
-                          href={`/documents/${document._id}`}
-                        >
+                      <td className="p-5">
+                        {document.expiryDate.substring(0, 10)}{" "}
+                      </td>
+                      <td className="p-5 text-center">
+                        {document.status == true ? (
+                          // <button type="button" class="btn btn-primary px-5">
+                          " Set"
+                          // </button>
+                        ) : (
+                          // <button
+                          //   type="button"
+                          //   class="btn btn-outline-primary px-5"
+                          // >
+                           " Unset"
+                          // </button>
+                        )}
+                      </td>
+                      <td className="p-5 text-center">
+                        {" "}
+                        <a href={`/documents/${document._id}`}>
                           <i class="bi bi-pencil-square"></i>{" "}
                         </a>
-                        <a
-                          onClick={() =>
-                            deleteHandler(document._id)
-                          }
-                        >
+                      </td>{" "}
+                      <td className="p-5 text-center">
+                        <a onClick={() => deleteHandler(document._id)}>
                           <i class="bi bi-trash-fill"></i>{" "}
                         </a>
                       </td>
@@ -253,20 +327,13 @@ const Document = () => {
           </div>
 
           <div className="btn-row">
-            <div className="col-md-8">
-              <div className="ShowEntries">
-                <p className="Entries">Showing 0 to 1 of 10 entries</p>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="btn-tagle">
-                <button type="submit" className="btn-Previous">
-                  Back
-                </button>
-                <button type="submit" className="btn-Next">
-                  Next
-                </button>
-              </div>
+            <div className="col-md-5 col-12">
+              <button type="button" class="btn  btn-outline-secondary p-1 text-dark">
+                Set Home
+              </button>
+              <button type="button" class="btn btn-outline-secondary p-1 m-1 text-dark">
+                Unset Home
+              </button>
             </div>
           </div>
         </div>
