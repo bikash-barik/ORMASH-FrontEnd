@@ -35,23 +35,57 @@ const Employee = ({ dispatch }) => {
             <table class="table table-secondary table-striped align-middle  table-hover align-middle coupon-table table-bordered border text-center">
               <thead class="text-center">
                 <tr class="text-center">
-                  <th scope="col" className="px-5">SL. No.</th>
-                  <th scope="col" className="px-5">UserName </th>
-                  <th scope="col" className="px-5">Age</th>
-                  <th scope="col" className="px-5">Gender</th>
-                  <th scope="col" className="px-5">DOB</th>
-                  <th scope="col" className="px-5">Office Phone/Ext No.</th>
-                  <th scope="col" className="px-5">Mobile No.</th>
-                  <th scope="col" className="px-5">email</th>
-                  <th scope="col" className="px-5">Address</th>
-                  <th scope="col" className="px-5">Document If</th>
-                  <th scope="col" className="px-5">Emp ID</th>
-                  <th scope="col" className="px-5">Department</th>
-                  <th scope="col" className="px-5">Designation</th>
-                  <th scope="col" className="px-5">Date Of Joining</th>
-                  <th scope="col" className="px-5">Date Of Retirement</th>
-                  <th scope="col" className="px-5">Rejoining Status</th>
-                  <th scope="col" className="px-5">Edit</th>
+                  <th scope="col" className="px-5">
+                    SL. No.
+                  </th>
+                  <th scope="col" className="px-5">
+                    UserName{" "}
+                  </th>
+                  <th scope="col" className="px-5">
+                    Age
+                  </th>
+                  <th scope="col" className="px-5">
+                    Gender
+                  </th>
+                  <th scope="col" className="px-5">
+                    DOB
+                  </th>
+                  <th scope="col" className="px-5">
+                    Office Phone/Ext No.
+                  </th>
+                  <th scope="col" className="px-5">
+                    Mobile No.
+                  </th>
+                  <th scope="col" className="px-5">
+                    email
+                  </th>
+                  <th scope="col" className="px-5">
+                    Address
+                  </th>
+                  <th scope="col" className="px-5">
+                    Document If
+                  </th>
+                  <th scope="col" className="px-5">
+                    Emp ID
+                  </th>
+                  <th scope="col" className="px-5">
+                    Department
+                  </th>
+                  <th scope="col" className="px-5">
+                    Designation
+                  </th>
+                  <th scope="col" className="px-5">
+                    Date Of Joining
+                  </th>
+                  <th scope="col" className="px-5">
+                    Date Of Retirement
+                  </th>
+                  <th scope="col" className="px-5">
+                    Rejoining Status
+                  </th>
+                  <th scope="col" className="px-5">
+                    Edit
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -121,20 +155,19 @@ const Employee = ({ dispatch }) => {
           </div> */}
 
           <div className="btn-row">
-            <div className="col-md-8">
-              <div className="ShowEntries">
-                <p className="Entries">Showing 0 to 1 of 1 entries</p>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="btn-tagle">
-                <button type="submit" className="btn-Previous">
-                  Previous
-                </button>
-                <button type="submit" className="btn-Next">
-                  Next
-                </button>
-              </div>
+            <div className="col-md-5 col-12">
+              <button
+                type="button"
+                class="btn  btn-outline-secondary p-1 text-dark"
+              >
+                Set Home
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary p-1 m-1 text-dark"
+              >
+                Unset Home
+              </button>
             </div>
           </div>
         </div>

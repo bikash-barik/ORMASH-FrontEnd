@@ -20,17 +20,7 @@ export const listbanners = () => async (dispatch, getState) => {
       type: Banners_LIST_REQUEST,
     });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
-
-    const response = await axios.get(`/api/banners`, config);
+    const response = await axios.get(`/api/banners`);
 
     dispatch({
       type: Banners_LIST_SUCCESS,

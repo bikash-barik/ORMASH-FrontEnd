@@ -1,9 +1,10 @@
+import { symbol } from "prop-types";
 import { Row, Col, Container } from "react-bootstrap";
 import "./footer.css";
 
-const Copyright = () => {
+const Copyright = ({style}) => {
   return (
-    <div className="bg-color">
+    <div className={style}>
       <Container>
         <Row xs={1} md={3} className="d-flex justify-content-center ">
           <Col xl={4} className="d-flex align-items-center">

@@ -1,0 +1,23 @@
+.govpart:hover{
+     color: rgb(226, 242, 122) !important;
+}
+
+
+
+@media only screen and (max-width : 620px) {
+    .mobile-none{
+        display: none;
+    }
+
+    .mobilecontent{
+        margin-left: 30px !important;
+        position: absolute;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .mobilecontent a{
+        font-size: large !important;
+    }
+        
+}

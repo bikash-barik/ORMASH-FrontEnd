@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import { useSelector } from "react-redux";
+
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import axios from "axios";
 const GlowbalLink = ({ dispatch }) => {
   const history = useHistory();
@@ -14,39 +17,36 @@ const GlowbalLink = ({ dispatch }) => {
   };
   const getData = async () => {
     try {
-      const response = await axios.get("/api/primarylinks/")
+      const response = await axios.get("/api/primarylinks/");
       console.log(response);
       setData(response.data.primaryLinks);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   useEffect(() => {
-
-    getData()
-
-  }, [])
+    getData();
+  }, []);
   const clickHandler = (id) => {
     // console.log(id);
-    history.push(`/hub/AddPrimaryLink/${id}`)
-  }
-  const deleteHandler = async  (id) =>{
-     try {
-       const config = {
-         headers: {
-           "Content-Type": "application/json",
-           Authorization: `Bearer ${userInfo.token}`,
-         },
-       };
-       if (window.confirm("Are you sure?")) {
-         await axios.delete(`/api/primarylinks/${id}`, config);
-         getData()
-       }
-  
-     } catch (error) {
+    history.push(`/hub/AddPrimaryLink/${id}`);
+  };
+  const deleteHandler = async (id) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      if (window.confirm("Are you sure?")) {
+        await axios.delete(`/api/primarylinks/${id}`, config);
+        getData();
+      }
+    } catch (error) {
       console.log(error);
-     }
-  }
+    }
+  };
 
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
@@ -55,50 +55,190 @@ const GlowbalLink = ({ dispatch }) => {
     <div>
       <form action="">
         <div class="">
-          <h3 className="magazin-heading">
-            <i class="bi bi-people design_icon"></i>View Primary Link
+          <h3 className="fs-15">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span> Home / Manage Link / Primary Link /</span>View Primary Link
           </h3>
-          <div className="btn-row">
-            <div className="col-md-8"></div>
-            <div className="col-md-4">
-              <div className="btn-position">
-                <button
-                  type="submit"
-                  className="btn-coupon-free"
-                  onClick={CreateMagazin}
-                >
-                  Add PrimaryLink
-                </button>
+          <div className="mt-5 d-flex justify-content-between">
+            <div className="gap-2 d-flex justify-content-between">
+              <button
+                type="button"
+                onClick={CreateMagazin}
+                style={{ backgroundColor: "#000081", color: "#fff" }}
+                class="btn p-2"
+              >
+                Add
+              </button>
+              <button type="button" class="btn btn-outline-secondary p-2">
+                View
+              </button>
+            </div>
+            <div className="gap-3 d-flex flex-row-reverse d-flex align-items-center">
+              <div className="ShowEntries d-flex align-items-center">
+                {data.length > 0 ? (
+                  <p className="Entries">
+                    {" "}
+                    All Results:
+                    <span className="text-primary">{data.length}</span>{" "}
+                  </p>
+                ) : (
+                  <p className="Entries"> All Results: 0</p>
+                )}
               </div>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2">UnPublish</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                >
+                  <i class="bi bi-volume-mute-fill"></i>
+                </button>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2"> Publish</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-megaphone-fill"></i>
+                </button>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2"> Delete</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2"> Archive</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-archive-fill"></i>
+                </button>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2"> Print This Page</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-printer-fill"></i>
+                </button>
+              </OverlayTrigger>
             </div>
           </div>
-          <div className="magazinName">
-          <div className="border border-2 d-flex bg-light   p-2">
-          <span className="m-1">Select Global Link</span>  
-            <div class="col-md-2">
-              <select id="inputState" class="form-select p-1">
-                <option selected>Choose...</option>
-                <option>About Us</option>
-                <option>DDU-GKY</option>
-                <option>Activities</option>
-                <option>Products</option>
-                <option>Exhibition</option>
-                <option>Tender</option>
-              </select>
+          <div className="" style={{ backgroundColor: "#fcfae1" }}>
+            <div className="border border-2 d-flex p-2">
+              <span className="m-1">Select Global Link</span>
+              <div class="col-md-2">
+                <select id="inputState" class="form-select p-1">
+                  <option selected>Choose...</option>
+                  <option>About Us</option>
+                  <option>DDU-GKY</option>
+                  <option>Activities</option>
+                  <option>Products</option>
+                  <option>Exhibition</option>
+                  <option>Tender</option>
+                </select>
+              </div>
+              <button type="button" class="btn btn-success p-1 mx-2">
+                Show
+              </button>
             </div>
           </div>
-          </div>
-          <div class="text-center coupon-data mobileresponsive">
-            <Table
-              striped
-              bordered
-              hover
-              responsive
-              className="border rounded table-secondary text-center mt-5"
-            >
+          <div class=" coupon-data mobileresponsive">
+            <Table bordered responsive className="border rounded  mt-2">
               <thead>
-                <tr>
-                  <th className="p-2"></th>
+                <tr
+                  style={{
+                    backgroundColor: "#eaebed",
+                    fontWeight: "bold",
+                    fontSize: "13px",
+                    color: "#000",
+                  }}
+                >
+                  <th className="p-2">
+                    {" "}
+                    <Form.Check aria-label="option 1" />
+                  </th>
+                  <th className="p-2">SL#</th>
                   <th className="p-2">Link Name</th>
                   <th className="p-2"> Global Link</th>
                   <th className="p-2"> Link No</th>
@@ -111,38 +251,43 @@ const GlowbalLink = ({ dispatch }) => {
                 </tr>
               </thead>
               <tbody>
-                {data.length > 0 && data.map((item) => (<tr key={item._id}>
-                  <td  className="p-1">
-                    <Form.Check aria-label="option 1" />
-                  </td>
-                  <td className="p-1">{item.link_name}</td>
-                  <td className="p-1">{item.global_link}</td>
+                {data.length > 0 &&
+                  data.map((item, i) => (
+                    <tr key={item._id}>
+                      <td className="p-1 text-center">
+                        <Form.Check aria-label="option 1" />
+                      </td>
+                      <td className="p-1 text-center">{i + 1}</td>
+                      <td className="p-1 ">{item.link_name}</td>
+                      <td className="p-1">{item.global_link}</td>
 
-                  <td className="p-1">{item.sl_no}</td>
-                  <td className="p-1">{item.link_type}</td>
-                  <td className="p-1"> {item.function_name}</td>
-                  <td className="p-1"> {item.window_status}</td>
-                  <td className="p-1"> {item.publish_status} </td>
-                  <td className="p-1" onClick={() => clickHandler(item._id)}>
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                  <td className="p-1" onClick={() => deleteHandler(item._id)}>
-                    <i class="bi bi-trash"></i>{" "}
-                  </td>
-                </tr>))}
-           
-             
-         
-           
-       
-            
-              
-            
-               
+                      <td className="p-1">
+                        <input
+                          placeholder={item.sl_no}
+                          style={{ width: "55px", border: "solid 1px #b6b6bd" }}
+                          className="text-center"
+                        ></input>
+                      </td>
+                      <td className="p-1">{item.link_type}</td>
+                      <td className="p-1"> {item.function_name}</td>
+                      <td className="p-1"> {item.window_status}</td>
+                      <td className="p-1"> {item.publish_status} </td>
+                      <td
+                        className="p-1 text-center"
+                        onClick={() => clickHandler(item._id)}
+                      >
+                        <i class="bi bi-pencil-square"></i>{" "}
+                      </td>
+                      <td
+                        className="p-1 text-center"
+                        onClick={() => deleteHandler(item._id)}
+                      >
+                        <i class="bi bi-trash"></i>{" "}
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </Table>
-
-
           </div>
           {/* <div className="coupon-data">
             <table className="coupon-table">
@@ -164,23 +309,9 @@ const GlowbalLink = ({ dispatch }) => {
             </table>
           </div> */}
 
-          <div className="btn-row">
-            <div className="col-md-8">
-              <div className="ShowEntries">
-                {data.length > 0 ? (<p className="Entries"> {data.length} Entries Available</p>) : (<p className="Entries"> 0  Entries Available</p>)}
-              </div>
-            </div>
-            {/* <div className="col-md-4">
-              <div className="btn-tagle">
-                <button type="submit"  className="btn-Previous">
-                  Update The Links
-                </button>
-                <button type="submit" className="btn-Next">
-                  Next
-                </button>
-              </div>
-            </div> */}
-          </div>
+          <button type="button" class="btn btn-success p-1 mt-2">
+            Update Link Number
+          </button>
         </div>
       </form>
     </div>

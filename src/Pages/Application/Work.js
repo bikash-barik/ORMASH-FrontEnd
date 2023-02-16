@@ -84,21 +84,14 @@ const Work = ({ dispatch }) => {
             </table>
           </div> */}
 
-          <div className="btn-row">
-            <div className="col-md-8">
-              <div className="ShowEntries">
-                <p className="Entries">Showing 0 to 1 of 1 entries</p>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="btn-tagle">
-                <button type="submit" className="btn-Previous">
-                  Previous
-                </button>
-                <button type="submit" className="btn-Next">
-                  Next
-                </button>
-              </div>
+<div className="btn-row">
+            <div className="col-md-5 col-12">
+              <button type="button" class="btn  btn-outline-secondary p-1 text-dark">
+                Set Home
+              </button>
+              <button type="button" class="btn btn-outline-secondary p-1 m-1 text-dark">
+                Unset Home
+              </button>
             </div>
           </div>
         </div>

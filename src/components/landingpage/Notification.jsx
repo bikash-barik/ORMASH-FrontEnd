@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-distracting-elements */
-const Notification = () => {
+const Notification = ({style}) => {
   return (
     <div
-      class='d-flex align-items-center p-2  scroll-container text-light text-decoration-none bg-color'
+      className={`d-flex align-items-center p-2  scroll-container text-light text-decoration-none ${style}`}
      
     >
       &nbsp;

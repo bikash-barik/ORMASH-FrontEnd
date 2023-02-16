@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../Loading";
 import ErrorMessage from "../../ErrorMessage";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import {
   listOfficerProfileDetails,
   deleteOfficerProfileDetailAction,
@@ -77,47 +79,163 @@ const OfficerProfileDetails = () => {
         {loading && <Loading />}
         {loadingDelete && <Loading />}
         {console.log(officerProfileDetails)}
-        {/* {officerProfileDetails
-         &&
-         officerProfileDetails
-          .filter((filteredNote) =>
-            filteredNote.title.toLowerCase().includes(search.toLowerCase())
-          )
-          .reverse()
-          .map((officerProfileDetail) => ( */}
-        {/* { officerProfileDetails  &&
-         officerProfileDetails.reverse()
-          .map((officerProfileDetail) => ( */}
+
         <div class="">
-          <h3 className="magazin-heading">
-            <i class="bi bi-people design_icon"></i>OfficerProfileDetails
+          <h3 className="fs-15">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span> Home / Manage Link / Global Link /</span>
+            OfficerProfileDetails
           </h3>
-          <div className="btn-row">
-            <div className="col-md-8"></div>
-            <div className="col-md-4">
-              <div className="btn-position">
+          <div className="mt-5 d-flex justify-content-between">
+            <div className="gap-2 d-flex justify-content-between">
+              <button
+                type="button"
+                onClick={CreateMagazin}
+                style={{ backgroundColor: "#000081", color: "#fff" }}
+                class="btn p-2"
+              >
+                Add
+              </button>
+              <button type="button" class="btn btn-outline-secondary p-2">
+                View
+              </button>
+            </div>
+            <div className="gap-3 d-flex flex-row-reverse d-flex align-items-center">
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2">UnPublish</span>
+                  </Tooltip>
+                }
+              >
                 <button
-                  type="submit"
-                  className="btn-coupon-free"
-                  onClick={CreateMagazin}
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
                 >
-                  Add Officer Profile
+                  <i class="bi bi-volume-mute-fill"></i>
                 </button>
-              </div>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2"> Publish</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-megaphone-fill"></i>
+                </button>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2"> Delete</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2"> Archive</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-archive-fill"></i>
+                </button>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2"> Print This Page</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-printer-fill"></i>
+                </button>
+              </OverlayTrigger>
             </div>
           </div>
-
-          <div class="text-center coupon-data mobileresponsive">
+          <div class=" coupon-data mobileresponsive">
             <Table
-              striped
+              // striped
               bordered
-              hover
+              // hover
               responsive
-              className="border rounded table-secondary text-center mt-5"
+              className="border rounded "
             >
               <thead>
-                <tr>
-                  <th className="p-2"></th>
+                <tr   style={{
+                    backgroundColor: "#eaebed",
+                    fontWeight: "bold",
+                    fontSize: "16px",
+                    color: "#000",
+                  }}>
+                  <th className="p-2 text-center"> <Form.Check aria-label="option 1" /></th>
                   <th className="p-2">Sl.# </th>
                   <th className="p-2"> Officer Name</th>{" "}
                   <th className="p-2"> Designation </th>
@@ -125,51 +243,63 @@ const OfficerProfileDetails = () => {
                   <th className="p-2"> Created on</th>{" "}
                   <th className="p-2"> Photo</th>
                   <th className="p-2"> Edit</th>
+                  <th className="p-2"> Delete</th>
                 </tr>
               </thead>
               {officerProfileDetails &&
-                officerProfileDetails.reverse().map((officerProfileDetail,i) => (
-                  <tbody className="" key={officerProfileDetail._id}>
-                    <tr className="">
-                      <td className="p-5">  
-                        <Form.Check aria-label="option 1" />
-                      </td>
-                      <th className="p-5">{i + 1}</th>
-                      <td className="p-5">
-                        {" "}
-                        {officerProfileDetail.officername}
-                      </td>
-                      <td className="p-5">
-                        {" "}
-                        {officerProfileDetail.designation}
-                      </td>
-                      <td className="p-5"> {officerProfileDetail.serial}</td>
-                      <td className="p-5"> {officerProfileDetail.createdon.substring(0, 10)}</td>
-                      <td className="p-1">
-                        <img
-                          src={officerProfileDetail.photo}
-                          height="75px"
-                          width="80px"
-                          alt=""
-                        />
-                      </td>
-                      <td className="p-5 d-flex justify-content-between">
-                        <a
-                          href={`/hub/UpdateOfficerProfile/${officerProfileDetail._id}`}
-                        >
-                          <i class="bi bi-pencil-square"></i>{" "}
-                        </a>
-                        <a
-                          onClick={() =>
-                            deleteHandler(officerProfileDetail._id)
-                          }
-                        >
-                          <i class="bi bi-trash-fill"></i>{" "}
-                        </a>
-                      </td>
-                    </tr>
-                  </tbody>
-                ))}
+                officerProfileDetails
+                  .reverse()
+                  .map((officerProfileDetail, i) => (
+                    <tbody className="" key={officerProfileDetail._id}>
+                      <tr
+                        style={{
+                          fontSize: "13px",
+                          color: "#000",
+                        }}>
+                        <td className="p-5">
+                          <Form.Check aria-label="option 1" />
+                        </td>
+                        <th className="p-5">{i + 1}</th>
+                        <td className="p-5">
+                          {" "}
+                          {officerProfileDetail.officername}
+                        </td>
+                        <td className="p-5">
+                          {" "}
+                          {officerProfileDetail.designation}
+                        </td>
+                        <td className="p-5"> {officerProfileDetail.serial}</td>
+                        <td className="p-5">
+                          {" "}
+                          {officerProfileDetail.createdon.substring(0, 10)}
+                        </td>
+                        <td className="p-1">
+                          <img
+                            src={officerProfileDetail.photo}
+                            height="75px"
+                            width="80px"
+                            alt=""
+                          />
+                        </td>
+                        <td className="p-5">
+                          <a
+                            href={`/hub/UpdateOfficerProfile/${officerProfileDetail._id}`}
+                          >
+                            <i class="bi bi-pencil-square"></i>{" "}
+                          </a>
+                        </td>
+                        <td className="p-5 ">
+                          <a
+                            onClick={() =>
+                              deleteHandler(officerProfileDetail._id)
+                            }
+                          >
+                            <i class="bi bi-trash-fill"></i>{" "}
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  ))}
             </Table>
           </div>
 

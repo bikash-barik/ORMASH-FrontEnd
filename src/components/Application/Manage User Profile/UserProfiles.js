@@ -1,6 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import { Table } from "react-bootstrap";
 const UserProfiles = ({ dispatch }) => {
   const history = useHistory();
 
@@ -11,30 +13,137 @@ const UserProfiles = ({ dispatch }) => {
     <div>
       <form action="">
         <div class="">
-          <h3 className="magazin-heading">
-            <i class="bi bi-people design_icon"></i> View User Profile
+          <h3 className="fs-15">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span> Home / Manage User Profile / User Profile /</span>View User
+            Profile
           </h3>
-          <div className="btn-row">
-            <div className="col-md-8"></div>
-            <div className="col-md-4">
-              <div className="btn-position">
+          <div className="mt-5 d-flex justify-content-between">
+            <div className="gap-2 d-flex justify-content-between">
+              <button
+                type="button"
+                onClick={CreateMagazin}
+                style={{ backgroundColor: "#000081", color: "#fff" }}
+                class="btn p-2"
+              >
+                Add
+              </button>
+              <button type="button" class="btn btn-outline-secondary p-2">
+                View
+              </button>
+            </div>
+            <div className="gap-3 d-flex flex-row-reverse d-flex align-items-center">
+              {/* <div className="ShowEntries d-flex align-items-center">
+                {data.length > 0 ? (
+                  <p className="Entries">
+                    {" "}
+                    All Results:
+                    <span className="text-primary">{data.length}</span>{" "}
+                  </p>
+                ) : (
+                  <p className="Entries"> All Results: 0</p>
+                )}
+              </div> */}
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2">Reload</span>
+                  </Tooltip>
+                }
+              >
                 <button
-                  type="submit"
-                  className="btn-coupon-free"
-                  onClick={CreateMagazin}
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
                 >
-                  Add User Profile
+                  <i class="bi bi-arrow-clockwise"></i>
                 </button>
-              </div>
+              </OverlayTrigger>
+
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2"> Delete</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+              </OverlayTrigger>
+
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={
+                  <Tooltip id="button-tooltip-2" className="p-1">
+                    <span className="p-2"> Print This Page</span>
+                  </Tooltip>
+                }
+              >
+                <button
+                  type="button"
+                  style={{
+                    borderRadius: "5px",
+                    width: "50px",
+                    height: "40px",
+                    backgroundColor: "",
+                    color: "#000",
+                  }}
+                  class="btn btn-secondary"
+                >
+                  <i class="bi bi-printer-fill"></i>
+                </button>
+              </OverlayTrigger>
             </div>
           </div>
-          <div className="magazinName">
-            <input type="text" placeholder="Name" className="maga_name"></input>
+          <div className="" style={{ backgroundColor: "#fcfae1" }}>
+            <div className="border border-2 d-flex   p-2">
+              <input
+                type="text"
+                placeholder="Name"
+                className="maga_name"
+              ></input>
+              <button type="button" class="btn btn-success p-1 mx-2">
+                Show
+              </button>
+            </div>
           </div>
-          <div class="text-center coupon-data mobileresponsive">
-            <table class="table table-secondary table-striped align-middle coupon-table table-bordered border text-center">
+
+          <div class="text-center coupon-data mobileresponsive mt-2">
+            <Table bordered hover responsive className="border rounded ">
               <thead>
-                <tr class="text-center">
+                <tr
+                  class="text-center"
+                  style={{
+                    backgroundColor: "#eaebed",
+                    fontWeight: "bold",
+                    fontSize: "15px",
+                    color: "#000",
+                  }}
+                >
                   <th scope="col">SL. No.</th>
                   <th scope="col">User Name </th>
                   <th scope="col">Mobile No</th>
@@ -45,25 +154,27 @@ const UserProfiles = ({ dispatch }) => {
                   <th scope="col">Edit</th>
                 </tr>
               </thead>
-              <tbody >
+              <tbody>
                 <tr>
-                  <th scope="row">1</th>
-                  <td >Shyam Sundar Sahoo</td>
-                  <td> </td>
-                  <td> User </td>
-                  <td>
-                    <button type="submit" className="btn-Previous">
+                  <th className="p-2" scope="row">
+                    1
+                  </th>
+                  <td className="p-2">Shyam Sundar Sahoo</td>
+                  <td className="p-2"> </td>
+                  <td className="p-2"> User </td>
+                  <td className="p-1">
+                    <button type="submit" className="btn btn-danger p-1">
                       Inactive
                     </button>{" "}
                   </td>
-                  <td>0</td>
-                  <td>15-Apr-2015</td>
-                  <td>
+                  <td className="p-2">0</td>
+                  <td className="p-2">15-Apr-2015</td>
+                  <td className="p-2">
                     <i class="bi bi-pencil-square"></i>{" "}
                   </td>
                 </tr>
               </tbody>
-            </table>
+            </Table>
           </div>
           {/* <div className="coupon-data">
             <table className="coupon-table">
@@ -85,23 +196,9 @@ const UserProfiles = ({ dispatch }) => {
             </table>
           </div> */}
 
-          <div className="btn-row">
-            <div className="col-md-8">
-              <div className="ShowEntries">
-                <p className="Entries">Showing 0 to 1 of 1 entries</p>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="btn-tagle">
-                <button type="submit" className="btn-Previous">
-                  Previous
-                </button>
-                <button type="submit" className="btn-Next">
-                  Next
-                </button>
-              </div>
-            </div>
-          </div>
+          <button type="button" class="btn btn-success p-1 mt-2">
+            Update Link Number
+          </button>
         </div>
       </form>
     </div>
