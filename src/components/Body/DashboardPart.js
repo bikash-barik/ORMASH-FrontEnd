@@ -7,34 +7,33 @@ function DashboardPart() {
     <>
       <div className={`container ${inactive ? "inactive" : ""}`}></div>
       <div>
-      
-        <div className=' d-flex justify-content-center align-items-center align-item-center mt-15'>
-              <div className=''>
-                <a href='/#'>
-                  <img
-                    src={headerLogo}
-                    class="w-25"
-                    alt=''
-                    // className='mobile-none'
-                    // style={{ height: '84px', width: '100%' }}
-                  />{' '}
-                </a>
-                <marquee
-                  behavior=''
-                  // className='mobile-none'
-                  direction=''
-                  // style="color: black; font-family:Brush Script MT; font-size:19px; margin-top: -13px;"
-                  style={{
-                    color: 'black',
-                    fontSize: '25px',
-                    marginTop: '-13px',
-                    fontFamily:"Brush Script MT",
-                  }}
-                >
-                  Creating Competence and Values in Rural Odisha
-                </marquee>
-              </div>
-            </div>
+        <div className=" d-flex justify-content-center align-items-center align-item-center mt-15">
+          <div className="">
+            <a href="/#">
+              <img
+                src={headerLogo}
+                class="w-25"
+                alt=""
+                // className='mobile-none'
+                // style={{ height: '84px', width: '100%' }}
+              />{" "}
+            </a>
+            <marquee
+              behavior=""
+              // className='mobile-none'
+              direction=""
+              // style="color: black; font-family:Brush Script MT; font-size:19px; margin-top: -13px;"
+              style={{
+                color: "black",
+                fontSize: "25px",
+                marginTop: "-13px",
+                fontFamily: "Brush Script MT",
+              }}
+            >
+              Creating Competence and Values in Rural Odisha
+            </marquee>
+          </div>
+        </div>
         <div class="row g-0 bg-light position-relative ">
           {/* <div class="col-md-6 mb-md-0 p-md-4">
             <img
