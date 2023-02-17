@@ -36,6 +36,7 @@ const SetPermission = ({ dispatch }) => {
                   <p className="Entries"> All Results: 0</p>
                 )}
               </div> */}
+              
               <p className="text-danger">(*) Indicates Mandatory Fields</p>
               <OverlayTrigger
                 placement="top"

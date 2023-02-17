@@ -4,8 +4,11 @@ import DashboardPart from "../components/Body/DashboardPart";
 export default function Dashboard() {
   return (
     <>
-    <h1>Dashboard</h1>
-     <DashboardPart />
+      <h3>
+        <i class="bi bi-geo-alt-fill"></i>
+        <span> Home /</span>Dashboard
+      </h3>
+      <DashboardPart />
     </>
   );
 }

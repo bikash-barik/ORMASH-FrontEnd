@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
+import "./Navebar.css";
 import axios from "axios";
 import { NavDropdown, Nav } from "react-bootstrap";
 const Navbar = ({ style }) => {
   const [data, setData] = useState([]);
   const [primaryLinks, setPrimaryLinks] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleMouseLeave = () => {
+    setIsOpen(false);
+  };
   const getData = async () => {
     try {
       const response = await axios.get("/api/globallinks/");
@@ -16,6 +22,7 @@ const Navbar = ({ style }) => {
   useEffect(() => {
     getData();
   }, []);
+
   const clickHandler = async (globalLink) => {
     try {
       // console.log(globalLink.link_name)
@@ -27,6 +34,10 @@ const Navbar = ({ style }) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleMouseEnter = () => {
+    setIsOpen(true);
   };
 
   return (
@@ -46,9 +57,9 @@ const Navbar = ({ style }) => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            {/* <span>
+            <span>
               <i className="fa fa-bars"></i>
-            </span> */}
+            </span>
           </button>
 
           <div
@@ -60,7 +71,7 @@ const Navbar = ({ style }) => {
                 data.map((item) => (
                   <Nav>
                     <NavDropdown
-                      // id="nav-dropdown-dark-example"
+                      id="nav-dropdown-dark-example"
                       title={item.link_name}
                       className="nav-item"
                       menuVariant="dark"
@@ -70,8 +81,9 @@ const Navbar = ({ style }) => {
                       {primaryLinks.length > 0 &&
                         primaryLinks.map((el) => (
                           <NavDropdown.Item
+                            // style={{ display: el ? 'block' : 'none' }}
                             className="pt-2 px-3"
-                            href="#action/3.1"
+                            href={el.function_name}
                           >
                             {el.link_name}
                           </NavDropdown.Item>
@@ -87,3 +99,39 @@ const Navbar = ({ style }) => {
   );
 };
 export default Navbar;
+
+// <li
+// className="dropdown"
+// onMouseEnter={handleMouseEnter}
+// onMouseLeave={handleMouseLeave}
+// >
+// <a href="#">{item.link_name}</a>
+// <ul
+//   className="dropdown-content"
+//   style={{ display: isOpen ? "block" : "none" }}
+// >
+//   {primaryLinks.length > 0 &&
+//     primaryLinks.map((el) => (
+//       <NavDropdown.Item
+//         style={{ display: isOpen ? 'block' : 'none' }}
+//         className="pt-2 px-3"
+//         href="#action/3.1"
+//       >
+//         {el.link_name}
+//       </NavDropdown.Item>
+//       <li>
+//       <a className="pt-2 px-3"
+//         href="#action/3.1"> {el.link_name}</a>
+//     </li>
+//     ))}
+//   <li>
+//     <a href="#">Option 1</a>
+//   </li>
+//   <li>
+//     <a href="#">Option 2</a>
+//   </li>
+//   <li>
+//     <a href="#">Option 3</a>
+//   </li>
+// </ul>
+// </li>

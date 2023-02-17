@@ -1,25 +1,58 @@
 import React, { useState } from "react";
+import headerLogo from "../../assets/images/header-logo.png";
 
 function DashboardPart() {
   const [inactive, setInactive] = useState(false);
   return (
     <>
       <div className={`container ${inactive ? "inactive" : ""}`}></div>
-      <div >
+      <div>
+      
+        <div className=' d-flex justify-content-center align-items-center align-item-center mt-15'>
+              <div className=''>
+                <a href='/#'>
+                  <img
+                    src={headerLogo}
+                    class="w-25"
+                    alt=''
+                    // className='mobile-none'
+                    // style={{ height: '84px', width: '100%' }}
+                  />{' '}
+                </a>
+                <marquee
+                  behavior=''
+                  // className='mobile-none'
+                  direction=''
+                  // style="color: black; font-family:Brush Script MT; font-size:19px; margin-top: -13px;"
+                  style={{
+                    color: 'black',
+                    fontSize: '25px',
+                    marginTop: '-13px',
+                    fontFamily:"Brush Script MT",
+                  }}
+                >
+                  Creating Competence and Values in Rural Odisha
+                </marquee>
+              </div>
+            </div>
         <div class="row g-0 bg-light position-relative ">
-          <div class="col-md-6 mb-md-0 p-md-4">
+          {/* <div class="col-md-6 mb-md-0 p-md-4">
             <img
               src="https://cdn.dribbble.com/users/20368/screenshots/4012238/data_scene.gif"
               class="w-100"
               alt="..."
             />
-          </div>
-          <div class="col-md-6 p-4 ps-md-0 test-center d-flex align-items-center">
-           
-              <marquee width="100%" direction="up" height="100px">
-              <h5 class="mt-0 h1">    WellCome To ORMAS</h5>
-              </marquee>
-            
+          </div> */}
+          <div class="col-md-12 w-50 p-4 ps-md-0 test-center d-flex align-items-center">
+            {/* <marquee width="100%" direction="up" height="100px">
+              <h5 class="mt-0 h1"> WellCome To ORMAS</h5>
+            </marquee> */}
+            {/* <img
+              src={headerLogo}
+              class="w-100"
+              alt="..."
+            /> */}
+
             <p>
               {/* Another instance of placeholder content for this other custom
               component. It is intended to mimic what some real-world content

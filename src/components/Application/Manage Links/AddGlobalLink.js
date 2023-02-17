@@ -16,18 +16,35 @@ const AddGlonalLink = ({ dispatch }) => {
     window_status: "",
     view_in_menu_item: "",
     view_in_footer_link: false,
-    publish_status: ""
+    publish_status: "",
   });
   const [errorMsg, setErrorMsg] = useState("");
   const Cancel = () => {
     history.push("/hub/GlowbalLink");
   };
-  const  {link_name,link_type,sl_no,function_name,window_status,view_in_footer_link,view_in_menu_item,publish_status} = globalLinks
+  const {
+    link_name,
+    link_type,
+    sl_no,
+    function_name,
+    window_status,
+    view_in_footer_link,
+    view_in_menu_item,
+    publish_status,
+  } = globalLinks;
   const addGlobalLink = async (e) => {
     e.preventDefault();
     try {
-
-      if (link_name && link_type &&  sl_no && function_name && window_status &&view_in_footer_link && view_in_menu_item && publish_status){
+      if (
+        link_name &&
+        link_type &&
+        sl_no &&
+        function_name &&
+        window_status &&
+        view_in_footer_link &&
+        view_in_menu_item &&
+        publish_status
+      ) {
         const config = {
           headers: {
             "Content-Type": "application/json",
@@ -43,20 +60,19 @@ const AddGlonalLink = ({ dispatch }) => {
           window_status: "",
           view_in_menu_item: "",
           view_in_footer_link: false,
-          publish_status: ""
-        })
+          publish_status: "",
+        });
         history.push("/hub/GlowbalLink");
         return;
-      } else{
-           setErrorMsg("Please fill all the fields")
+      } else {
+        setErrorMsg("Please fill all the fields");
       }
-
     } catch (error) {
-      console.log(error)
-      const msg = error.response?.data?.message
-      setErrorMsg(msg)
+      console.log(error);
+      const msg = error.response?.data?.message;
+      setErrorMsg(msg);
     }
-  }
+  };
   const updateGlobalLink = async (e) => {
     e.preventDefault();
     try {
@@ -66,7 +82,7 @@ const AddGlonalLink = ({ dispatch }) => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-    await axios.put(`/api/globallinks/${params.id}`, globalLinks, config);
+      await axios.put(`/api/globallinks/${params.id}`, globalLinks, config);
       setGlobalLinks({
         link_name: "",
         sl_no: 0,
@@ -75,21 +91,20 @@ const AddGlonalLink = ({ dispatch }) => {
         window_status: "",
         view_in_menu_item: "",
         view_in_footer_link: false,
-        publish_status: ""
-      })
+        publish_status: "",
+      });
       history.push("/hub/GlowbalLink");
     } catch (error) {
-      console.log(error)
-      const msg = error.response?.data?.message
-      setErrorMsg(msg)
+      console.log(error);
+      const msg = error.response?.data?.message;
+      setErrorMsg(msg);
     }
-  }
+  };
 
-  const handleChange = event => {
-
+  const handleChange = (event) => {
     setGlobalLinks({
       ...globalLinks,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
   useEffect(() => {
@@ -99,53 +114,81 @@ const AddGlonalLink = ({ dispatch }) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    if(params.id){
-      axios.get(`/api/globallinks/${params.id}`, config)
-        .then(res => {
-
-          setGlobalLinks(res.data.globalLink)
-          console.log(globalLinks)
+    if (params.id) {
+      axios
+        .get(`/api/globallinks/${params.id}`, config)
+        .then((res) => {
+          setGlobalLinks(res.data.globalLink);
+          console.log(globalLinks);
         })
-        .catch(err => {
-          console.log(err)
-        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-  
-  }, [params.id, userInfo.token])
+  }, [params.id, userInfo.token]);
   useEffect(() => {
-  setTimeout(() => {
-    setErrorMsg("");
-  }, 3000);
-  }, [errorMsg])
-  
+    setTimeout(() => {
+      setErrorMsg("");
+    }, 3000);
+  }, [errorMsg]);
+
   return (
     <>
       <form action="">
-        <div class="magazin-container">
-          {params.id ? (<h1 className="magazin-heading">Update Global Link</h1>) : (<h1 className="magazin-heading">Add Global Link</h1>)}
+        <div className="magazin-container d-block">
+          {params.id ? (
+        
+              <h3 className="fs-15">
+                <i class="bi bi-geo-alt-fill"></i>
+                <span> Home / Manage Link / Global Link /</span>Update Global
+                Link
+              </h3>
+          
+          ) : (
+            <h3 className="fs-19">
+                <i class="bi bi-geo-alt-fill"></i>
+                <span> Home / Manage Link / Global Link /</span>Add Global Link
+              </h3>
+          )}
+<p className="text-danger d-flex justify-content-end">(*) Indicates Mandatory Fields</p>
+          <hr />
           
 
-          <hr />
           {errorMsg && <ErrorMessage variant="danger">{errorMsg}</ErrorMessage>}
 
-          <form class="row g-3 d-flex justify-content-between mb-5 mt-5">
-            
-            <div class="col-md-3">
-              <label for="inputState" class="form-label">
-                Select Global Link
-              </label>
-              <select id="inputState" class="form-select p-1" name="link_name"
-                value={link_name}
-                onChange={(e) => handleChange(e)}>
-                <option selected>Choose...</option>
-                <option>Home</option>
-                <option>About Us</option>
-                <option>DDU-GKY</option>
-                <option>Activities</option>
-                <option>Products</option>
-                <option>Exhibition</option>
-                <option>Tender</option>
-              </select>
+          <form class="row g-3 d-block justify-content-between mb-5 mt-5 ">
+
+            <div class="row d-flex">
+              <div class="col-md-2">
+                <label
+                  for="inputState"
+                  className="form-label"
+                  style={{ fontSize: "18px" }}
+                >
+                  Select Global Link   :
+                </label>
+              </div>
+              <div class="col-md-3 d-flex">
+                <select
+                  style={{ border: "solid 1px #000" }}
+                  id="inputState"
+                  class="form-select p-1"
+                  name="link_name"
+                  value={link_name}
+                  onChange={(e) => handleChange(e)}
+                >
+                  <option selected>Choose...</option>
+                  <option>Home</option>
+                  <option>About Us</option>
+                  <option>DDU-GKY</option>
+                  <option>Activities</option>
+                  <option>Products</option>
+                  <option>Exhibition</option>
+                  <option>Tender</option>
+                </select>
+                <p className="text-danger">(*) </p>
+              </div>
+              
             </div>
             {/* <div class="col-md-4">
               <label for="inputEmail4" class="form-label">
@@ -163,8 +206,13 @@ const AddGlonalLink = ({ dispatch }) => {
               <label for="inputState" class="form-label">
                 Sl. No. of Link
               </label>
-              <select value={sl_no}
-                onChange={(e) => handleChange(e)} name="sl_no" id="inputState" class="form-select p-1">
+              <select
+                value={sl_no}
+                onChange={(e) => handleChange(e)}
+                name="sl_no"
+                id="inputState"
+                class="form-select p-1"
+              >
                 <option selected>Choose...</option>
                 <option>1</option>
                 <option>2</option>
@@ -185,8 +233,13 @@ const AddGlonalLink = ({ dispatch }) => {
               <label for="inputState" class="form-label">
                 Link Type
               </label>
-              <select name="link_type" id="inputState" class="form-select p-1" value={link_type}
-                onChange={(e) => handleChange(e)}>
+              <select
+                name="link_type"
+                id="inputState"
+                class="form-select p-1"
+                value={link_type}
+                onChange={(e) => handleChange(e)}
+              >
                 <option selected>Choose...</option>
                 <option> Internal</option>
                 <option> External</option>
@@ -196,8 +249,13 @@ const AddGlonalLink = ({ dispatch }) => {
               <label for="inputState" class="form-label">
                 Function Name
               </label>
-              <select name="function_name" id="inputState" class="form-select p-1" value={function_name}
-                onChange={(e) => handleChange(e)}>
+              <select
+                name="function_name"
+                id="inputState"
+                class="form-select p-1"
+                value={function_name}
+                onChange={(e) => handleChange(e)}
+              >
                 <option selected>Choose...</option>
                 <option>Achivements</option>
                 <option>ArcNews</option>
@@ -217,42 +275,51 @@ const AddGlonalLink = ({ dispatch }) => {
               <label for="inputState" class="form-label">
                 Window Status
               </label>
-              <select name="window_status" id="inputState" class="form-select p-1" value={window_status}
-                onChange={(e) => handleChange(e)}>
+              <select
+                name="window_status"
+                id="inputState"
+                class="form-select p-1"
+                value={window_status}
+                onChange={(e) => handleChange(e)}
+              >
                 <option selected>Choose...</option>
                 <option>Same</option>
                 <option> New</option>
               </select>
             </div>
 
-
             <div class="col-md-3">
               <label for="inputState" class="form-label">
                 Publish Status
               </label>
-              <select name="publish_status" id="inputState" class="form-select p-1" value={publish_status
-              }
-                onChange={(e) => handleChange(e)}>
+              <select
+                name="publish_status"
+                id="inputState"
+                class="form-select p-1"
+                value={publish_status}
+                onChange={(e) => handleChange(e)}
+              >
                 <option selected>Choose...</option>
-                <option>Active   </option>
+                <option>Active </option>
                 <option> Inactive</option>
-
               </select>
             </div>
-         
 
             <div class="col-md-3">
               <label for="inputEmail4" class="form-label">
                 View In Menu Item
               </label>
-              <select id="inputState" class="form-select p-1" name="view_in_menu_item"
+              <select
+                id="inputState"
+                class="form-select p-1"
+                name="view_in_menu_item"
                 value={view_in_menu_item}
-                onChange={(e) => handleChange(e)}>
+                onChange={(e) => handleChange(e)}
+              >
                 <option selected>Choose...</option>
                 <option>Main Menu </option>
                 <option> Top Menu </option>
                 <option> Bottom Menu</option>
-
               </select>
             </div>
             <div class="col-md-5">
@@ -273,22 +340,31 @@ const AddGlonalLink = ({ dispatch }) => {
                 </label>
               </div>
             </div>
-
           </form>
 
           <div className="btn mt-2">
-            {params.id ? (<button type="submit" className="Submit-btn" onClick={e => updateGlobalLink(e)}>
-              Update
-            </button>) : (<button type="submit" className="Submit-btn" onClick={e => addGlobalLink(e)}>
-              Submit
-            </button>)}
+            {params.id ? (
+              <button
+                type="submit"
+                className="Submit-btn"
+                onClick={(e) => updateGlobalLink(e)}
+              >
+                Update
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="Submit-btn"
+                onClick={(e) => addGlobalLink(e)}
+              >
+                Submit
+              </button>
+            )}
 
             <button onClick={Cancel} type="submit" className="Cancel-btn">
               Cancel
             </button>
           </div>
-
-
         </div>
       </form>
     </>

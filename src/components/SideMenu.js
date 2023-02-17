@@ -6,6 +6,7 @@ import MenuItem from "./MenuItem";
 import { logout } from "../Redux/actions/userActions";
 import "../Style/SideBar.css"
 import { useHistory } from "react-router";
+import headerLogo from '../assets/images/header-logo.png';
 
 /**
  * @author
@@ -135,6 +136,8 @@ export const menuItems = [
   // { name: "E-Mail", to: `https://tanumanasa.com/`, iconClassName: "bi bi-briefcase" },
 ];
 
+
+
 const SideMenu = (props) => {
   const [inactive, setInactive] = useState(false);
   const [date,setDate] = useState(new Date());
@@ -209,7 +212,7 @@ useEffect(() => {}, [userInfo]);
         <div className="logo">
           <a href="/">
             <img
-              src="https://panchayat.odisha.gov.in/sites/default/files/styles/medium/public/2021-10/ormas.png?itok=ne6UAvbv"
+              src={headerLogo}
               alt="webscript"
             />
           </a>
