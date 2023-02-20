@@ -12,7 +12,10 @@ const Navbar = ({ style }) => {
   };
   const getData = async () => {
     try {
-      const response = await axios.get("/api/globallinks/");
+      const response = await axios.get("/api/globallinks/", {
+        mode: 'cors',
+        credentials: 'include'
+      });
 
       setData(response.data.globalLinks);
     } catch (error) {
@@ -27,7 +30,10 @@ const Navbar = ({ style }) => {
     try {
       // console.log(globalLink.link_name)
       const response = await axios.get(
-        `/api/primarylinks?globalLink=${globalLink.link_name}`
+        `/api/primarylinks?globalLink=${globalLink.link_name}`, {
+          mode: 'cors',
+          credentials: 'include'
+        }
       );
       setPrimaryLinks(response.data.primaryLinks);
       // console.log(response.data);

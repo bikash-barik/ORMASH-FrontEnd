@@ -33,7 +33,18 @@ const videos = [
 
 export default function Dashboard() {
   const [style, setStyle] = useState("bg-color2 ");
+  const [zoomLevel, setZoomLevel] = useState(100); // start with 100% zoom level
 
+  const handleZoomIn = () => {
+    setZoomLevel(zoomLevel + 0.5); // increase zoom level by 25%
+  };
+  const handleZoomOut = () => {
+    setZoomLevel(zoomLevel - 0.5); // decrease zoom level by 25%
+  };
+
+  const handleZoom = () => {
+    setZoomLevel(100); // decrease zoom level by 25%
+  };
   const changeStyle = () => {
     setStyle("bg-color2");
   };
@@ -53,9 +64,9 @@ export default function Dashboard() {
   };
 
   return (
-    <>
+    <div >
       <header className={style}>
-        <div className="sub-header">
+        <div className="sub-header" style={{ transform: `scale(${zoomLevel / 100})` }}>
           <div className="container-fluid">
             <div className="row justify-content-md-center">
               <div className="col">
@@ -71,7 +82,7 @@ export default function Dashboard() {
                     <span className="mobile-none">
                       <a
                         href="javascript:void(0);"
-                        onclick="return fontSizer('small');"
+                        onClick={handleZoomOut}
                         title="Smaller Size"
                         className="m-1 smaller"
                       >
@@ -80,7 +91,7 @@ export default function Dashboard() {
 
                       <a
                         href="javascript:void(0);"
-                        onclick="return fontSizer('default');"
+                        onClick={handleZoom}
                         title="Default Size"
                         className="m-1 switch"
                       >
@@ -88,7 +99,7 @@ export default function Dashboard() {
                       </a>
                       <a
                         href="javascript:void(0);"
-                        onclick="return fontSizer('larger');"
+                        onClick={handleZoomIn}
                         title="Bigger Size"
                         className="m-1 switch bigger"
                       >
@@ -198,6 +209,6 @@ export default function Dashboard() {
       <ImportantLink style={style} />
       <Footer style={style}/>
       <Copyright style={style}  />
-    </>
+    </div>
   );
 }
