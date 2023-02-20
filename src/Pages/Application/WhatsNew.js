@@ -205,7 +205,7 @@ const WhatsNew = ({ dispatch }) => {
                   <td className="p-1">
                     {" "}
                     <a
-                      href="http://ormas.org/Application/uploadDocuments/News/ORMAS_NEWS_1618314993.pdf"
+                      href=""
                       className="text-danger"
                       download
                     >
@@ -235,7 +235,7 @@ const WhatsNew = ({ dispatch }) => {
                   <td className="p-1">
                     {" "}
                     <a
-                      href="http://ormas.org/Application/uploadDocuments/News/ORMAS_NEWS_1618314993.pdf"
+                      href=""
                       className="text-danger"
                       download
                     >

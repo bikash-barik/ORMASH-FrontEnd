@@ -15,7 +15,7 @@ const Copyright = ({style}) => {
             <a
               class="pt-2 d-flex align-items-center mobileiconlicence"
               rel="license"
-              href="http://creativecommons.org/licenses/by/4.0/"
+              href="https://creativecommons.org/licenses/by/4.0/"
             >
               <img
                 class="w-14 h-6"
@@ -26,7 +26,7 @@ const Copyright = ({style}) => {
             <p>
               <a
                 rel="license"
-                href="http://creativecommons.org/licenses/by/4.0/"
+                href="https://creativecommons.org/licenses/by/4.0/"
               >
                 This work is licensed under a Creative Commons Attribution 4.0
                 International License

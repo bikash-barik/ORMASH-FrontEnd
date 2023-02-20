@@ -29,6 +29,4 @@ export default App;
 // "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
 // "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build"
 
-// "proxy": "http://127.0.0.1:5000",
 
-// "proxy": "http://18.223.134.153:5000",
