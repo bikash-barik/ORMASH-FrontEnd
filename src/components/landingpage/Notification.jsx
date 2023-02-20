@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-distracting-elements */
-const Notification = ({style}) => {
+const Notification = ({style,zoomLevel}) => {
   return (
     <div
       className={`d-flex align-items-center p-2  scroll-container text-light text-decoration-none ${style}`}
@@ -9,6 +9,7 @@ const Notification = ({style}) => {
       <marquee
         behavior='scroll'
         direction='left'
+        style={{ fontSize: `${zoomLevel}px`}}
         // onMouseOver='this.stop();'
         // onMouseOut='this.start();'
       >

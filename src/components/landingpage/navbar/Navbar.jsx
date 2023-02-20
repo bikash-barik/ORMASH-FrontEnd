@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Navebar.css";
 import axios from "axios";
 import { NavDropdown, Nav } from "react-bootstrap";
-const Navbar = ({ style }) => {
+const Navbar = ({ style, zoomLevel }) => {
   const [data, setData] = useState([]);
   const [primaryLinks, setPrimaryLinks] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -13,8 +13,8 @@ const Navbar = ({ style }) => {
   const getData = async () => {
     try {
       const response = await axios.get("/api/globallinks/", {
-        mode: 'cors',
-        credentials: 'include'
+        mode: "cors",
+        credentials: "include",
       });
 
       setData(response.data.globalLinks);
@@ -30,9 +30,10 @@ const Navbar = ({ style }) => {
     try {
       // console.log(globalLink.link_name)
       const response = await axios.get(
-        `/api/primarylinks?globalLink=${globalLink.link_name}`, {
-          mode: 'cors',
-          credentials: 'include'
+        `/api/primarylinks?globalLink=${globalLink.link_name}`,
+        {
+          mode: "cors",
+          credentials: "include",
         }
       );
       setPrimaryLinks(response.data.primaryLinks);
@@ -72,21 +73,25 @@ const Navbar = ({ style }) => {
             className="collapse mx-auto navbar-collapse"
             id="navSupportContent"
           >
-            <ul className="navbar-nav gx-2 mx-auto">
+            <ul
+              className="navbar-nav gx-2 mx-auto"
+              style={{ fontSize: `${zoomLevel}px` }}
+            >
               {data.length > 0 &&
                 data.map((item) => (
-                  <Nav>
+                  <Nav style={{ fontSize: `${zoomLevel}px` }}>
                     <NavDropdown
+                      style={{ fontSize: `${zoomLevel}px`  }}
                       id="nav-dropdown-dark-example"
                       title={item.link_name}
                       className="nav-item"
                       menuVariant="dark"
-                      style={{ backgroundColor: "inherit" }}
                       onClick={() => clickHandler(item)}
                     >
                       {primaryLinks.length > 0 &&
                         primaryLinks.map((el) => (
                           <NavDropdown.Item
+                            style={{ fontSize: `${zoomLevel}px` }}
                             // style={{ display: el ? 'block' : 'none' }}
                             className="pt-2 px-3"
                             href={el.function_name}

@@ -21,7 +21,10 @@ export const listOfficerProfileDetails = () => async (dispatch, getState) => {
     });
 
 
-    const response  = await axios.get(`/api/officersprofiles`);
+    const response  = await axios.get(`/api/officersprofiles`, {
+      mode: 'cors',
+      credentials: 'include'
+    });
 
     dispatch({
       type: OfficerProfileDetails_LIST_SUCCESS,

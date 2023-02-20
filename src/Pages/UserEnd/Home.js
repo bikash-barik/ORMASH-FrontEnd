@@ -14,6 +14,7 @@ import Slider from "../../components/landingpage/hero/Slider";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import Copyright from "../../components/landingpage/footer/Copyright";
+import { useEffect } from "react";
 const videos = [
   {
     id: 1,
@@ -33,18 +34,25 @@ const videos = [
 
 export default function Dashboard() {
   const [style, setStyle] = useState("bg-color2 ");
-  const [zoomLevel, setZoomLevel] = useState(100); // start with 100% zoom level
+  const [zoomLevel, setZoomLevel] = useState(14); // start with 100% zoom level
 
+
+  // useEffect(() => {
+  //   const defaultFontSize = parseInt(getComputedStyle(document.documentElement).fontSize);
+  //   setZoomLevel(defaultFontSize);
+  // }, []);
   const handleZoomIn = () => {
-    setZoomLevel(zoomLevel + 0.5); // increase zoom level by 25%
+    setZoomLevel(zoomLevel + 2); // increase zoom level by 25%
   };
   const handleZoomOut = () => {
-    setZoomLevel(zoomLevel - 0.5); // decrease zoom level by 25%
+    setZoomLevel(zoomLevel - 2); // decrease zoom level by 25%
   };
 
   const handleZoom = () => {
-    setZoomLevel(100); // decrease zoom level by 25%
+    setZoomLevel(14); // decrease zoom level by 25%
   };
+
+
   const changeStyle = () => {
     setStyle("bg-color2");
   };
@@ -66,13 +74,13 @@ export default function Dashboard() {
   return (
     <div >
       <header className={style}>
-        <div className="sub-header" style={{ transform: `scale(${zoomLevel / 100})` }}>
+        <div className="sub-header">
           <div className="container-fluid">
             <div className="row justify-content-md-center">
               <div className="col">
                 <ul className="left-info">
-                  <li className="mobilecontent">
-                    <a
+                  <li className="mobilecontent"  >
+                    <a style={{ fontSize: `${zoomLevel}px`}}
                       href="https://www.odisha.gov.in/"
                       title="Government of Odisha"
                     >
@@ -83,6 +91,7 @@ export default function Dashboard() {
                       <a
                         href="javascript:void(0);"
                         onClick={handleZoomOut}
+                        style={{ fontSize: `${zoomLevel}px`}}
                         title="Smaller Size"
                         className="m-1 smaller"
                       >
@@ -90,6 +99,7 @@ export default function Dashboard() {
                       </a>
 
                       <a
+                      style={{ fontSize: `${zoomLevel}px`}}
                         href="javascript:void(0);"
                         onClick={handleZoom}
                         title="Default Size"
@@ -98,6 +108,7 @@ export default function Dashboard() {
                         A
                       </a>
                       <a
+                      style={{ fontSize: `${zoomLevel}px`}}
                         href="javascript:void(0);"
                         onClick={handleZoomIn}
                         title="Bigger Size"
@@ -140,29 +151,32 @@ export default function Dashboard() {
               </div>
               <div className="col-md-auto d-none d-sm-block">
                 <ul className="left-info">
-                  <li className="text-white">
+                  <li className="text-white" style={{ fontSize: `${zoomLevel}px`}}>
                     <a
                       href="/#"
                       className="text-white govpart"
                       title="Government of Odisha"
+                      style={{ fontSize: `${zoomLevel}px`}}
                     >
                       <span> RTI |</span>
                     </a>
                     <a
                       href="/#"
+                      style={{ fontSize: `${zoomLevel}px`}}
                       className="text-white govpart"
                       title="Feedback "
                     >
                       <span> Feedback | </span>
                     </a>
                     <a
+                    style={{ fontSize: `${zoomLevel}px`}}
                       href="/#"
                       className="text-white govpart"
                       title="Annual Report"
                     >
                       <span> Annual Report</span>
                     </a>
-                    <a href="/#" className="text-white " title="ଓଡ଼ିଶା">
+                    <a href="/#" className="text-white " title="ଓଡ଼ିଶା" style={{ fontSize: `${zoomLevel}px`}}>
                       <span className="px-3 text-white govpart">| ଓଡ଼ିଶା</span>
                     </a>
                   </li>
@@ -196,19 +210,19 @@ export default function Dashboard() {
           </div>
         </div>
       </header>
-      <LogoSection  style={style}/>
-      <Navbar style={style}/>
+      <LogoSection  style={style} zoomLevel={zoomLevel}/>
+      <Navbar style={style} zoomLevel={zoomLevel}/>
       {/* <Slider/> */}
-      <Hero style={style} />
-      <Notification style={style}/>
-      <Team style={style}/>
-      <About style={style}/>
-      <Gallery style={style}/>
-      <VideoGallery videos={videos} style={style}/>
-      <Products style={style}/>
-      <ImportantLink style={style} />
-      <Footer style={style}/>
-      <Copyright style={style}  />
+      <Hero style={style} zoomLevel={zoomLevel}/>
+      <Notification style={style} zoomLevel={zoomLevel}/>
+      <Team style={style} zoomLevel={zoomLevel}/>
+      <About style={style} zoomLevel={zoomLevel}/>
+      <Gallery style={style} zoomLevel={zoomLevel}/>
+      <VideoGallery videos={videos} style={style} zoomLevel={zoomLevel}/>
+      <Products style={style} zoomLevel={zoomLevel}/>
+      <ImportantLink style={style} zoomLevel={zoomLevel}/>
+      <Footer style={style} zoomLevel={zoomLevel}/>
+      <Copyright style={style} zoomLevel={zoomLevel} />
     </div>
   );
 }

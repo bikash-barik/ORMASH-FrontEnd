@@ -3,7 +3,7 @@ import odishaLogo from '../../../assets/logo/odisha-logo.png';
 import headerLogo from '../../../assets/images/header-logo.png';
 import cmImg from '../../../assets/images/cm_on_nav.png';
 
-const LogoSection = () => {
+const LogoSection = ({zoomLevel}) => {
   return (
     <nav role='navigation'>
       <div className='top-brand'>
@@ -46,7 +46,7 @@ const LogoSection = () => {
             </div>
             <div className='col-md-4 d-flex align-items-end justify-content-end height'>
               <div className='d-flex right-logo'>
-                <p>
+                <p style={{ fontSize: `${zoomLevel}px`}}>
                <span className='bold h6'> Shri Naveen Patnaik</span> 
                   <br />
                   Hon'ble Chief Minister
