@@ -13,6 +13,7 @@ import {
   deleteTenderAction,
 } from "../../Redux/actions/Manage Application/tendersActions";
 import axios from "axios";
+import { APIURL } from "../../Redux/APIURL";
 const ViewContent = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -82,7 +83,7 @@ const ViewContent = () => {
   };
   const getData = async () => {
     try {
-      const response = await axios.get("/api/tenders/");
+      const response = await axios.get(`${APIURL}/api/tenders/`);
       // console.log(response);
       setData(response.data.tenders);
     } catch (error) {

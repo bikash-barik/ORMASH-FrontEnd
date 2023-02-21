@@ -13,6 +13,7 @@ import {
   Banners_UPDATE_SUCCESS,
 } from "../../constants/Manage Application/bannersConstants";
 import axios from "axios";
+import { APIURL } from "../../APIURL";
 
 export const listbanners = () => async (dispatch, getState) => {
   try {
@@ -20,7 +21,7 @@ export const listbanners = () => async (dispatch, getState) => {
       type: Banners_LIST_REQUEST,
     });
 
-    const response = await axios.get(`/api/banners`);
+    const response = await axios.get(`${APIURL}/api/banners`);
 
     dispatch({
       type: Banners_LIST_SUCCESS,
@@ -59,7 +60,7 @@ export const createBannerAction = ( sl_no, caption, banner, home_page_status, pu
     };
 
     const { data } = await axios.post(
-      `/api/banners`,
+      `${APIURL}/api/banners`,
       { sl_no, caption, banner, home_page_status, publish_status },
       config
     );
@@ -96,7 +97,7 @@ export const deleteBannerAction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/banners/${id}`, config);
+    const { data } = await axios.delete(`${APIURL}/api/banners/${id}`, config);
 
     dispatch({
       type: Banners_DELETE_SUCCESS,
@@ -135,7 +136,7 @@ export const updateBannerAction = (id, sl_no, caption, banner, home_page_status,
     };
 
     const { data } = await axios.put(
-      `/api/banners/${id}`,
+      `${APIURL}/api/banners/${id}`,
       { sl_no, caption, banner, home_page_status, publish_status },
       config
     );

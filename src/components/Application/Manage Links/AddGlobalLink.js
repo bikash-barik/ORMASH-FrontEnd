@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import ErrorMessage from "../../ErrorMessage";
+import { APIURL } from "../../../Redux/APIURL";
 const AddGlonalLink = ({ dispatch }) => {
   const history = useHistory();
   const params = useParams();
@@ -51,7 +52,7 @@ const AddGlonalLink = ({ dispatch }) => {
             Authorization: `Bearer ${userInfo.token}`,
           },
         };
-        await axios.post("/api/globallinks/", globalLinks, config);
+        await axios.post(`${APIURL}/api/globallinks/`, globalLinks, config);
         setGlobalLinks({
           link_name: "",
           sl_no: 0,
@@ -82,7 +83,7 @@ const AddGlonalLink = ({ dispatch }) => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      await axios.put(`/api/globallinks/${params.id}`, globalLinks, config);
+      await axios.put(`${APIURL}/api/globallinks/${params.id}`, globalLinks, config);
       setGlobalLinks({
         link_name: "",
         sl_no: 0,
@@ -116,7 +117,7 @@ const AddGlonalLink = ({ dispatch }) => {
     };
     if (params.id) {
       axios
-        .get(`/api/globallinks/${params.id}`, config)
+        .get(`${APIURL}/api/globallinks/${params.id}`, config)
         .then((res) => {
           setGlobalLinks(res.data.globalLink);
           console.log(globalLinks);

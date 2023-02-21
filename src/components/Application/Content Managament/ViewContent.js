@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import { APIURL } from "../../../Redux/APIURL";
 const ViewContent = ({ dispatch }) => {
   const history = useHistory();
   const userLogin = useSelector((state) => state.userLogin);
@@ -17,7 +18,7 @@ const ViewContent = ({ dispatch }) => {
   };
   const getData = async () => {
     try {
-      const response = await axios.get("/api/content/");
+      const response = await axios.get(`${APIURL}/api/content/`);
       console.log(response);
       setData(response.data.contents);
     } catch (error) {
@@ -40,7 +41,7 @@ const ViewContent = ({ dispatch }) => {
         },
       };
       if (window.confirm("Are you sure?")) {
-        await axios.delete(`/api/content/${id}`, config);
+        await axios.delete(`${APIURL}/api/content/${id}`, config);
         getData();
       }
     } catch (error) {

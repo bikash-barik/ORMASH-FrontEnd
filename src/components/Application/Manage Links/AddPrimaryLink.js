@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import ErrorMessage from "../../ErrorMessage";
+import { APIURL } from "../../../Redux/APIURL";
 const AddPrimaryLink = ({ dispatch }) => {
   const history = useHistory();
   const params = useParams();
@@ -32,7 +33,7 @@ const AddPrimaryLink = ({ dispatch }) => {
            Authorization: `Bearer ${userInfo.token}`,
          },
        };
-        await axios.post("/api/primarylinks", primaryLinks, config);
+        await axios.post(`${APIURL}/api/primarylinks`, primaryLinks, config);
        setPrimaryLinks({
          global_link: "",
          link_name: "",
@@ -63,7 +64,7 @@ const AddPrimaryLink = ({ dispatch }) => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-       await axios.put(`/api/primarylinks/${params.id}`, primaryLinks, config);
+       await axios.put(`${APIURL}/api/primarylinks/${params.id}`, primaryLinks, config);
       setPrimaryLinks({
         global_link: "",
         link_name: "",
@@ -96,7 +97,7 @@ const AddPrimaryLink = ({ dispatch }) => {
       },
     };
     if(params.id){
-      axios.get(`/api/primarylinks/${params.id}`, config)
+      axios.get(`${APIURL}/api/primarylinks/${params.id}`, config)
         .then(res => {
 
           setPrimaryLinks(res.data.primaryLink)

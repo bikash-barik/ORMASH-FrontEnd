@@ -6,6 +6,7 @@ import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import ErrorMessage from "../../ErrorMessage";
 import axios from "axios"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { APIURL } from "../../../Redux/APIURL";
 const AddContent = ({ dispatch }) => {
   const history = useHistory();
   const params = useParams();
@@ -40,7 +41,7 @@ const AddContent = ({ dispatch }) => {
             Authorization: `Bearer ${userInfo.token}`,
           },
         };
-        await axios.post("/api/content", content, config)
+        await axios.post(`${APIURL}/api/content`, content, config)
         setContent({
           global_link: "",
           primary_link: "",
@@ -72,7 +73,7 @@ const AddContent = ({ dispatch }) => {
             Authorization: `Bearer ${userInfo.token}`,
           },
         };
-        await axios.put(`/api/content/${params.id}`, content, config)
+        await axios.put(`${APIURL}/api/content/${params.id}`, content, config)
         setContent({
           global_link: "",
           primary_link: "",
@@ -134,7 +135,7 @@ const AddContent = ({ dispatch }) => {
       },
     };
     if (params.id) {
-      axios.get(`/api/content/${params.id}`, config)
+      axios.get(`${APIURL}/api/content/${params.id}`, config)
         .then(res => {
           setContent(res.data.content);
           setTextBeforeUpdate(res.data.content.content)
@@ -148,7 +149,7 @@ const AddContent = ({ dispatch }) => {
 
   const getGlobalLink = async () => {
     try {
-      const response = await axios.get("/api/globallinks/")
+      const response = await axios.get(`${APIURL}/api/globallinks/`)
       // console.log(response);
       setGlobalLinks(response.data.globalLinks);
     } catch (error) {
@@ -170,7 +171,7 @@ const AddContent = ({ dispatch }) => {
   const getPrimaryLink = async (global_link) => {
     try {
           if(global_link){
-            const response = await axios.get(`/api/primarylinks?globalLink=${global_link}`)
+            const response = await axios.get(`${APIURL}/api/primarylinks?globalLink=${global_link}`)
             if (response.data.primaryLinks.length === 0) {
               setPrimaryLinks([]);
               setErrorMsg("Choose another Globallink as there no is Primarylinks available for your selected Globallink");
@@ -179,7 +180,7 @@ const AddContent = ({ dispatch }) => {
               setPrimaryLinks(response.data.primaryLinks);
             }
           } else{
-            const response = await axios.get(`/api/primarylinks?globalLink=${content.global_link}`)
+            const response = await axios.get(`${APIURL}/api/primarylinks?globalLink=${content.global_link}`)
             if (response.data.primaryLinks.length === 0) {
               setPrimaryLinks([]);
               setErrorMsg("Choose another Globallink as there no is Primarylinks available for your selected Globallink");

@@ -13,6 +13,7 @@ import {
   Videos_UPDATE_SUCCESS,
 } from "../../constants/Manage Application/videosConstants";
 import axios from "axios";
+import { APIURL } from "../../APIURL";
 
 export const listvideos = () => async (dispatch, getState) => {
   try {
@@ -30,7 +31,7 @@ export const listvideos = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/videos`, config);
+    const { data } = await axios.get(`${APIURL}/api/videos`, config);
 
     dispatch({
       type: Videos_LIST_SUCCESS,
@@ -66,7 +67,7 @@ export const createVideoAction = (sl_no, headline, link_type, thumb_image, video
     };
 
     const { data } = await axios.post(
-      `/api/videos`,
+      `${APIURL}/api/videos`,
       {  sl_no, headline, link_type, thumb_image, video, description, home_page_status },
       config
     );
@@ -103,7 +104,7 @@ export const deleteVideoAction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/videos/${id}`, config);
+    const { data } = await axios.delete(`${APIURL}/api/videos/${id}`, config);
 
     dispatch({
       type: Videos_DELETE_SUCCESS,
@@ -142,7 +143,7 @@ export const updateVideoAction = (id, sl_no, headline, link_type, thumb_image, v
     };
 
     const { data } = await axios.put(
-      `/api/videos/${id}`,
+      `${APIURL}/api/videos/${id}`,
       {  sl_no, headline, link_type, thumb_image, video, description, home_page_status },
       config
     );

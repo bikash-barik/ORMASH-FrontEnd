@@ -13,6 +13,7 @@ import {
   NewsUpdates_UPDATE_SUCCESS,
 } from "../../constants/Manage Application/newsUpdateConstants";
 import axios from "axios";
+import { APIURL } from "../../APIURL";
 
 export const listnewsUpdates = () => async (dispatch, getState) => {
   try {
@@ -30,7 +31,7 @@ export const listnewsUpdates = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/newsUpdates`, config);
+    const { data } = await axios.get(`${APIURL}/api/newsUpdates`, config);
 
     dispatch({
       type: NewsUpdates_LIST_SUCCESS,
@@ -70,7 +71,7 @@ export const createNewsUpdatesAction = (
     };
 
     const { data } = await axios.post(
-      `/api/newsUpdates/create`,
+      `${APIURL}/api/newsUpdates/create`,
       {  headline,expiryDate, uploadDocument, description, status },
       config
     );
@@ -107,7 +108,7 @@ export const deleteNewsUpdatesAction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/newsUpdates/${id}`, config);
+    const { data } = await axios.delete(`${APIURL}/api/newsUpdates/${id}`, config);
 
     dispatch({
       type: NewsUpdates_DELETE_SUCCESS,
@@ -146,7 +147,7 @@ export const updateNewsUpdatesAction = (id, headline,expiryDate, uploadDocument,
     };
 
     const { data } = await axios.put(
-      `/api/newsUpdates/${id}`,
+      `${APIURL}/api/newsUpdates/${id}`,
       {  headline,expiryDate, uploadDocument, description, status },
       config
     );

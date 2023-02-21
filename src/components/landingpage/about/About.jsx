@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 
 import "./About.css";
 import axios from "axios";
+import { APIURL } from "../../../Redux/APIURL";
 const About = () => {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
@@ -24,7 +25,7 @@ const About = () => {
 
   const getData = async () => {
     try {
-      const response = await axios.get("/api/tenders/")
+      const response = await axios.get(`${APIURL}/api/tenders/`)
       // console.log(response);
       setData(response.data.tenders);
     } catch (error) {

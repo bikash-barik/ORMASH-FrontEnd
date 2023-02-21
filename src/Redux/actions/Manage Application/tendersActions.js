@@ -13,6 +13,7 @@ import {
   Tenders_UPDATE_SUCCESS,
 } from "../../constants/Manage Application/tendersConstants";
 import axios from "axios";
+import { APIURL } from "../../APIURL";
 
 export const listTenders = () => async (dispatch, getState) => {
   try {
@@ -20,7 +21,7 @@ export const listTenders = () => async (dispatch, getState) => {
       type: Tenders_LIST_REQUEST,
     });
 
-    const response = await axios.get(`/api/tenders`);
+    const response = await axios.get(`${APIURL}/api/tenders`);
 
     dispatch({
       type: Tenders_LIST_SUCCESS,
@@ -60,7 +61,7 @@ export const createTenderAction = (
     };
 
     const { data } = await axios.post(
-      `/api/tenders/create`,
+      `${APIURL}/api/tenders/create`,
       {tender_no,tender_headline, closing_date , closing_time, opening_date,opening_time,description, document_one,document_two, document_three},
       config
     );
@@ -97,7 +98,7 @@ export const deleteTenderAction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/tenders/${id}`, config);
+    const { data } = await axios.delete(`${APIURL}/api/tenders/${id}`, config);
 
     dispatch({
       type: Tenders_DELETE_SUCCESS,
@@ -136,7 +137,7 @@ export const updateTenderAction = (id, tender_no,tender_headline, closing_date ,
     };
 
     const { data } = await axios.put(
-      `/api/tenders/${id}`,
+      `${APIURL}/api/tenders/${id}`,
       {  tender_no,tender_headline, closing_date , closing_time, opening_date,opening_time,description, document_one,document_two, document_three   },
       config
     );

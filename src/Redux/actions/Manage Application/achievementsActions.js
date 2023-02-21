@@ -13,6 +13,7 @@ import {
   Achievements_UPDATE_SUCCESS,
 } from "../../constants/Manage Application/achievementsConstants";
 import axios from "axios";
+import { APIURL } from "../../APIURL";
 
 export const listachievements = () => async (dispatch, getState) => {
   try {
@@ -30,7 +31,7 @@ export const listachievements = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/achievements`, config);
+    const { data } = await axios.get(`${APIURL}/api/achievements`, config);
 
     dispatch({
       type: Achievements_LIST_SUCCESS,
@@ -66,7 +67,7 @@ export const createAchievementAction = ( sl_no, achievement_name, snippet, descr
     };
 
     const { data } = await axios.post(
-      `/api/achievements`,
+      `${APIURL}/api/achievements`,
       { sl_no, achievement_name, snippet, description, home_page_status },
       config
     );
@@ -103,7 +104,7 @@ export const deleteAchievementAction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/achievements/${id}`, config);
+    const { data } = await axios.delete(`${APIURL}/api/achievements/${id}`, config);
 
     dispatch({
       type: Achievements_DELETE_SUCCESS,
@@ -142,7 +143,7 @@ export const updateAchievementAction = (id, sl_no, achievement_name, snippet, de
     };
 
     const { data } = await axios.put(
-      `/api/achievements/${id}`,
+      `${APIURL}/api/achievements/${id}`,
       { sl_no, achievement_name, snippet, description, home_page_status },
       config
     );

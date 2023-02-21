@@ -13,6 +13,7 @@ import {
   OfficerProfileDetails_UPDATE_SUCCESS,
 } from "../../constants/Content Management/officerProfileDetailsConstants";
 import axios from "axios";
+import { APIURL } from "../../APIURL";
 
 export const listOfficerProfileDetails = () => async (dispatch, getState) => {
   try {
@@ -21,7 +22,7 @@ export const listOfficerProfileDetails = () => async (dispatch, getState) => {
     });
 
 
-    const response  = await axios.get(`/api/officersprofiles`, {
+    const response  = await axios.get(`${APIURL}/api/officersprofiles`, {
       mode: 'cors',
       credentials: 'include'
     });
@@ -68,7 +69,7 @@ export const createOfficerProfileDetailAction = ( officername,
     };
 
     const { data } = await axios.post(
-      `/api/officersprofiles/create`,
+      `${APIURL}/api/officersprofiles/create`,
       {  officername,
         designation,
         qualification,
@@ -110,7 +111,7 @@ export const deleteOfficerProfileDetailAction = (id) => async (dispatch, getStat
       },
     };
 
-    const { data } = await axios.delete(`/api/officersprofiles/${id}`, config);
+    const { data } = await axios.delete(`${APIURL}/api/officersprofiles/${id}`, config);
 
     dispatch({
       type: OfficerProfileDetails_DELETE_SUCCESS,
@@ -154,7 +155,7 @@ export const updateOfficerProfileDetailAction = (id,  officername,
     };
 
     const { data } = await axios.put(
-      `/api/officersprofiles/${id}`,
+      `${APIURL}/api/officersprofiles/${id}`,
       {  officername,
         designation,
         qualification,

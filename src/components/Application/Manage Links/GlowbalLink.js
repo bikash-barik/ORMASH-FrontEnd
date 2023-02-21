@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { useSelector } from "react-redux";
+import { APIURL } from "../../../Redux/APIURL";
 const GlowbalLink = ({ dispatch }) => {
   const history = useHistory();
   const userLogin = useSelector((state) => state.userLogin);
@@ -16,7 +17,7 @@ const GlowbalLink = ({ dispatch }) => {
   };
   const getData = async () => {
     try {
-      const response = await axios.get("/api/globallinks/");
+      const response = await axios.get(`${APIURL}/api/globallinks/`);
       // console.log(response);
       setData(response.data.globalLinks);
     } catch (error) {
@@ -40,7 +41,7 @@ const GlowbalLink = ({ dispatch }) => {
         },
       };
       if (window.confirm("Are you sure?")) {
-        await axios.delete(`/api/globallinks/${id}`, config);
+        await axios.delete(`${APIURL}/api/globallinks/${id}`, config);
         getData();
       }
     } catch (error) {

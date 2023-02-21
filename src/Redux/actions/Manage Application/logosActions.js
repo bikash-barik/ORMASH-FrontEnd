@@ -30,7 +30,7 @@ export const listlogos = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/logos`, config);
+    const { data } = await axios.get(`${APIURL}/api/logos`, config);
 
     dispatch({
       type: Logos_LIST_SUCCESS,
@@ -66,7 +66,7 @@ export const createLogoAction = ( sl_no, logo_title, photo, home_page_status, pu
     };
 
     const { data } = await axios.post(
-      `/api/logos`,
+      `${APIURL}/api/logos`,
       { sl_no, logo_title, photo, home_page_status, publish_status },
       config
     );
@@ -103,7 +103,7 @@ export const deleteLogoAction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/logos/${id}`, config);
+    const { data } = await axios.delete(`${APIURL}/api/logos/${id}`, config);
 
     dispatch({
       type: Logos_DELETE_SUCCESS,
@@ -142,7 +142,7 @@ export const updateLogoAction = (id, sl_no, logo_title, photo, home_page_status,
     };
 
     const { data } = await axios.put(
-      `/api/logos/${id}`,
+      `${APIURL}/api/logos/${id}`,
       { sl_no, logo_title, photo, home_page_status, publish_status },
       config
     );

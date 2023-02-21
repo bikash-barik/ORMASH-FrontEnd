@@ -13,6 +13,7 @@ import {
   Contents_UPDATE_SUCCESS,
 } from "../../constants/Content Management/contentsConstants";
 import axios from "axios";
+import { APIURL } from "../../APIURL";
 
 export const listcontents = () => async (dispatch, getState) => {
   try {
@@ -30,7 +31,7 @@ export const listcontents = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/content`, config);
+    const { data } = await axios.get(`${APIURL}/api/content`, config);
 
     dispatch({
       type: Contents_LIST_SUCCESS,
@@ -69,7 +70,7 @@ export const createContentAction = ( global_link, primary_link, title, content )
     };
 
     const { data } = await axios.post(
-      `/api/content`,
+      `${APIURL}/api/content`,
       { global_link, primary_link, title, content },
       config
     );
@@ -106,7 +107,7 @@ export const deleteContentAction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/content/${id}`, config);
+    const { data } = await axios.delete(`${APIURL}/api/content/${id}`, config);
 
     dispatch({
       type: Contents_DELETE_SUCCESS,
@@ -145,7 +146,7 @@ export const updateContentAction = (id, global_link, primary_link, title, conten
     };
 
     const { data } = await axios.put(
-      `/api/content/${id}`,
+      `${APIURL}/api/content/${id}`,
       { global_link, primary_link, title, content },
       config
     );

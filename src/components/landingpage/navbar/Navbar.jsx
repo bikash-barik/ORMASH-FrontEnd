@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Navebar.css";
 import axios from "axios";
 import { NavDropdown, Nav } from "react-bootstrap";
+import { APIURL } from "../../../Redux/APIURL";
 const Navbar = ({ style, zoomLevel }) => {
   const [data, setData] = useState([]);
   const [primaryLinks, setPrimaryLinks] = useState([]);
@@ -12,7 +13,7 @@ const Navbar = ({ style, zoomLevel }) => {
   };
   const getData = async () => {
     try {
-      const response = await axios.get("/api/globallinks/", {
+      const response = await axios.get(`${APIURL}/api/globallinks/`, {
         mode: "cors",
         credentials: "include",
       });
@@ -30,7 +31,7 @@ const Navbar = ({ style, zoomLevel }) => {
     try {
       // console.log(globalLink.link_name)
       const response = await axios.get(
-        `/api/primarylinks?globalLink=${globalLink.link_name}`,
+        `${APIURL}/api/primarylinks?globalLink=${globalLink.link_name}`,
         {
           mode: "cors",
           credentials: "include",

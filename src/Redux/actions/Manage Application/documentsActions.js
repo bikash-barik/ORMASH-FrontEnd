@@ -20,7 +20,7 @@ export const listdocuments = () => async (dispatch, getState) => {
       type: Documents_LIST_REQUEST,
     });
 
-    const response = await axios.get(`/api/documents`);
+    const response = await axios.get(`${APIURL}/api/documents`);
 
     dispatch({
       type: Documents_LIST_SUCCESS,
@@ -60,7 +60,7 @@ export const createDocumentAction = (
     };
 
     const { data } = await axios.post(
-      `/api/documents/create`,
+      `${APIURL}/api/documents/create`,
       {  headline,expiryDate, uploadDocument, description, status },
       config
     );
@@ -97,7 +97,7 @@ export const deleteDocumentAction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/documents/${id}`, config);
+    const { data } = await axios.delete(`${APIURL}/api/documents/${id}`, config);
 
     dispatch({
       type: Documents_DELETE_SUCCESS,
@@ -136,7 +136,7 @@ export const updateDocumentAction = (id, headline,expiryDate, uploadDocument, de
     };
 
     const { data } = await axios.put(
-      `/api/documents/${id}`,
+      `${APIURL}/api/documents/${id}`,
       {  headline,expiryDate, uploadDocument, description, status },
       config
     );

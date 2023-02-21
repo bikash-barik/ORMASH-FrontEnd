@@ -13,6 +13,7 @@ import {
   Gallerys_UPDATE_SUCCESS,
 } from "../../constants/Manage Application/gallerysConstants";
 import axios from "axios";
+import { APIURL } from "../../APIURL";
 
 export const listGallerys = () => async (dispatch, getState) => {
   try {
@@ -20,7 +21,7 @@ export const listGallerys = () => async (dispatch, getState) => {
       type: Gallerys_LIST_REQUEST,
     });
 
-    const response = await axios.get(`/api/gallerys`);
+    const response = await axios.get(`${APIURL}/api/gallerys`);
 
     dispatch({
       type: Gallerys_LIST_SUCCESS,
@@ -60,7 +61,7 @@ export const createGalleryAction = (
     };
 
     const { data } = await axios.post(
-      `/api/gallerys/create`,
+      `${APIURL}/api/gallerys/create`,
       {  headline,category, photo, status },
       config
     );
@@ -97,7 +98,7 @@ export const deleteGalleryAction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/gallerys/${id}`, config);
+    const { data } = await axios.delete(`${APIURL}/api/gallerys/${id}`, config);
 
     dispatch({
       type: Gallerys_DELETE_SUCCESS,
@@ -136,7 +137,7 @@ export const updateGalleryAction = (id, headline,category, photo, status) => asy
     };
 
     const { data } = await axios.put(
-      `/api/gallerys/${id}`,
+      `${APIURL}/api/gallerys/${id}`,
       {  headline,category, photo, status },
       config
     );
