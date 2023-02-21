@@ -13,6 +13,7 @@ import {
   Logos_UPDATE_SUCCESS,
 } from "../../constants/Manage Application/logosConstants";
 import axios from "axios";
+import { APIURL } from "../../APIURL";
 
 export const listlogos = () => async (dispatch, getState) => {
   try {
