@@ -219,6 +219,8 @@ const AddPrimaryLink = ({ dispatch }) => {
                 <option>BalasoreProductCatlog</option>
                 <option>ProductMayurbhanjSabai</option>
                 <option>ExhibitionCalender</option>
+                <option>Reports</option>
+                <option>SisirSaras2023</option>
                 <option>ArcNews</option>
                 <option>ArcTender</option>
                 <option>Content Management</option>

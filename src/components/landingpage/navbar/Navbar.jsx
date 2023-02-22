@@ -7,6 +7,21 @@ const Navbar = ({ style, zoomLevel }) => {
   const [data, setData] = useState([]);
   const [primaryLinks, setPrimaryLinks] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      setIsSticky(window.pageYOffset > 150);
+    }
+
+    window.addEventListener('scroll', handleScroll);
+
+    // cleanup function to remove event listener when component unmounts
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
 
   const handleMouseLeave = () => {
     setIsOpen(false);
@@ -49,8 +64,10 @@ const Navbar = ({ style, zoomLevel }) => {
   };
 
   return (
+    <span className={isSticky ? 'sticky' : ''}>
     <div className={style}>
       <nav
+      
         className={`navbar navbar-expand-lg w-full`}
         id="navigationBar"
         style={{ zIndex: "999" }}
@@ -109,6 +126,7 @@ const Navbar = ({ style, zoomLevel }) => {
         </div>
       </nav>
     </div>
+    </span>
   );
 };
 export default Navbar;

@@ -258,6 +258,7 @@ img {
   position: fixed;
   top: 0;
   width: 100%;
+  transition: top 0.3s ease-in-out;
 }
 @media (min-width: 768px) {
   nav {

@@ -21,6 +21,7 @@ import DDUGKYTrainingSectors from '../components/UI/DDU-GKY/DDU-GKYTrainingSecto
 import Product from '../components/UI/Products/Product';
 import ProductsBrochure from '../components/UI/Products/ProductsBrochure';
 import ExhibitionCalender from '../components/UI/Exhibition/ExhibitionCalender';
+import Reports from '../components/UI/Exhibition/Reports';
 
 const AppRouter = () => {
   const [style, setStyle] = useState("bg-color2 ");
@@ -220,6 +221,7 @@ const AppRouter = () => {
           <Route path='/Product' component={Product} />
           <Route path='/ProductsBrochure' component={ProductsBrochure} />
           <Route path='/ExhibitionCalender' component={ExhibitionCalender} />
+          <Route path='/Reports' component={Reports} />
         </Switch>
 
       <Copyright style={style} zoomLevel={zoomLevel} />
