@@ -85,6 +85,7 @@ const Navbar = ({ style, zoomLevel }) => {
                       style={{ fontSize: `${zoomLevel}px`  }}
                       id="nav-dropdown-dark-example"
                       title={item.link_name}
+                      href="{item.function_name}"
                       className="nav-item"
                       menuVariant="dark"
                       onClick={() => clickHandler(item)}

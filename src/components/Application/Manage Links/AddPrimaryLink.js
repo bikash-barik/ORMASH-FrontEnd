@@ -168,11 +168,12 @@ const AddPrimaryLink = ({ dispatch }) => {
               <select id="inputState" class="form-select p-1"
                 name="global_link" value={global_link} onChange={e => handleChange(e)}>
                 <option selected>Choose...</option>
+                <option>Home</option>
                 <option>About Us</option>
                 <option>DDU-GKY</option>
                 <option>Activities</option>
-                <option>Products</option>
-                <option>Exhibition</option>
+                <option>product</option>
+                <option>exhibition  </option>
                 <option>Tender</option>
               </select>
             </div>
@@ -191,9 +192,33 @@ const AddPrimaryLink = ({ dispatch }) => {
               <label for="inputState" class="form-label">
                 Function Name
               </label>
+              
+             {/* <input
+                type="text"
+                class="form-control"
+                id="inputAddress"
+                placeholder="Link Name"
+                name="link_name"
+                value={function_name} onChange={e => handleChange(e)}
+              /> */}
               <select id="inputState" class="form-select p-1" name="function_name" value={function_name} onChange={e => handleChange(e)}>
                 <option selected>Choose...</option>
+                <option>/</option>
+                <option>Activities</option>
+                <option>MissionandVision</option>
                 <option>Achivements</option>
+                <option>Organisation</option>
+                <option>Organogram</option>
+                <option>ContactDetailsHQDist</option>
+                <option>DDUGKYTrainingTrades</option>
+                <option>DdugkyPhysicalMilestone</option>
+                <option>DDUGKYTrainingSectors</option>
+                <option>Product</option>
+                <option>ProductsBrochure</option>
+                <option>BalasoreProductCatlog</option>
+                <option>BalasoreProductCatlog</option>
+                <option>ProductMayurbhanjSabai</option>
+                <option>ExhibitionCalender</option>
                 <option>ArcNews</option>
                 <option>ArcTender</option>
                 <option>Content Management</option>

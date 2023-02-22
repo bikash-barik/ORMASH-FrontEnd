@@ -210,8 +210,8 @@ export default function Dashboard() {
           </div>
         </div>
       </header>
-      <LogoSection  style={style} zoomLevel={zoomLevel}/>
-      <Navbar style={style} zoomLevel={zoomLevel}/>
+      <LogoSection  style={style} zoomLevel={zoomLevel}/> 
+    <Navbar style={style} zoomLevel={zoomLevel}/>
       {/* <Slider/> */}
       <Hero style={style} zoomLevel={zoomLevel}/>
       <Notification style={style} zoomLevel={zoomLevel}/>
