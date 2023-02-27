@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.6e2585ba.css",
-    "main.js": "/static/js/main.a55a25be.js",
+    "main.css": "/static/css/main.bb36d18d.css",
+    "main.js": "/static/js/main.ea4e5c94.js",
     "static/js/787.b8e4cfa1.chunk.js": "/static/js/787.b8e4cfa1.chunk.js",
     "static/media/Trophy.jpg": "/static/media/Trophy.ed6c8c560d0b2cb708ed.jpg",
     "static/media/Pic.MoRD_AWARD_17-18.jpg": "/static/media/Pic.MoRD_AWARD_17-18.e2225a8b01b011a80945.jpg",
@@ -33,12 +33,12 @@
     "static/media/header-logo.png": "/static/media/header-logo.2709a972fc958e098b1d.png",
     "static/media/logo3.png": "/static/media/logo3.b061c3ba3e2b623cdfa1.png",
     "index.html": "/index.html",
-    "main.6e2585ba.css.map": "/static/css/main.6e2585ba.css.map",
-    "main.a55a25be.js.map": "/static/js/main.a55a25be.js.map",
+    "main.bb36d18d.css.map": "/static/css/main.bb36d18d.css.map",
+    "main.ea4e5c94.js.map": "/static/js/main.ea4e5c94.js.map",
     "787.b8e4cfa1.chunk.js.map": "/static/js/787.b8e4cfa1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6e2585ba.css",
-    "static/js/main.a55a25be.js"
+    "static/css/main.bb36d18d.css",
+    "static/js/main.ea4e5c94.js"
   ]
 }
