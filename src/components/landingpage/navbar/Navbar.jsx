@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Navebar.css";
 import axios from "axios";
-import { NavDropdown, Nav } from "react-bootstrap";
 import { APIURL } from "../../../Redux/APIURL";
+
 const Navbar = ({ style, zoomLevel }) => {
   const [data, setData] = useState([]);
   const [primaryLinks, setPrimaryLinks] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState("");
+
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
@@ -14,18 +16,14 @@ const Navbar = ({ style, zoomLevel }) => {
       setIsSticky(window.pageYOffset > 150);
     }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     // cleanup function to remove event listener when component unmounts
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-
-  const handleMouseLeave = () => {
-    setIsOpen(false);
-  };
   const getData = async () => {
     try {
       const response = await axios.get(`${APIURL}/api/globallinks/`, {
@@ -44,7 +42,7 @@ const Navbar = ({ style, zoomLevel }) => {
 
   const clickHandler = async (globalLink) => {
     try {
-      // console.log(globalLink.link_name)
+      setActiveLink(globalLink.link_name);
       const response = await axios.get(
         `${APIURL}/api/primarylinks?globalLink=${globalLink.link_name}`,
         {
@@ -53,116 +51,94 @@ const Navbar = ({ style, zoomLevel }) => {
         }
       );
       setPrimaryLinks(response.data.primaryLinks);
-      // console.log(response.data);
+      setIsOpen(true);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (globalLink) => {
+    clickHandler(globalLink);
+  };
+
+  const handleMouseLeave = () => {};
+
+  const dropdownRef = useRef(null);
+
+  const handleMouseEnterDropdown = () => {
     setIsOpen(true);
   };
 
-  return (
-    <span className={isSticky ? 'sticky' : ''}>
-    <div className={style}>
-      <nav
-      
-        className={`navbar navbar-expand-lg w-full`}
-        id="navigationBar"
-        style={{ zIndex: "999" }}
-      >
-        <div className="container d-flex g-2 p-2 align-items-center">
-          <button
-            type="button"
-            className="navbar-toggler"
-            data-toggle="collapse"
-            data-target="#navSupportContent"
-            aria-controls="navSupportContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span>
-              <i className="fa fa-bars"></i>
-            </span>
-          </button>
+  const handleMouseLeaveDropdown = () => {
+    setIsOpen(false);
+  };
 
-          <div
-            className="collapse mx-auto navbar-collapse"
-            id="navSupportContent"
-          >
-            <ul
-              className="navbar-nav gx-2 mx-auto"
-              style={{ fontSize: `${zoomLevel}px` }}
+  const handleMouseMoveDropdown = () => {
+    if (dropdownRef.current) {
+      setIsOpen(true);
+    }
+  };
+
+  return (
+    <span className={isSticky ? "sticky" : ""}>
+      <div className={style}>
+        <nav
+          className={`navbar navbar-expand-lg w-full`}
+          id="navigationBar"
+          style={{ zIndex: "999" }}
+        >
+          <div className="container d-flex g-2 p-2 align-items-center">
+            <div
+              className="collapse mx-auto navbar-collapse"
+              id="navSupportContent"
             >
-              {data.length > 0 &&
-                data.map((item) => (
-                  <Nav style={{ fontSize: `${zoomLevel}px` }}>
-                    <NavDropdown
-                      style={{ fontSize: `${zoomLevel}px`  }}
-                      id="nav-dropdown-dark-example"
-                      title={item.link_name}
-                      href="{item.function_name}"
-                      className="nav-item"
-                      menuVariant="dark"
-                      onClick={() => clickHandler(item)}
-                    >
-                      {primaryLinks.length > 0 &&
-                        primaryLinks.map((el) => (
-                          <NavDropdown.Item
-                            style={{ fontSize: `${zoomLevel}px` }}
-                            // style={{ display: el ? 'block' : 'none' }}
-                            className="pt-2 px-3"
-                            href={el.function_name}
-                          >
-                            {el.link_name}
-                          </NavDropdown.Item>
-                        ))}
-                    </NavDropdown>
-                  </Nav>
-                ))}
-            </ul>
+              <ul
+                className="navbar-nav gx-2 mx-auto"
+                style={{ fontSize: `${zoomLevel}px` }}
+              >
+                {data.length > 0 &&
+                  data.map((item) => (
+                    <li className="nav-item" key={item.link_name}>
+                      <a
+                        style={{ fontSize: `${zoomLevel}px` }}
+                        className="nav-link "
+                        href={`${item.link_name}`}
+                        onMouseEnter={() => handleMouseEnter(item)}
+                        onMouseLeave={handleMouseLeave}
+                      >
+                        {item.link_name}
+                      </a>
+                      {activeLink === item.link_name && isOpen && (
+                        <ul
+                          className="dropdown-menu"
+                          ref={dropdownRef}
+                          onMouseEnter={handleMouseEnterDropdown}
+                          onMouseLeave={handleMouseLeaveDropdown}
+                          onMouseMove={handleMouseMoveDropdown}
+                        >
+                          {primaryLinks.length > 0 &&
+                            primaryLinks.map((el) => (
+                              <li key={el.link_name}>
+                                <a
+                                  className="dropdown-item"
+                                  href={el.function_name}
+                                  style={{ fontSize: `${zoomLevel}px` }}
+                                >
+                                  {el.link_name}
+                                </a>
+                              </li>
+                            ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
-    </div>
+        </nav>
+      </div>
     </span>
   );
 };
-export default Navbar;
 
-// <li
-// className="dropdown"
-// onMouseEnter={handleMouseEnter}
-// onMouseLeave={handleMouseLeave}
-// >
-// <a href="#">{item.link_name}</a>
-// <ul
-//   className="dropdown-content"
-//   style={{ display: isOpen ? "block" : "none" }}
-// >
-//   {primaryLinks.length > 0 &&
-//     primaryLinks.map((el) => (
-//       <NavDropdown.Item
-//         style={{ display: isOpen ? 'block' : 'none' }}
-//         className="pt-2 px-3"
-//         href="#action/3.1"
-//       >
-//         {el.link_name}
-//       </NavDropdown.Item>
-//       <li>
-//       <a className="pt-2 px-3"
-//         href="#action/3.1"> {el.link_name}</a>
-//     </li>
-//     ))}
-//   <li>
-//     <a href="#">Option 1</a>
-//   </li>
-//   <li>
-//     <a href="#">Option 2</a>
-//   </li>
-//   <li>
-//     <a href="#">Option 3</a>
-//   </li>
-// </ul>
-// </li>
+export default Navbar;
