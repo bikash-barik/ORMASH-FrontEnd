@@ -87,9 +87,11 @@ const Products = () => {
                       necessitatibus nulla nisi, fugit impedit obcaecati, non
                       commodi a? Animi voluptatibus quam dicta delectus?
                     </p>
-                    <a href='/#' class='btn p-1 px-4'>
+      <button className="button px-4 py-1 mt-4" style={{verticalAlign: "middle"}}><span>    Know More </span></button>
+
+                    {/* <a href='/#' class='btn p-1 px-4'>
                       Know More
-                    </a>
+                    </a> */}
                   </div>
                 </div>
               </div>

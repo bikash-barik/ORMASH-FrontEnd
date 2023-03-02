@@ -154,7 +154,7 @@ const AddGallery = () => {
               />
             </div>
           </form>
-
+          {loading && <Loading size={50} />}
           <div className="btn">
             <button type="submit" className="Submit-btn">
               Submit

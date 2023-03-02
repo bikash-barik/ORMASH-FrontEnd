@@ -8,7 +8,7 @@ const IndexRouter = () => {
     <>
       <Router>
         <Switch>
-        <Route exact path='/'  component={Home}  />
+        <Route exact path={["/", "/Home", "/home"]}  component={Home}  />
           <AppRouter />
         </Switch>
       </Router>

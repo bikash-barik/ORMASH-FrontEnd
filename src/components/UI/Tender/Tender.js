@@ -12,7 +12,7 @@ const Tender = () => {
 
 
         <div class="cards w-100 ">
-            <div class="card-header d-flex p-3 bg-primary ">
+            <div class="card-header d-flex p-3 bg-color2 " >
                 <h4 className='text-white'>Tender No : <samp class="text-danger">3974</samp></h4>
 
             </div>

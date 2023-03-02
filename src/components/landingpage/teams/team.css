@@ -2,7 +2,7 @@
   width: 100%;
   display: grid;
   margin: 0 auto !important;
-  max-width: 1380px;
+  max-width: 1330px;
   /* justify-content: center !important; */
   grid-template-columns: repeat(100, 1fr);
   grid-gap: 2em;

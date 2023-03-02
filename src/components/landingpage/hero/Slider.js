@@ -1,15 +1,35 @@
 import { useState, useEffect } from 'react';
 import './Home.css';
+import axios from "axios";
+import { APIURL } from "../../../Redux/APIURL";
 
-function Slider({ images, interval = 5000 }) {
+function Slider({ interval = 5000 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [banners, setBanners] = useState([]);
 
   useEffect(() => {
+    async function fetchBanners() {
+      try {
+        const response = await axios.get(`${APIURL}/api/banners/`);
+        setBanners(response.data.banners.map(banner => banner.banner));
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchBanners();
+  }, []);
+
+  useEffect(() => {
+    if (banners.length === 0) {
+      return;
+    }
+
     const timer = setInterval(() => {
       setIsZoomed(true);
       setTimeout(() => {
-        setCurrentIndex((currentIndex + 1) % images.length);
+        setCurrentIndex((currentIndex + 1) % banners.length);
         setIsZoomed(false);
       }, 1000);
     }, interval);
@@ -17,18 +37,19 @@ function Slider({ images, interval = 5000 }) {
     return () => {
       clearInterval(timer);
     };
-  }, [currentIndex, images.length, interval]);
+  }, [currentIndex, banners, interval]);
+
 
   return (
     <div className={`slider ${isZoomed ? 'zoom-in' : 'zoom-out'}`}>
-      {images.length > 0 && (
+      {banners.length > 0 && (
         <img
-          src={images[currentIndex]}
+          src={banners[currentIndex]}
           alt={`Slider Image ${currentIndex + 1}`}
         />
       )}
       <div className="dots">
-        {images.map((_, index) => (
+        {banners.map((_, index) => (
           <span
             key={index}
             className={currentIndex === index ? 'active' : ''}

@@ -58,13 +58,15 @@
   }
 }
 .g-title {
-  position: relative;
+  
+  z-index: 0; /* Give it a higher z-index value */
   padding: 12px 0 !important;
   color: rgb(208, 208, 62);
 }
 
-.g-title::after {
+/* .g-title::after {
   content: '';
+  z-index: 0; 
   width: 100px;
   height: 5px;
   background: linear-gradient(to right, #3a3240, #49a09d);
@@ -72,4 +74,4 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-}
+} */

@@ -39,7 +39,7 @@ export const listbanners = () => async (dispatch, getState) => {
   }
 };
 
-export const createBannerAction = ( sl_no, caption, banner, home_page_status, publish_status ) => async (
+export const createBannerAction = ( sl_no, caption, banner, publish_status ) => async (
   dispatch,
   getState
 ) => {
@@ -60,8 +60,8 @@ export const createBannerAction = ( sl_no, caption, banner, home_page_status, pu
     };
 
     const { data } = await axios.post(
-      `${APIURL}/api/banners`,
-      { sl_no, caption, banner, home_page_status, publish_status },
+      `${APIURL}/api/banners/create`,
+      { sl_no, caption, banner, publish_status },
       config
     );
 
@@ -115,7 +115,7 @@ export const deleteBannerAction = (id) => async (dispatch, getState) => {
   }
 };
 
-export const updateBannerAction = (id, sl_no, caption, banner, home_page_status, publish_status ) => async (
+export const updateBannerAction = (id, sl_no, caption, banner, publish_status ) => async (
   dispatch,
   getState
 ) => {
@@ -137,7 +137,7 @@ export const updateBannerAction = (id, sl_no, caption, banner, home_page_status,
 
     const { data } = await axios.put(
       `${APIURL}/api/banners/${id}`,
-      { sl_no, caption, banner, home_page_status, publish_status },
+      { sl_no, caption, banner, publish_status },
       config
     );
 

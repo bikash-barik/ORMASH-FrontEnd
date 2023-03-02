@@ -172,7 +172,6 @@ const AddGlonalLink = ({ dispatch }) => {
                   id="inputState"
                   class="form-select p-1"
                   name="link_name"
-                  style={{ border: "solid 1px #000" }}
                   value={link_name}
                   onChange={(e) => handleChange(e)}
                 >

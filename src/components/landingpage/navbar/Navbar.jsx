@@ -83,9 +83,8 @@ const Navbar = ({ style, zoomLevel }) => {
     <span className={isSticky ? "sticky" : ""}>
       <div className={style}>
         <nav
-          className={`navbar navbar-expand-lg w-full`}
+          className={`navbar navbar-expand-lg w-full verytop`}
           id="navigationBar"
-          style={{ zIndex: "999" }}
         >
           <div className="container d-flex g-2 p-2 align-items-center">
             <div

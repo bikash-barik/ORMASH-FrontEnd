@@ -154,11 +154,11 @@ const About = () => {
               <div class="box p-2 heightcard">
                 <h5 style={{ color: "yellow" }}>Mission/Vission</h5>
                 <p class="text-white">
-                  <marquee width="100%" direction="up" height="100px" SCROLLDELAY="150" >
+                  {/* <marquee width="100%"  direction="up" height="100px" SCROLLDELAY="150" > */}
                     <ListGroup className="list-group-flush ">
                       {documents &&
                         documents.reverse().map((document, i) => (
-                          <ListGroup.Item
+                          <div
                             key={document._id}
                             className="fs-16 text-white"
                             style={{
@@ -170,25 +170,24 @@ const About = () => {
                             <samp className="fs-12 text-white">
                               {document.description}
                             </samp>
-                          </ListGroup.Item>
+                          </div>
                         ))}
                     </ListGroup>
-                  </marquee>
+                  {/* </marquee> */}
                 </p>
-                <Button primary className="px-4 py-1 mt-4">
-                  Read more
-                </Button>
+                <button className="button px-4 py-1 mt-4" style={{verticalAlign: "middle"}}><span> Read more </span></button>
+
               </div>
             </div>
             <div class="col-md-4">
               <div class="box p-2  heightcard">
                 <h5 style={{ color: "yellow" }}>Tender/Advertisement</h5>
                 <Card.Text >
-                  <marquee SCROLLDELAY="150" width="100%" direction="up" height="100px">
+                  {/* <marquee SCROLLDELAY="150" width="100%" direction="up" height="100px"> */}
                     <ListGroup className="list-group-flush ">
                       {data.length > 0 &&
                         data.reverse().map((item, i) => (
-                          <ListGroup.Item
+                          <div
                             key={item._id}
                             className="fs-16 text-white"
                             style={{
@@ -205,32 +204,33 @@ const About = () => {
                             >
                               {item.closing_date.substring(0, 10)}
                             </samp>
-                          </ListGroup.Item>
+                          </div>
                         ))}
                     </ListGroup>
-                  </marquee>
+                  {/* </marquee> */}
                 </Card.Text>
-                <Button primary className="px-4 py-1 mt-4">
-                  Read more
-                </Button>
+                <button className="button px-4 py-1 mt-4" style={{verticalAlign: "middle"}}><span> Read more </span></button>
+
               </div>
             </div>
             <div class="col-md-4">
               <div class="box p-2 heightcard">
                 <h5 style={{ color: "yellow" }}>Achievements</h5>
-                <marquee SCROLLDELAY="150" width="100%" direction="up" height="100px">
+                {/* <marquee SCROLLDELAY="150" width="100%" direction="up" height="100px"> */}
                   <p class="text-white">
                     &#x2022; Outlet at Bhubaneswar Air Port
                     <br /> &#x2022; Outlet at Bhubaneswar Air Port
                     <br /> &#x2022; COFFEE TABLE
                     <br /> &#x2022; Rural Mason Training Programme
                   </p>
-                </marquee>
-                <Button primary className="px-4 py-1 mt-4">
+                {/* </marquee> */}
+                <button className="button px-4 py-1 mt-4" style={{verticalAlign: "middle"}}><span> Read more </span></button>
+                {/* <Button primary className="px-4 py-1 mt-4">
                   Read more
-                </Button>
+                </Button> */}
               </div>
             </div>
+            
           </div>
         </div>
       </section>

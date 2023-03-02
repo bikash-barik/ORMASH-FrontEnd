@@ -60,7 +60,7 @@ const Team = () => {
                 <h1> {officerProfileDetail.officername}</h1>
 
                 <p class=""> {officerProfileDetail.designation}</p>
-                <p class="">guha.ormashq@gmail.com</p>
+                {/* <p class="">guha.ormashq@gmail.com</p> */}
               </div>
             </div>
 

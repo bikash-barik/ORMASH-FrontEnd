@@ -25,9 +25,11 @@ const Gallery = () => {
           ))}
       </div>
       <div className="text-center">
-        <a href="/#" className="btn  mt-8 bg-primary text-white px-4 py-2">
-          View All
-        </a>
+      <button className="button px-4 py-1 mt-4" style={{verticalAlign: "middle"}}><span> View All </span></button>
+
+        {/* <a href="/#" className="btn  mt-8 bg-primary text-white px-4 py-2">
+         
+        </a> */}
       </div>
     </div>
   );
