@@ -22,6 +22,40 @@ const ManageBanner = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const [data, setData] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
+  const [selectedIds, setSelectedIds] = useState([]);
+
+  const handleCheckAll = () => {
+    setIsChecked(!isChecked);
+    setSelectedIds(
+      isChecked
+        ? []
+        : data
+            .filter((data) => data._id)
+            .map((data) => data._id)
+    );
+  };
+
+  const handleCheck = (event, id) => {
+    if (event.target.checked) {
+      setSelectedIds([...selectedIds, id]);
+    } else {
+      setSelectedIds(selectedIds.filter((selectedId) => selectedId !== id));
+    }
+  };
+
+  const handleDeleteSelected = () => {
+    if (window.confirm("Are you sure you want to delete all galleries?")) {
+      selectedIds.forEach((id) => {
+        dispatch(deleteBannerAction(id));
+        window.location.reload(false)
+      });
+      // Clear the ids array after deleting all galleries
+      selectedIds = [];
+      setSelectedIds([]);
+      setIsChecked(false);
+    }
+  };
 
   const getData = async () => {
     try {
@@ -90,7 +124,10 @@ const ManageBanner = () => {
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
-
+ //onClick={printthepage}
+ const printthepage = () =>{
+  window.print();
+}
 
   return (
     <div>
@@ -190,6 +227,7 @@ const ManageBanner = () => {
                 }
               >
                 <button
+                onClick={handleDeleteSelected}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -236,6 +274,7 @@ const ManageBanner = () => {
                 }
               >
                 <button
+                onClick={printthepage}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -269,7 +308,13 @@ const ManageBanner = () => {
                     color: "#000",
                   }}
                 >
-                  <th className="p-2"></th>
+                   <th className="p-2 text-center">
+                      <Form.Check
+                        aria-label="Select all checkboxes"
+                        checked={isChecked}
+                        onChange={handleCheckAll}
+                      />
+                    </th>
                   <th className="p-2">Sl.# </th>
                   <th className="p-2">Caption</th>
                   <th className="p-2"> Banner</th>
@@ -284,8 +329,14 @@ const ManageBanner = () => {
                 {data.length > 0 &&
                   data.map((item, i) => (
                     <tr key={item._id}>
-                      <td className="p-5">
-                        <Form.Check aria-label="option 1" />
+                       <td className="p-1 text-center">
+                      <Form.Check
+                            aria-label={`Select news update ${i}`}
+                            checked={selectedIds.includes(item._id)}
+                            onChange={(event) =>
+                              handleCheck(event, item._id)
+                            }
+                          />
                       </td>
                       <th className="p-5">{i + 1}</th>
                       <td className="p-5">{item.caption} </td>

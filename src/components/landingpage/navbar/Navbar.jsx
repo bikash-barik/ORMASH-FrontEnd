@@ -3,6 +3,8 @@ import "./Navebar.css";
 import axios from "axios";
 import { APIURL } from "../../../Redux/APIURL";
 
+
+const excludePaths = ['/error'];
 const Navbar = ({ style, zoomLevel }) => {
   const [data, setData] = useState([]);
   const [primaryLinks, setPrimaryLinks] = useState([]);
@@ -81,7 +83,7 @@ const Navbar = ({ style, zoomLevel }) => {
 
   return (
     <span className={isSticky ? "sticky" : ""}>
-      <div className={style}>
+      <div className={excludePaths.includes(window.location.pathname) ? 'd-none' : style} >
         <nav
           className={`navbar navbar-expand-lg w-full verytop`}
           id="navigationBar"

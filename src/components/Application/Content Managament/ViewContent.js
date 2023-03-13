@@ -48,6 +48,10 @@ const ViewContent = ({ dispatch }) => {
       console.log(error);
     }
   };
+  //onClick={printthepage}
+  const printthepage = () =>{
+    window.print();
+  }
   return (
     <div>
       <form action="">
@@ -191,6 +195,7 @@ const ViewContent = ({ dispatch }) => {
                 }
               >
                 <button
+                onClick={printthepage}
                   type="button"
                   style={{
                     borderRadius: "5px",

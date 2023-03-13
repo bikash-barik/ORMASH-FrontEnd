@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
@@ -15,6 +15,40 @@ import {
 
 const NewsUpdate = () => {
   const history = useHistory();
+
+  const [isChecked, setIsChecked] = useState(false);
+  const [selectedIds, setSelectedIds] = useState([]);
+
+  const handleCheckAll = () => {
+    setIsChecked(!isChecked);
+    setSelectedIds(
+      isChecked
+        ? []
+        : newsUpdates
+            .filter((newsUpdate) => newsUpdate._id)
+            .map((newsUpdate) => newsUpdate._id)
+    );
+  };
+
+  const handleCheck = (event, id) => {
+    if (event.target.checked) {
+      setSelectedIds([...selectedIds, id]);
+    } else {
+      setSelectedIds(selectedIds.filter((selectedId) => selectedId !== id));
+    }
+  };
+
+  const handleDeleteSelected = () => {
+    if (window.confirm("Are you sure you want to delete all galleries?")) {
+      selectedIds.forEach((id) => {
+        dispatch(deleteNewsUpdatesAction(id));
+      });
+      // Clear the ids array after deleting all galleries
+      selectedIds = [];
+      setSelectedIds([]);
+      setIsChecked(false);
+    }
+  };
 
   const AddNews = () => {
     history.push("/hub/AddNews");
@@ -62,6 +96,11 @@ const NewsUpdate = () => {
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
+
+    //onClick={printthepage}
+    const printthepage = () =>{
+      window.print();
+    }
   return (
     <div className="p-5 bg-light rounded">
       <div className="">
@@ -168,6 +207,7 @@ const NewsUpdate = () => {
                       backgroundColor: "",
                       color: "#000",
                     }}
+                    onClick={handleDeleteSelected}
                     class="btn btn-secondary"
                   >
                     <i class="bi bi-trash-fill"></i>
@@ -206,6 +246,7 @@ const NewsUpdate = () => {
                   }
                 >
                   <button
+                  onClick={printthepage}
                     type="button"
                     style={{
                       borderRadius: "5px",
@@ -239,7 +280,11 @@ const NewsUpdate = () => {
                     }}
                   >
                     <th className="p-2 text-center">
-                      <Form.Check aria-label="option 1" />
+                      <Form.Check
+                        aria-label="Select all checkboxes"
+                        checked={isChecked}
+                        onChange={handleCheckAll}
+                      />
                     </th>
                     <th className="p-2 ">Sl.# </th>
                     <th className="p-2"> News Headline</th>
@@ -257,7 +302,13 @@ const NewsUpdate = () => {
                     <tbody key={newsUpdate._id}>
                       <tr className="">
                         <td className="p-5">
-                          <Form.Check aria-label="option 1" />
+                          <Form.Check
+                            aria-label={`Select news update ${i}`}
+                            checked={selectedIds.includes(newsUpdate._id)}
+                            onChange={(event) =>
+                              handleCheck(event, newsUpdate._id)
+                            }
+                          />
                         </td>
                         <th className="p-5">{i + 1}</th>
                         <td className="p-5">{newsUpdate.headline}</td>
@@ -287,18 +338,18 @@ const NewsUpdate = () => {
                           {newsUpdate.createdAt.substring(0, 10)}
                         </td>
                         <td className="p-5 text-center">
-                          {newsUpdate.status == true ? (
-                            // <button type="button" class="btn btn-primary px-5">
-                             " Set"
+                          {
+                            newsUpdate.status == true
+                              ? // <button type="button" class="btn btn-primary px-5">
+                                " Set"
+                              : // </button>
+                                // <button
+                                //   type="button"
+                                //   class="btn btn-outline-primary px-5"
+                                // >
+                                " Unset"
                             // </button>
-                          ) : (
-                            // <button
-                            //   type="button"
-                            //   class="btn btn-outline-primary px-5"
-                            // >
-                             " Unset"
-                            // </button>
-                          )}
+                          }
                         </td>
                         <td className="p-5">
                           <a href={`/documents/${newsUpdate._id}`}>
@@ -317,15 +368,21 @@ const NewsUpdate = () => {
             </div>
 
             <div className="btn-row">
-            <div className="col-md-5 col-12">
-              <button type="button" class="btn  btn-outline-secondary p-1 text-dark">
-                Set Home
-              </button>
-              <button type="button" class="btn btn-outline-secondary p-1 m-1 text-dark">
-                Unset Home
-              </button>
+              <div className="col-md-5 col-12">
+                <button
+                  type="button"
+                  class="btn  btn-outline-secondary p-1 text-dark"
+                >
+                  Set Home
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary p-1 m-1 text-dark"
+                >
+                  Unset Home
+                </button>
+              </div>
             </div>
-          </div>
           </div>
         </form>
       </div>

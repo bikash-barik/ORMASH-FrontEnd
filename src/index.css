@@ -240,6 +240,11 @@ img {
   /* padding-right: 50px !important; */
 }
 
+.nav-link:hover{
+  color: #9adfda !important;
+  /* background-color: #9adfda; */
+}
+
 .dropdown-item {
   color: #fff;
 }

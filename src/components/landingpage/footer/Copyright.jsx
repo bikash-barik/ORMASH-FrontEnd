@@ -2,9 +2,11 @@ import { symbol } from "prop-types";
 import { Row, Col, Container } from "react-bootstrap";
 import "./footer.css";
 
+
+const excludePaths = ['/error'];
 const Copyright = ({style}) => {
   return (
-    <div className={style}>
+    <div className={excludePaths.includes(window.location.pathname) ? 'd-none' : style}>
       <Container>
         <Row xs={1} md={3} className="d-flex justify-content-center ">
           <Col xl={4} className="d-flex align-items-center">

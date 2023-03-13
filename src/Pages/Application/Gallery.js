@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
@@ -21,6 +21,41 @@ const Gallery = () => {
   };
   const dispatch = useDispatch();
 
+  const [isChecked, setIsChecked] = useState(false);
+  const [selectedIds, setSelectedIds] = useState([]);
+
+  const handleCheckAll = () => {
+    setIsChecked(!isChecked);
+    setSelectedIds(
+      isChecked
+        ? []
+        : gallerys
+            .filter((gallery) => gallery._id)
+            .map((gallery) => gallery._id)
+    );
+  };
+
+  const handleCheck = (event, id) => {
+    if (event.target.checked) {
+      setSelectedIds([...selectedIds, id]);
+    } else {
+      setSelectedIds(selectedIds.filter((selectedId) => selectedId !== id));
+    }
+  };
+
+  const handleDeleteSelected = () => {
+    if (window.confirm("Are you sure you want to delete all galleries?")) {
+      selectedIds.forEach((id) => {
+        dispatch(deleteGalleryAction(id));
+      });
+      // Clear the ids array after deleting all galleries
+      selectedIds = [];
+      setSelectedIds([]);
+      setIsChecked(false);
+    }
+  };
+
+
   const galleryList = useSelector((state) => state.galleryList);
   const { loading, error, gallerys } = galleryList;
 
@@ -40,6 +75,8 @@ const Gallery = () => {
   const galleryUpdate = useSelector((state) => state.galleryUpdate);
   const { success: successUpdate } = galleryUpdate;
 
+
+
   useEffect(() => {
     dispatch(listGallerys());
     if (!userInfo) {
@@ -54,28 +91,40 @@ const Gallery = () => {
     successUpdate,
   ]);
 
-  let ids = [];
-  const idsHandler = (id) => {
-    ids.push(id);
-    console.log("ids name " + ids);
-  };
-
-  // const deleteHandler = (ids) => {
-  //   for (var i = 0; i < ids.length; i++) {
-  //     console.log("com" + i)
-  //     dispatch(deleteDocumentAction(ids[i].id));
-  //     console.log(ids[i].id)
-  //   }
-  // };
+  
+ 
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteGalleryAction(id));
     }
   };
+
+  let ids = [];
+  const idsHandler = (id) => {
+    ids.push(id);
+    console.log("ids name " + ids);
+  };
+
+
+  // onClick={(e) => idsHandler(gallery._id)}
+  const deleteAllHandler = () => {
+    if (window.confirm("Are you sure you want to delete all galleries?")) {
+      ids.forEach((id) => {
+        dispatch(deleteGalleryAction(id));
+      });
+      // Clear the ids array after deleting all galleries
+      ids = [];
+    }
+  };
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
+
+   //onClick={printthepage}
+   const printthepage = () =>{
+    window.print();
+  }
   return (
     <div>
       <form action="">
@@ -177,6 +226,7 @@ const Gallery = () => {
                     color: "#000",
                   }}
                   class="btn btn-secondary"
+                  onClick={handleDeleteSelected}
                 >
                   <i class="bi bi-trash-fill"></i>
                 </button>
@@ -214,6 +264,7 @@ const Gallery = () => {
                 }
               >
                 <button
+                onClick={printthepage}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -261,7 +312,13 @@ const Gallery = () => {
                     fontSize: "15px",
                     color: "#000",
                   }}>
-                  <th className="p-2"></th>
+                 <th className="p-2 text-center">
+                      <Form.Check
+                        aria-label="Select all checkboxes"
+                        checked={isChecked}
+                        onChange={handleCheckAll}
+                      />
+                    </th>
                   <th className="p-2">Sl.# </th>
                   <th className="p-2">Headline</th>
                   <th className="p-2"> Photos</th>
@@ -282,10 +339,14 @@ const Gallery = () => {
                     color: "#000",
                   }}>
                       <td className="p-5">
+                      
+
                         <Form.Check
-                          aria-label="option 1"
-                          onClick={(e) => idsHandler(gallery._id)}
-                        />
+                            aria-label={`Select news update ${i}`}
+                            checked={selectedIds.includes(gallery._id)}
+                            onChange={(event) =>
+                              handleCheck(event, gallery._id)
+                            } />
                       </td>
                       <th className="p-5">{i+1}</th>
                       <td className="p-5"> {gallery.headline}</td>

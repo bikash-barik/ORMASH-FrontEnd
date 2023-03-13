@@ -8,6 +8,10 @@ import Tooltip from "react-bootstrap/Tooltip";
 const SetPermission = ({ dispatch }) => {
   const history = useHistory();
 
+ const refreshPage = () =>{
+    window.location.reload(false);
+  }
+
   const Cancel = () => {
     history.push("/hub/SetPermission");
   };
@@ -48,6 +52,7 @@ const SetPermission = ({ dispatch }) => {
                 }
               >
                 <button
+                onClick={refreshPage}
                   type="button"
                   style={{
                     borderRadius: "5px",

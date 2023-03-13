@@ -63,6 +63,11 @@ const Video = () => {
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
+
+    //onClick={printthepage}
+ const printthepage = () =>{
+  window.print();
+}
   return (
     <div>
       <form>
@@ -207,6 +212,7 @@ const Video = () => {
                 }
               >
                 <button
+                onClick={printthepage}
                   type="button"
                   style={{
                     borderRadius: "5px",

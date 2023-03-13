@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
@@ -19,6 +19,42 @@ const OfficerProfileDetails = () => {
   const CreateMagazin = () => {
     history.push("/hub/AddOfficerProfile");
   };
+
+  const [isChecked, setIsChecked] = useState(false);
+  const [selectedIds, setSelectedIds] = useState([]);
+
+  const handleCheckAll = () => {
+    setIsChecked(!isChecked);
+    setSelectedIds(
+      isChecked
+        ? []
+        : officerProfileDetails
+            .filter((officerProfileDetail) => officerProfileDetail._id)
+            .map((officerProfileDetail) => officerProfileDetail._id)
+    );
+  };
+
+  const handleCheck = (event, id) => {
+    if (event.target.checked) {
+      setSelectedIds([...selectedIds, id]);
+    } else {
+      setSelectedIds(selectedIds.filter((selectedId) => selectedId !== id));
+    }
+  };
+
+  const handleDeleteSelected = () => {
+    if (window.confirm("Are you sure you want to delete all galleries?")) {
+      selectedIds.forEach((id) => {
+        dispatch(deleteOfficerProfileDetailAction(id));
+        window.location.reload(false)
+      });
+      // Clear the ids array after deleting all galleries
+      selectedIds = [];
+      setSelectedIds([]);
+      setIsChecked(false);
+    }
+  };
+
 
   const officerProfileDetailList = useSelector(
     (state) => state.officerProfileDetailList
@@ -69,6 +105,10 @@ const OfficerProfileDetails = () => {
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
+  //onClick={printthepage}
+  const printthepage = () =>{
+    window.print();
+  }
   return (
     <div>
       <form>
@@ -159,6 +199,7 @@ const OfficerProfileDetails = () => {
                 }
               >
                 <button
+                onClick={handleDeleteSelected}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -205,6 +246,7 @@ const OfficerProfileDetails = () => {
                 }
               >
                 <button
+                onClick={printthepage}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -235,7 +277,13 @@ const OfficerProfileDetails = () => {
                     fontSize: "16px",
                     color: "#000",
                   }}>
-                  <th className="p-2 text-center"> <Form.Check aria-label="option 1" /></th>
+                  <th className="p-2 text-center">
+                      <Form.Check
+                        aria-label="Select all checkboxes"
+                        checked={isChecked}
+                        onChange={handleCheckAll}
+                      />
+                    </th>
                   <th className="p-2">Sl.# </th>
                   <th className="p-2"> Officer Name</th>{" "}
                   <th className="p-2"> Designation </th>
@@ -256,9 +304,15 @@ const OfficerProfileDetails = () => {
                           fontSize: "13px",
                           color: "#000",
                         }}>
-                        <td className="p-5">
-                          <Form.Check aria-label="option 1" />
-                        </td>
+                        <td className="p-1 text-center">
+                      <Form.Check
+                            aria-label={`Select news update ${i}`}
+                            checked={selectedIds.includes(officerProfileDetail._id)}
+                            onChange={(event) =>
+                              handleCheck(event, officerProfileDetail._id)
+                            }
+                          />
+                      </td>
                         <th className="p-5">{i + 1}</th>
                         <td className="p-5">
                           {" "}

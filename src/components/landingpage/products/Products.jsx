@@ -61,8 +61,7 @@ const Products = () => {
       width: "100%",
       background: "linear-gradient(to bottom, #5f2c82, #49a09d)",
     }}>
-      <div class='container-fluid py-8'>
-        <div class='row'>
+      <div class='row'>
           <div
             class='col-12 section-intro text-center'
             style={{ marginTop: '20px' }}
@@ -70,6 +69,9 @@ const Products = () => {
             <h2 className='g-title'>Our Products</h2>
           </div>
         </div>
+      <div class='container-fluid py-8'>
+        
+        
 
         {list.map(
           (item, i) =>

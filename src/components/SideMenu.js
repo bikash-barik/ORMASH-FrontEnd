@@ -4,9 +4,9 @@ import user from "../assets/userimg.png";
 import { useDispatch, useSelector } from "react-redux";
 import MenuItem from "./MenuItem";
 import { logout } from "../Redux/actions/userActions";
-import "../Style/SideBar.css"
+import "../Style/SideBar.css";
 import { useHistory } from "react-router";
-import headerLogo from '../assets/images/header-logo.png';
+import headerLogo from "../assets/images/header-logo.png";
 
 /**
  * @author
@@ -56,7 +56,7 @@ export const menuItems = [
   {
     name: "Content Management",
     exact: true,
-    to: `/content-3`,
+    // to: `/content-3`,
     iconClassName: "bi bi-kanban",
     subMenus: [
       { name: "Content ", to: "/hub/ViewContent" },
@@ -79,7 +79,7 @@ export const menuItems = [
   {
     name: "Manage Application",
     exact: true,
-    to: ``,
+    // to: ``,
     iconClassName: "bi bi-kanban",
     subMenus: [
       { name: "Tender", to: "/hub/Tender" },
@@ -113,61 +113,53 @@ export const menuItems = [
   {
     name: "More Application",
     exact: true,
-    to: `/hub/Analytics`,
+    // to: `/hub/Analytics`,
     iconClassName: "bi bi-briefcase",
     subMenus: [
       { name: "Employee", to: "/hub/Employee" },
       { name: "Work", to: "/hub/work" },
-      { name: "Send SMS", to: "/hub/Send" },
-      { name: "E-Mail", to: "/hub/email" },
+      { name: "Send SMS", to: "/hub/Dashbord" },
+      { name: "E-Mail", to: "/hub/Dashbords" },
     ],
   },
   {
     name: "Settings",
     exact: true,
-    to: `/hub/Analytics`,
+    // to: `/hub/Analytics`,
     iconClassName: "bi bi-gear-fill",
     subMenus: [
-      { name: "Change Password", to: "/hub/ReadingSection" },
-      { name: "View Profile", to: "/hub/progile" },
-     
+      { name: "Change Password", to: "/hub/PasswordChange" },
+      { name: "View Profile", to: "/hub/profile" },
     ],
   },
   // { name: "E-Mail", to: `https://tanumanasa.com/`, iconClassName: "bi bi-briefcase" },
 ];
 
-
-
 const SideMenu = (props) => {
   const [inactive, setInactive] = useState(false);
-  const [date,setDate] = useState(new Date());
-//Login Credentials
-const dispatch = useDispatch();
-const userLogin = useSelector((state) => state.userLogin);
-const { userInfo } = userLogin;
-const history = useHistory(); 
+  const [date, setDate] = useState(new Date());
+  //Login Credentials
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  const history = useHistory();
 
-const logoutHandler = () => {
-  if (window.confirm("Are you sure to logout?")) {
-    dispatch(logout());
-   history.push("/");
-   window.location.reload(true)
+  const logoutHandler = () => {
+    if (window.confirm("Are you sure to logout?")) {
+      dispatch(logout());
+      history.push("/");
+      window.location.reload(true);
+    }
+  };
+  useEffect(() => {
+    var timer = setInterval(() => setDate(new Date()), 1000);
+    return function cleanup() {
+      clearInterval(timer);
+    };
+  });
 
-  }
-
-
-};
-useEffect(() => {
-  var timer = setInterval(()=>setDate(new Date()), 1000 )
-  return function cleanup() {
-      clearInterval(timer)
-  }
-
-});
-
-useEffect(() => {}, [userInfo]);
-//end of the login 
-
+  useEffect(() => {}, [userInfo]);
+  //end of the login
 
   useEffect(() => {
     if (inactive) {
@@ -203,18 +195,13 @@ useEffect(() => {}, [userInfo]);
     });
   }, []);
 
-
-
-
+ 
   return (
     <div className={`side-menu ${inactive ? "inactive" : ""}`}>
       <div className="top-section">
         <div className="logo">
           <a href="/">
-            <img
-              src={headerLogo}
-              alt="webscript"
-            />
+            <img src={headerLogo} alt="webscript" />
           </a>
         </div>
         <div onClick={() => setInactive(!inactive)} className="toggle-menu-btn">
@@ -254,14 +241,14 @@ useEffect(() => {}, [userInfo]);
             />
           ))}
           <a onClick={logoutHandler} className="text-decoration-none">
-          <li >
-            <samp className="menu-item">
-              <div className="menu-icon">
-                <i class="bi bi-box-arrow-left"></i>
-              </div>
-              <span >Logout</span>
-            </samp>
-          </li>
+            <li>
+              <samp className="menu-item">
+                <div className="menu-icon">
+                  <i class="bi bi-box-arrow-left"></i>
+                </div>
+                <span>Logout</span>
+              </samp>
+            </li>
           </a>
           {/* <li>
             <a className="menu-item">
@@ -286,15 +273,19 @@ useEffect(() => {}, [userInfo]);
         </ul>
       </div>
 
-      <div className="side-menu-footer">
-        <div className="avatar">
-          <img src={`${userInfo.pic}`} alt="user" />
+      <a href="/hub/profile">
+        <div className="side-menu-footer">
+          <div className="avatar">
+            <img src={`${userInfo.pic}`} alt="user" />
+          </div>
+          <div className="user-info">
+            <h5 className="h3 text-white bold"> {`${userInfo.name}`}</h5>
+            <p>
+              {date.toLocaleDateString()} {date.toLocaleTimeString()}
+            </p>
+          </div>
         </div>
-        <div className="user-info">
-          <h5 className="h3 text-white bold"> {`${userInfo.name}`}</h5>
-          <p>{date.toLocaleDateString()} {date.toLocaleTimeString()}</p>
-        </div>
-      </div>
+      </a>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import './index.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Style/AllCss.css';
 import './Style/style.css';
@@ -8,6 +8,7 @@ import './App.css';
 import React from 'react';
 import Hubrouters from './Routers/Hubrouters';
 import IndexRouter from './Routers/IndexRouter';
+import NotFound from './Pages/NotFound';
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
         <Switch>
           {/* <Route path="/" component={HomeRouter} /> */}
           <Route path='/hub' component={Hubrouters} />
-
+          
           <IndexRouter />
+          
         </Switch>
       </Router>
     </>

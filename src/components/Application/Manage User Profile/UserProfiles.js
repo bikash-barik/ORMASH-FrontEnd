@@ -1,14 +1,61 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import Table from "react-bootstrap/Table";
+import { useSelector } from "react-redux";
+
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import { Table } from "react-bootstrap";
+import axios from "axios";
+import { APIURL } from "../../../Redux/APIURL";
 const UserProfiles = ({ dispatch }) => {
   const history = useHistory();
-
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  const [data, setData] = useState([]);
   const CreateMagazin = () => {
     history.push("/hub/AddUserProfile");
   };
+  const getData = async () => {
+    try {
+      const response = await axios.get(`${APIURL}/api/subUsers/`);
+      console.log(response);
+      setData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+  const clickHandler = (id) => {
+    // console.log(id); onClick={() => clickHandler(item._id)}
+    history.push(`/hub/AddUserProfile/${id}`);
+  };
+  const deleteHandler = async (id) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      if (window.confirm("Are you sure?")) {
+        await axios.delete(`${APIURL}/api/subUsers/${id}`, config);
+        getData();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const refreshPage = () =>{
+    window.location.reload(false);
+  }
+
+  const printthepage = () =>{
+    window.print();
+  }
+
   return (
     <div>
       <form action="">
@@ -33,7 +80,7 @@ const UserProfiles = ({ dispatch }) => {
               </button>
             </div>
             <div className="gap-3 d-flex flex-row-reverse d-flex align-items-center">
-              {/* <div className="ShowEntries d-flex align-items-center">
+              <div className="ShowEntries d-flex align-items-center">
                 {data.length > 0 ? (
                   <p className="Entries">
                     {" "}
@@ -43,7 +90,7 @@ const UserProfiles = ({ dispatch }) => {
                 ) : (
                   <p className="Entries"> All Results: 0</p>
                 )}
-              </div> */}
+              </div>
               <OverlayTrigger
                 placement="top"
                 delay={{ show: 250, hide: 400 }}
@@ -54,6 +101,7 @@ const UserProfiles = ({ dispatch }) => {
                 }
               >
                 <button
+                onClick={refreshPage}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -104,6 +152,7 @@ const UserProfiles = ({ dispatch }) => {
                 }
               >
                 <button
+                onClick={printthepage}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -152,27 +201,49 @@ const UserProfiles = ({ dispatch }) => {
                   <th scope="col">SL No</th>
                   <th scope="col">Created on</th>
                   <th scope="col">Edit</th>
+                  <th scope="col">Delete</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th className="p-2" scope="row">
-                    1
-                  </th>
-                  <td className="p-2">Shyam Sundar Sahoo</td>
-                  <td className="p-2"> </td>
-                  <td className="p-2"> User </td>
-                  <td className="p-1">
-                    <button type="submit" className="btn btn-danger p-1">
-                      Inactive
-                    </button>{" "}
-                  </td>
-                  <td className="p-2">0</td>
-                  <td className="p-2">15-Apr-2015</td>
-                  <td className="p-2">
-                    <i class="bi bi-pencil-square"></i>{" "}
-                  </td>
-                </tr>
+                {data.length > 0 &&
+                  data.map((item, i) => (
+                    <tr key={item._id}>
+                      <th className="p-2" scope="row">
+                        {i + 1}
+                      </th>
+                      <td className="p-2">{item.name}</td>
+                      <td className="p-2">{item.mobile_no} </td>
+                      <td className="p-2">{item.privilege}</td>
+                      <td className="p-1">
+                        {item.status === "active" ? (
+                          <button type="button" class="btn btn-danger p-1">
+                            Active
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            class="btn btn-outline-danger p-1"
+                          >
+                            Inactive
+                          </button>
+                        )}
+                      </td>
+                      <td className="p-2">{item.sl_no}</td>
+                      <td className="p-2">{item.createdAt.substring(0, 10)}</td>
+                      <td
+                        className="p-1 text-center"
+                        onClick={() => clickHandler(item._id)}
+                      >
+                        <i class="bi bi-pencil-square"></i>{" "}
+                      </td>
+                      <td
+                        className="p-1 text-center"
+                        onClick={() => deleteHandler(item._id)}
+                      >
+                        <i class="bi bi-trash"></i>{" "}
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </Table>
           </div>

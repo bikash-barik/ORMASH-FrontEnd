@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../Loading";
 import ErrorMessage from "../../ErrorMessage";
 import { createTenderAction } from "../../../Redux/actions/Manage Application/tendersActions";
+import { APIURL } from "../../../Redux/APIURL";
+import axios from "axios";
 
 const AddTender = () => {
-  const [tender_no, setTender_no] = useState("");
+  const [tender_no, setTender_no] = useState();
   const [tender_headline, setTender_headline] = useState("");
   const [document_one, setDocument_one] = useState("");
   const [document_two, setDocument_two] = useState("");
@@ -18,10 +20,30 @@ const AddTender = () => {
   const [description, setDescription] = useState("");
   const [picMessage, setPicMessage] = useState(null);
   const dispatch = useDispatch();
+  const params = useParams();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  const tenderList = useSelector((state) => state.tenderList);
+  const { loading, error, tenders } = tenderList;
+  // console.log(userInfo._id + "tender no"); 
+ 
+  
 
-  const galleryCreate = useSelector((state) => state.galleryCreate);
-  const { loading, error, gallerys } = galleryCreate;
 
+  useEffect(() => {
+    const fetching = async () => {
+      const { data } = await axios.get(`${APIURL}/api/tenders/${params.id}`);
+      console.log("tender no"); 
+      setTender_no(data.tender_no);
+      // setContent(data.content);
+      // setCategory(data.category);
+      // setDate(data.updatedAt);
+    };
+
+    fetching();
+  }, [params.id]);
+
+  
   const postDetails = (pics) => {
     if (
       pics ===
@@ -194,6 +216,7 @@ const AddTender = () => {
   const Cancel = () => {
     history.push("/hub/Tender");
   };
+
   return (
     <>
       <form onSubmit={submitHandler}>

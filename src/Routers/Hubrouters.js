@@ -1,7 +1,12 @@
 // import "../App.css";
 import SideMenu, { menuItems } from "../components/SideMenu";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { useEffect, useState } from "react";
 
 // pages import
 import Dashboard from "../Pages/Dashboard";
@@ -44,12 +49,27 @@ import AddAchivement from "../components/Application/Manage Application/AddAchiv
 import AddWhatsNew from "../components/Application/Manage Application/AddWhatsNew";
 import AddManageBanner from "../components/Application/Manage Application/AddManageBanner";
 import UpdateContactDetails from "../components/Application/Manage Application/UpdateContactDetails";
+import { useSelector } from "react-redux";
+import NotFound from "../Pages/NotFound";
+import ProfileScreen from "../components/Application/ProfileScreen/ProfileScreen";
+import PasswordChange from "../components/Application/ProfileScreen/PasswordChange";
 
-
-
-
-function Hubrouters() {
+function Hubrouters({ history }) {
   const [inactive, setInactive] = useState(false);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  if (!userInfo) {
+    history.push("/login");
+    window.location.reload(false);
+  }
+  // useEffect(() => {
+  //   if (!userInfo) {
+  //     history.push("/login");
+  //     window.location.reload(false);
+  //   }
+  // }, [history, userInfo]);
 
   return (
     <div className="App">
@@ -80,11 +100,14 @@ function Hubrouters() {
           ))} */}
 
           <Switch>
-          <Route exact path="/hub/Dashbord" component={Dashboard}/>
+            <Route exact path="/hub/Dashbord" component={Dashboard} />
             <Route exact path={"/hub/UserProfile"}>
               <UserProfile />
             </Route>
             <Route exact path={"/hub/AddUserProfile"}>
+              <AddUserProfile />
+            </Route>
+            <Route exact path={"/hub/AddUserProfile/:id"}>
               <AddUserProfile />
             </Route>
             <Route exact path={"/hub/UpdateOfficerProfile/:id"}>
@@ -93,14 +116,14 @@ function Hubrouters() {
             <Route path={"/hub/SetPermission"}>
               <SetPermission />
             </Route>
-            <Route exact  path={"/hub/GlowbalLink"}>
+            <Route exact path={"/hub/GlowbalLink"}>
               <GlowbalLink />
             </Route>
-            <Route exact  path={"/hub/PrimaryLink"}>
+            <Route exact path={"/hub/PrimaryLink"}>
               <PrimaryLink />
             </Route>
-            
-            <Route  exact path={"/hub/AddPrimaryLink"}>
+
+            <Route exact path={"/hub/AddPrimaryLink"}>
               <AddPrimaryLink />
             </Route>
             <Route exact path={"/hub/AddPrimaryLink/:id"}>
@@ -115,7 +138,7 @@ function Hubrouters() {
             <Route exact path={"/hub/ViewContent"}>
               <ViewContent />
             </Route>
-            <Route  exact path={"/hub/OfficerProfileDetails"}>
+            <Route exact path={"/hub/OfficerProfileDetails"}>
               <OfficerProfileDetails />
             </Route>
             <Route exact path={"/hub/AddOfficerProfile"}>
@@ -140,6 +163,9 @@ function Hubrouters() {
               <Employee />
             </Route>
             <Route path={"/hub/Tender"}>
+              <Tender />
+            </Route>
+            <Route path={"/hub/Tender/:id"}>
               <Tender />
             </Route>
             <Route path={"/hub/AddTender"}>
@@ -210,6 +236,13 @@ function Hubrouters() {
             </Route>
             <Route path={"/hub/UpdateContactDetails"}>
               <UpdateContactDetails />
+            </Route>
+            <Route path={"/hub/PasswordChange"}>
+              <PasswordChange />
+            </Route>
+
+            <Route path={"/hub/Profile"}>
+              <ProfileScreen />
             </Route>
           </Switch>
         </div>

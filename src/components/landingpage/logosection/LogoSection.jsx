@@ -3,9 +3,11 @@ import odishaLogo from '../../../assets/logo/odisha-logo.png';
 import headerLogo from '../../../assets/images/header-logo.png';
 import cmImg from '../../../assets/images/cm_on_nav.png';
 
+const excludePaths = ['/error'];
+
 const LogoSection = ({zoomLevel}) => {
   return (
-    <nav role='navigation'>
+    <nav role='navigation' className={excludePaths.includes(window.location.pathname) ? 'd-none' : ''}>
       <div className='top-brand'>
         <div className='mx-auto container-fluid'>
           <div className='row px-4 m-0 height d-flex justify-content-between align-items-center'>
@@ -46,18 +48,20 @@ const LogoSection = ({zoomLevel}) => {
             </div>
             <div className='col-md-4 d-flex align-items-end justify-content-end height'>
               <div className='d-flex right-logo'>
+               
                 <p style={{ fontSize: `${zoomLevel}px`}}>
                <span className='bold h6'> Shri Naveen Patnaik</span> 
                   <br />
                   Hon'ble Chief Minister
                 </p>
-
+                <a href='/Application' className='text-decoration-none'style={{textDecoration:"none"}}>
                 <img
                   style={{ width: '105px', height: '120px' }}
                   src={cmImg}
                   alt=''
                   className='brand-logo right'
                 />
+                </a>
               </div>
             </div>
           </div>

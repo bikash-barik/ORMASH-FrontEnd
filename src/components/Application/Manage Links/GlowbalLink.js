@@ -12,6 +12,41 @@ const GlowbalLink = ({ dispatch }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const [data, setData] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
+  const [selectedIds, setSelectedIds] = useState([]);
+
+  const handleCheckAll = () => {
+    setIsChecked(!isChecked);
+    setSelectedIds(
+      isChecked
+        ? []
+        : data
+            .filter((data) => data._id)
+            .map((data) => data._id)
+    );
+  };
+
+  const handleCheck = (event, id) => {
+    if (event.target.checked) {
+      setSelectedIds([...selectedIds, id]);
+    } else {
+      setSelectedIds(selectedIds.filter((selectedId) => selectedId !== id));
+    }
+  };
+
+  const handleDeleteSelected = () => {
+    if (window.confirm("Are you sure you want to delete all galleries?")) {
+      selectedIds.forEach((id) => {
+        dispatch(deleteHandler(id));
+        window.location.reload(false)
+      });
+      // Clear the ids array after deleting all galleries
+      selectedIds = [];
+      setSelectedIds([]);
+      setIsChecked(false);
+    }
+  };
+
   const CreateMagazin = () => {
     history.push("/hub/AddGlobalLink");
   };
@@ -51,6 +86,11 @@ const GlowbalLink = ({ dispatch }) => {
   // const UpdatetheLinks = () =>{
   //   alert("Please select a record!")
   // }
+
+  //onClick={printthepage}
+  const printthepage = () =>{
+    window.print();
+  }
 
   return (
     <div>
@@ -145,6 +185,7 @@ const GlowbalLink = ({ dispatch }) => {
                 }
               >
                 <button
+                 onClick={handleDeleteSelected}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -191,6 +232,7 @@ const GlowbalLink = ({ dispatch }) => {
                 }
               >
                 <button
+                onClick={printthepage}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -217,10 +259,13 @@ const GlowbalLink = ({ dispatch }) => {
                     color: "#000",
                   }}
                 >
-                  <th className="p-2 text-center">
-                    {" "}
-                    <Form.Check aria-label="option 1" />
-                  </th>
+                   <th className="p-2 text-center">
+                      <Form.Check
+                        aria-label="Select all checkboxes"
+                        checked={isChecked}
+                        onChange={handleCheckAll}
+                      />
+                    </th>
                   <th className="p-2">SL#</th>
                   <th className="p-2">Link Name</th>
                   <th className="p-2"> Link No</th>
@@ -236,8 +281,14 @@ const GlowbalLink = ({ dispatch }) => {
                 {data.length > 0 &&
                   data.map((item, i) => (
                     <tr key={item._id}>
-                      <td className="p-1 text-center">
-                        <Form.Check aria-label="option 1" />
+                     <td className="p-1 text-center">
+                      <Form.Check
+                            aria-label={`Select news update ${i}`}
+                            checked={selectedIds.includes(item._id)}
+                            onChange={(event) =>
+                              handleCheck(event, item._id)
+                            }
+                          />
                       </td>
 
                       <td className="p-1 text-center">{i + 1} </td>

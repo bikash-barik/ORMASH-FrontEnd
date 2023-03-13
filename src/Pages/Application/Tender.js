@@ -18,6 +18,40 @@ const ViewContent = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [data, setData] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
+  const [selectedIds, setSelectedIds] = useState([]);
+
+  const handleCheckAll = () => {
+    setIsChecked(!isChecked);
+    setSelectedIds(
+      isChecked
+        ? []
+        : data
+            .filter((data) => data._id)
+            .map((data) => data._id)
+    );
+  };
+
+  const handleCheck = (event, id) => {
+    if (event.target.checked) {
+      setSelectedIds([...selectedIds, id]);
+    } else {
+      setSelectedIds(selectedIds.filter((selectedId) => selectedId !== id));
+    }
+  };
+
+  const handleDeleteSelected = () => {
+    if (window.confirm("Are you sure you want to delete all galleries?")) {
+      selectedIds.forEach((id) => {
+        dispatch(deleteTenderAction(id));
+        window.location.reload(false)
+      });
+      // Clear the ids array after deleting all galleries
+      selectedIds = [];
+      setSelectedIds([]);
+      setIsChecked(false);
+    }
+  };
 
   const tenderList = useSelector((state) => state.tenderList);
   const { loading, error, tenders } = tenderList;
@@ -75,6 +109,10 @@ const ViewContent = () => {
   const AddTender = () => {
     history.push("/hub/AddTender");
   };
+ 
+  const UpdateTender = (id) => {
+    history.push(`/hub/AddTender/${id}`);
+  };
   const AddAddendum = () => {
     history.push("/hub/Addendum");
   };
@@ -94,6 +132,11 @@ const ViewContent = () => {
     getData();
   }, []);
 
+
+   //onClick={printthepage}
+ const printthepage = () =>{
+  window.print();
+}
   return (
     <div>
       <form>
@@ -218,6 +261,7 @@ const ViewContent = () => {
                     color: "#000",
                   }}
                   class="btn btn-secondary"
+                  onClick={handleDeleteSelected}
                 >
                   <i class="bi bi-trash-fill"></i>
                 </button>
@@ -255,6 +299,7 @@ const ViewContent = () => {
                 }
               >
                 <button
+                onClick={printthepage}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -276,12 +321,12 @@ const ViewContent = () => {
               <div class="col-md-2">
                 <select id="inputState" class="form-select p-1">
                   <option selected>Choose...</option>
-                  <option>About Us</option>
-                  <option>DDU-GKY</option>
-                  <option>Activities</option>
-                  <option>Products</option>
-                  <option>Exhibition</option>
-                  <option>Tender</option>
+                  <option>152</option>
+                  <option>156</option>
+                  <option>157</option>
+                  <option>167</option>
+                  <option>168</option>
+                  <option>Other</option>
                 </select>
               </div>
 
@@ -289,12 +334,8 @@ const ViewContent = () => {
               <div class="col-md-2">
                 <select id="inputState" class="form-select p-1">
                   <option selected>Choose...</option>
-                  <option>About Us</option>
-                  <option>DDU-GKY</option>
-                  <option>Activities</option>
-                  <option>Products</option>
-                  <option>Exhibition</option>
-                  <option>Tender</option>
+                  <option>QUOTATION CALL NOTICE for ....</option>
+                  
                 </select>
               </div>
               <button type="button" class="btn btn-success p-1 mx-2">
@@ -319,10 +360,13 @@ const ViewContent = () => {
                     color: "#000",
                   }}
                 >
-                  <th className="p-2">
-                    {" "}
-                    <Form.Check aria-label="option 1" />
-                  </th>
+                   <th className="p-2 text-center">
+                      <Form.Check
+                        aria-label="Select all checkboxes"
+                        checked={isChecked}
+                        onChange={handleCheckAll}
+                      />
+                    </th>
                   <th className="p-2 text-center">Sl.# </th>
                   <th className="p-2">TenderNo.</th>
                   <th className="p-2"> Tender Headline</th>
@@ -346,7 +390,13 @@ const ViewContent = () => {
                       }}
                     >
                       <td className="p-1 text-center">
-                        <Form.Check aria-label="option 1" />
+                      <Form.Check
+                            aria-label={`Select news update ${i}`}
+                            checked={selectedIds.includes(item._id)}
+                            onChange={(event) =>
+                              handleCheck(event, item._id)
+                            }
+                          />
                       </td>
                       <th className="p-1 text-center">{i + 1}</th>
                       <td className="p-1"> {item.tender_no} </td>
@@ -373,7 +423,9 @@ const ViewContent = () => {
                         </a>
                       </td>
                       <td className="p-1">{item.description}</td>
-                      <td className="p-5 text-center">
+                      <td className="p-5 text-center" onClick={() => UpdateTender(item._id)}>
+                      
+                      
                         <i class="bi bi-pencil-square"></i>{" "}
                       </td>
                       <td
