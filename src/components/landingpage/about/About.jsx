@@ -157,7 +157,7 @@ const About = () => {
                   {/* <marquee width="100%"  direction="up" height="100px" SCROLLDELAY="150" > */}
                     <ListGroup className="list-group-flush ">
                       {documents &&
-                        documents.reverse().map((document, i) => (
+                        documents.reverse().filter(item => item.publish_status !== true).map((document, i) => (
                           <div
                             key={document._id}
                             className="fs-16 text-white"
@@ -186,7 +186,7 @@ const About = () => {
                   {/* <marquee SCROLLDELAY="150" width="100%" direction="up" height="100px"> */}
                     <ListGroup className="list-group-flush ">
                       {data.length > 0 &&
-                        data.reverse().map((item, i) => (
+                        data.reverse().filter(item => item.publish_status === "set").map((item, i) => (
                           <div
                             key={item._id}
                             className="fs-16 text-white"

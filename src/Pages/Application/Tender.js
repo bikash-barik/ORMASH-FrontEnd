@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
@@ -16,19 +16,17 @@ import axios from "axios";
 import { APIURL } from "../../Redux/APIURL";
 const ViewContent = () => {
   const dispatch = useDispatch();
+  const params = useParams();
   const history = useHistory();
   const [data, setData] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleCheckAll = () => {
     setIsChecked(!isChecked);
     setSelectedIds(
-      isChecked
-        ? []
-        : data
-            .filter((data) => data._id)
-            .map((data) => data._id)
+      isChecked ? [] : data.filter((data) => data._id).map((data) => data._id)
     );
   };
 
@@ -41,10 +39,10 @@ const ViewContent = () => {
   };
 
   const handleDeleteSelected = () => {
-    if (window.confirm("Are you sure you want to delete all galleries?")) {
+    if (window.confirm("Are you sure you want to delete all tenders?")) {
       selectedIds.forEach((id) => {
         dispatch(deleteTenderAction(id));
-        window.location.reload(false)
+        window.location.reload(false);
       });
       // Clear the ids array after deleting all galleries
       selectedIds = [];
@@ -109,7 +107,7 @@ const ViewContent = () => {
   const AddTender = () => {
     history.push("/hub/AddTender");
   };
- 
+
   const UpdateTender = (id) => {
     history.push(`/hub/AddTender/${id}`);
   };
@@ -132,11 +130,46 @@ const ViewContent = () => {
     getData();
   }, []);
 
+  //onClick={printthepage}
+  const printthepage = () => {
+    window.print();
+  };
 
-   //onClick={printthepage}
- const printthepage = () =>{
-  window.print();
-}
+  const updateSet = async (id) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      const dataToUpdate = { status: "some new status" }; // replace with your own data to update
+      await axios.put(
+        `${APIURL}/api/tenders/status/${id}`,
+        dataToUpdate,
+        config
+      );
+      window.location.reload(false);
+    } catch (error) {
+      console.log(error);
+      const msg = error.response?.data?.message;
+      setErrorMsg(msg);
+    }
+  };
+
+  const setAllSelected = () => {
+    if (window.confirm("Are you sure you want to do all changes in Tender?")) {
+      selectedIds.forEach((id) => {
+        dispatch(updateSet(id));
+        window.location.reload(false);
+      });
+      // Clear the ids array after deleting all galleries
+      selectedIds = [];
+      setSelectedIds([]);
+      setIsChecked(false);
+    }
+  };
+
   return (
     <div>
       <form>
@@ -148,7 +181,8 @@ const ViewContent = () => {
         <div class="">
           <h3 className="fs-15">
             <i class="bi bi-geo-alt-fill"></i>
-            <span> Home / Manage Application / Tender /</span>View Tender Details
+            <span> Home / Manage Application / Tender /</span>View Tender
+            Details
           </h3>
           <div className="mt-5 d-flex justify-content-between">
             <div className="gap-3 d-flex justify-content-between">
@@ -204,6 +238,7 @@ const ViewContent = () => {
                 }
               >
                 <button
+                  onClick={setAllSelected}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -229,6 +264,7 @@ const ViewContent = () => {
                 }
               >
                 <button
+                  onClick={setAllSelected}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -299,7 +335,7 @@ const ViewContent = () => {
                 }
               >
                 <button
-                onClick={printthepage}
+                  onClick={printthepage}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -335,7 +371,6 @@ const ViewContent = () => {
                 <select id="inputState" class="form-select p-1">
                   <option selected>Choose...</option>
                   <option>QUOTATION CALL NOTICE for ....</option>
-                  
                 </select>
               </div>
               <button type="button" class="btn btn-success p-1 mx-2">
@@ -360,19 +395,20 @@ const ViewContent = () => {
                     color: "#000",
                   }}
                 >
-                   <th className="p-2 text-center">
-                      <Form.Check
-                        aria-label="Select all checkboxes"
-                        checked={isChecked}
-                        onChange={handleCheckAll}
-                      />
-                    </th>
+                  <th className="p-2 text-center">
+                    <Form.Check
+                      aria-label="Select all checkboxes"
+                      checked={isChecked}
+                      onChange={handleCheckAll}
+                    />
+                  </th>
                   <th className="p-2 text-center">Sl.# </th>
                   <th className="p-2">TenderNo.</th>
                   <th className="p-2"> Tender Headline</th>
                   <th className="p-2"> ClosingDate</th>
                   <th className="p-2">Document</th>
                   <th className="p-2"> Description</th>
+                  <th className="p-2"> Publish status</th>
                   <th className="p-2"> Edit</th>
                   <th className="p-2"> Delete</th>
                 </tr>
@@ -383,6 +419,7 @@ const ViewContent = () => {
                 {data.length > 0 &&
                   data.reverse().map((item, i) => (
                     <tr
+                      className="text-center "
                       style={{
                         fontWeight: "bold",
                         fontSize: "13px",
@@ -390,17 +427,48 @@ const ViewContent = () => {
                       }}
                     >
                       <td className="p-1 text-center">
-                      <Form.Check
-                            aria-label={`Select news update ${i}`}
-                            checked={selectedIds.includes(item._id)}
-                            onChange={(event) =>
-                              handleCheck(event, item._id)
-                            }
-                          />
+                        <Form.Check
+                          aria-label={`Select news update ${i}`}
+                          checked={selectedIds.includes(item._id)}
+                          onChange={(event) => handleCheck(event, item._id)}
+                        />
                       </td>
                       <th className="p-1 text-center">{i + 1}</th>
                       <td className="p-1"> {item.tender_no} </td>
                       <td className="p-1">{item.tender_headline} </td>
+                      <td className="p-1 align-self-center">
+                        {item.publish_status == "set" ? (
+                          //   <button  type="button" class="btn btn-primary px-5">
+
+                          //   </button>
+                          // ) : (
+                          //   <button
+
+                          //     type="button"
+                          //     class="btn btn-outline-primary px-5"
+                          //   >
+
+                          //   </button>
+
+                          <button
+                            onClick={() => updateSet(item._id)}
+                            type="button"
+                            class="btn btn-danger px-5 text-center"
+                          >
+                            Unset
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => updateSet(item._id)}
+                            type="button"
+                            class="btn btn-outline-danger px-5 "
+                          >
+                            Set
+                          </button>
+                        )}
+
+                        {/* {item.publish_status}  */}
+                      </td>
                       <td className="p-1">
                         {item.closing_date.substring(0, 10)}{" "}
                       </td>
@@ -423,9 +491,10 @@ const ViewContent = () => {
                         </a>
                       </td>
                       <td className="p-1">{item.description}</td>
-                      <td className="p-5 text-center" onClick={() => UpdateTender(item._id)}>
-                      
-                      
+                      <td
+                        className="p-5 text-center"
+                        onClick={() => UpdateTender(item._id)}
+                      >
                         <i class="bi bi-pencil-square"></i>{" "}
                       </td>
                       <td
@@ -441,10 +510,18 @@ const ViewContent = () => {
           </div>
           <div className="btn-row">
             <div className="col-md-5 col-12">
-              <button type="button" class="btn  btn-outline-secondary p-1 text-dark">
+              <button
+                type="button"
+                class="btn  btn-outline-secondary p-1 text-dark"
+                onClick={setAllSelected}
+              >
                 Set Home
               </button>
-              <button type="button" class="btn btn-outline-secondary p-1 m-1 text-dark">
+              <button
+                onClick={setAllSelected}
+                type="button"
+                class="btn btn-outline-secondary p-1 m-1 text-dark"
+              >
                 Unset Home
               </button>
             </div>

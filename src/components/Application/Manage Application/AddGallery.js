@@ -9,7 +9,7 @@ const AddGallery = () => {
   const [headline, setHeadline] = useState("");
   const [category, setCategory] = useState("");
   const [photo, setPhoto] = useState("");
-  const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState(false);
   const [picMessage, setPicMessage] = useState(null);
   const dispatch = useDispatch();
 
@@ -140,7 +140,7 @@ const AddGallery = () => {
                 onChange={(e) => postDetails(e.target.files[0])}
               />
             </div>
-            <div class="col-md-3">
+            {/* <div class="col-md-3">
               <label for="inputEmail4" class="form-label">
                 Status
               </label>
@@ -152,7 +152,7 @@ const AddGallery = () => {
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
               />
-            </div>
+            </div> */}
           </form>
           {loading && <Loading size={50} />}
           <div className="btn">

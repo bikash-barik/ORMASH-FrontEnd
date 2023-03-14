@@ -12,7 +12,8 @@ import {
   listGallerys,
   deleteGalleryAction,
 } from "../../Redux/actions/Manage Application/gallerysActions";
-
+import axios from "axios";
+import { APIURL } from "../../Redux/APIURL";
 const Gallery = () => {
   const history = useHistory();
 
@@ -20,7 +21,7 @@ const Gallery = () => {
     history.push("/hub/AddGallery");
   };
   const dispatch = useDispatch();
-
+  const [errorMsg, setErrorMsg] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
 
@@ -125,6 +126,41 @@ const Gallery = () => {
    const printthepage = () =>{
     window.print();
   }
+
+  const updateSet = async (id) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      const dataToUpdate = { status: "some new status" }; // replace with your own data to update
+      await axios.put(
+        `${APIURL}/api/gallerys/status/${id}`,
+        dataToUpdate,
+        config
+      );
+      window.location.reload(false);
+    } catch (error) {
+      console.log(error);
+      const msg = error.response?.data?.message;
+      setErrorMsg(msg);
+    }
+  };
+  const setAllSelected = () => {
+    if (window.confirm("Are you sure you want to do all changes in Tender?")) {
+      selectedIds.forEach((id) => {
+        dispatch(updateSet(id));
+        window.location.reload(false);
+      });
+      // Clear the ids array after deleting all galleries
+      selectedIds = [];
+      setSelectedIds([]);
+      setIsChecked(false);
+    }
+  };
+
   return (
     <div>
       <form action="">
@@ -169,6 +205,7 @@ const Gallery = () => {
                 }
               >
                 <button
+                onClick={setAllSelected}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -194,6 +231,7 @@ const Gallery = () => {
                 }
               >
                 <button
+                onClick={setAllSelected}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -362,17 +400,22 @@ const Gallery = () => {
                       </td>
                       <td className="p-5 text-center">
                         {gallery.status == true ? (
-                          // <button type="button" class="btn btn-primary px-5">
-                          " Set"
-                          // </button>
-                        ) : (
-                          // <button
-                          //   type="button"
-                          //   class="btn btn-outline-primary px-5"
-                          // >
-                           " Unset"
-                          // </button>
-                        )}
+                          <button
+                          onClick={() => updateSet(gallery._id)}
+                          type="button"
+                          class="btn btn-danger px-5 text-center"
+                        >
+                          Unset
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => updateSet(gallery._id)}
+                          type="button"
+                          class="btn btn-outline-danger px-5 "
+                        >
+                          Set
+                        </button>
+                      )}
                       </td>
                       <td className="p-5 text-center">
                         {" "}
@@ -393,10 +436,18 @@ const Gallery = () => {
 
           <div className="btn-row">
             <div className="col-md-5 col-12">
-              <button type="button" class="btn  btn-outline-secondary p-1 text-dark">
+            <button
+                type="button"
+                class="btn  btn-outline-secondary p-1 text-dark"
+                onClick={setAllSelected}
+              >
                 Set Home
               </button>
-              <button type="button" class="btn btn-outline-secondary p-1 m-1 text-dark">
+              <button
+                onClick={setAllSelected}
+                type="button"
+                class="btn btn-outline-secondary p-1 m-1 text-dark"
+              >
                 Unset Home
               </button>
             </div>

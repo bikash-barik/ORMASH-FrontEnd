@@ -98,7 +98,7 @@ const Navbar = ({ style, zoomLevel }) => {
                 style={{ fontSize: `${zoomLevel}px` }}
               >
                 {data.length > 0 &&
-                  data.map((item) => (
+                  data.filter(item => item.publish_status !== true).map((item) => (
                     <li className="nav-item" key={item.link_name}>
                       <a
                         style={{ fontSize: `${zoomLevel}px` }}
@@ -118,7 +118,7 @@ const Navbar = ({ style, zoomLevel }) => {
                           onMouseMove={handleMouseMoveDropdown}
                         >
                           {primaryLinks.length > 0 &&
-                            primaryLinks.map((el) => (
+                            primaryLinks.filter(item => item.publish_status !== true).map((el) => (
                               <li key={el.link_name}>
                                 <a
                                   className="dropdown-item"

@@ -49,7 +49,7 @@ const Team = () => {
     
       <div  className="cards_wrapper">
       {officerProfileDetails &&
-        officerProfileDetails.reverse().map((officerProfileDetail, i) => (
+        officerProfileDetails.reverse().filter(item => item.publish_status !== true).map((officerProfileDetail, i) => (
           <div  key={officerProfileDetail._id}>
             {/* first */}
             <div className="profile_card heightcard">

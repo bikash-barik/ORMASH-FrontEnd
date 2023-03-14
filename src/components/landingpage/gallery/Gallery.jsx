@@ -18,7 +18,7 @@ const Gallery = () => {
       <h1 className="text-center mb-8 g-title">Photo Gallery</h1>
       <div className="gallery">
         {gallerys &&
-          gallerys.reverse().map((gallery, i) => (
+          gallerys.reverse().filter(item => item.status === true).map((gallery, i) => (
             <div className="gallery_card" key={gallery._id}>
               <img src={gallery.photo} alt="" />
             </div>
