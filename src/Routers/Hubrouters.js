@@ -177,7 +177,7 @@ function Hubrouters({ history }) {
             <Route path={"/hub/Corrigendum"}>
               <Corrigendum />
             </Route>
-            <Route path={"/hub/NewsUpdate"}>
+            <Route path={"/hub/Product"}>
               <NewsUpdate />
             </Route>
             <Route path={"/hub/AddNews"}>

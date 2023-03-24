@@ -405,10 +405,11 @@ const ViewContent = () => {
                   <th className="p-2 text-center">Sl.# </th>
                   <th className="p-2">TenderNo.</th>
                   <th className="p-2"> Tender Headline</th>
+                  <th className="p-2"> PublishStatus</th>
                   <th className="p-2"> ClosingDate</th>
                   <th className="p-2">Document</th>
                   <th className="p-2"> Description</th>
-                  <th className="p-2"> Publish status</th>
+                  
                   <th className="p-2"> Edit</th>
                   <th className="p-2"> Delete</th>
                 </tr>
@@ -461,7 +462,7 @@ const ViewContent = () => {
                           <button
                             onClick={() => updateSet(item._id)}
                             type="button"
-                            class="btn btn-outline-danger px-5 "
+                            class="btn btn-outline-success px-5 "
                           >
                             Set
                           </button>

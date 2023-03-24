@@ -83,7 +83,7 @@ export const menuItems = [
     iconClassName: "bi bi-kanban",
     subMenus: [
       { name: "Tender", to: "/hub/Tender" },
-      { name: "News Updates", to: "/hub/NewsUpdate" },
+      { name: "Product", to: "/hub/Product" },
       { name: "Document", to: "/hub/Document" },
       { name: "Important Links", to: "/hub/ImportantLink" },
       { name: "Gallery", to: "/hub/Gallery" },

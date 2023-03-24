@@ -268,7 +268,7 @@ const GlowbalLink = ({ dispatch }) => {
             </div>
           </div>
           <div class=" coupon-data mobileresponsive">
-            <Table bordered responsive className="border rounded  mt-2">
+            <Table bordered responsive className="border rounded table-hover  mt-2">
               <thead>
                 <tr
                   style={{
@@ -299,7 +299,9 @@ const GlowbalLink = ({ dispatch }) => {
               </thead>
               <tbody>
                 {data.length > 0 &&
-                  data.map((item, i) => (
+                  data
+                  .sort((a, b) => a.global_link.localeCompare(b.global_link))
+                  .map((item, i) => (
                     <tr key={item._id}>
                       <td className="p-1 text-center">
                       <Form.Check

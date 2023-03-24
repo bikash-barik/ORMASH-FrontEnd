@@ -3,8 +3,7 @@ import "./Navebar.css";
 import axios from "axios";
 import { APIURL } from "../../../Redux/APIURL";
 
-
-const excludePaths = ['/error'];
+const excludePaths = ["/error"];
 const Navbar = ({ style, zoomLevel }) => {
   const [data, setData] = useState([]);
   const [primaryLinks, setPrimaryLinks] = useState([]);
@@ -83,7 +82,11 @@ const Navbar = ({ style, zoomLevel }) => {
 
   return (
     <span className={isSticky ? "sticky" : ""}>
-      <div className={excludePaths.includes(window.location.pathname) ? 'd-none' : style} >
+      <div
+        className={
+          excludePaths.includes(window.location.pathname) ? "d-none" : style
+        }
+      >
         <nav
           className={`navbar navbar-expand-lg w-full verytop`}
           id="navigationBar"
@@ -98,41 +101,52 @@ const Navbar = ({ style, zoomLevel }) => {
                 style={{ fontSize: `${zoomLevel}px` }}
               >
                 {data.length > 0 &&
-                  data.filter(item => item.publish_status !== true).map((item) => (
-                    <li className="nav-item" key={item.link_name}>
-                      <a
-                        style={{ fontSize: `${zoomLevel}px` }}
-                        className="nav-link "
-                        href={`${item.link_name}`}
-                        onMouseEnter={() => handleMouseEnter(item)}
-                        onMouseLeave={handleMouseLeave}
-                      >
-                        {item.link_name}
-                      </a>
-                      {activeLink === item.link_name && isOpen && (
-                        <ul
-                          className="dropdown-menu"
-                          ref={dropdownRef}
-                          onMouseEnter={handleMouseEnterDropdown}
-                          onMouseLeave={handleMouseLeaveDropdown}
-                          onMouseMove={handleMouseMoveDropdown}
+                  data
+                    .slice()
+                    .sort((a, b) => parseInt(a.sl_no) - parseInt(b.sl_no))
+                    .filter((item) => item.publish_status !== true)
+                    .map((item) => (
+                      <li className="nav-item" key={item.link_name}>
+                        <a
+                          style={{ fontSize: `${zoomLevel}px` }}
+                          className="nav-link "
+                          href={`${item.link_name}`}
+                          onMouseEnter={() => handleMouseEnter(item)}
+                          onMouseLeave={handleMouseLeave}
                         >
-                          {primaryLinks.length > 0 &&
-                            primaryLinks.filter(item => item.publish_status !== true).map((el) => (
-                              <li key={el.link_name}>
-                                <a
-                                  className="dropdown-item"
-                                  href={el.function_name}
-                                  style={{ fontSize: `${zoomLevel}px` }}
-                                >
-                                  {el.link_name}
-                                </a>
-                              </li>
-                            ))}
-                        </ul>
-                      )}
-                    </li>
-                  ))}
+                          {item.link_name}
+                        </a>
+                        {activeLink === item.link_name && isOpen && (
+                          <ul
+                            className="dropdown-menu"
+                            ref={dropdownRef}
+                            onMouseEnter={handleMouseEnterDropdown}
+                            onMouseLeave={handleMouseLeaveDropdown}
+                            onMouseMove={handleMouseMoveDropdown}
+                          >
+                            {primaryLinks.length > 0 &&
+                              primaryLinks
+                                .slice()
+                                .sort(
+                                  (a, b) =>
+                                    parseInt(a.sl_no) - parseInt(b.sl_no)
+                                )
+                                .filter((item) => item.publish_status !== true)
+                                .map((el) => (
+                                  <li key={el.link_name}>
+                                    <a
+                                      className="dropdown-item"
+                                      href={el.function_name}
+                                      style={{ fontSize: `${zoomLevel}px` }}
+                                    >
+                                      {el.link_name}
+                                    </a>
+                                  </li>
+                                ))}
+                          </ul>
+                        )}
+                      </li>
+                    ))}
               </ul>
             </div>
           </div>

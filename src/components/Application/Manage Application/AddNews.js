@@ -81,7 +81,7 @@ const AddNews = () => {
       return;
 
     resetHandler();
-    history.push("/hub/NewsUpdate");
+    history.push("/hub/Product");
   };
 
   useEffect(() => {}, []);
@@ -89,7 +89,7 @@ const AddNews = () => {
   const history = useHistory();
 
   const Cancel = () => {
-    history.push("/hub/NewsUpdate");
+    history.push("/hub/Product");
   };
   return (
     <>

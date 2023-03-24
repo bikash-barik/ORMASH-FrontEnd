@@ -15,7 +15,7 @@ const AddManageBanner = () => {
   const [sl_no, setsl_no] = useState("");
   const [caption, setcaption] = useState("");
   const [banner, setBanner] = useState("");
-  const [publish_status, setpublish_status] = useState(true);
+  const [publish_status, setpublish_status] = useState("unset");
   const [picMessage, setPicMessage] = useState(null);
   const dispatch = useDispatch();
 
@@ -303,8 +303,8 @@ const AddManageBanner = () => {
                   onChange={(e) => setpublish_status(e.target.value)}
                 >
                   <option selected>Choose...</option>
-                  <option>Active </option>
-                  <option> Inactive</option>
+                  <option>set </option>
+                  <option> unset</option>
                 </select>
                 <p className="text-danger p-1">(*) </p>
               </div>

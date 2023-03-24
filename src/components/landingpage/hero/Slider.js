@@ -12,7 +12,7 @@ function Slider({ interval = 5000 }) {
     async function fetchBanners() {
       try {
         const response = await axios.get(`${APIURL}/api/banners/`);
-        setBanners(response.data.banners.filter(item => item.publish_status !== true).map(banner => banner.banner));
+        setBanners(response.data.banners.filter(item => item.publish_status === "set").map(banner => banner.banner));
       } catch (error) {
         console.error(error);
       }

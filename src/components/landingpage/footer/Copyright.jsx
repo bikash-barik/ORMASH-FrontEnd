@@ -43,13 +43,13 @@ const Copyright = ({style}) => {
             >
               Powered By{" "}
               <a
-                href="https://ijentech.com/"
+                href=""
                 style={{ textDecoration: "none" }}
                 target="_blank"
                 rel="noreferrer"
               >
                 <img
-                  src="https://ijentech.com/ormas-newdesign/assets/images/ijentechlogo.png"
+                  src=""
                   style={{ width: "48px" }}
                   height="45px"
                   alt="logo"

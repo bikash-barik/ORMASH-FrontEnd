@@ -44,3 +44,47 @@
   height: 100%;
   transition: transform 300ms ease-in;
 }
+
+
+
+/* //css button style */
+.modalcontainer{
+  position: relative;
+  /* justify-content: center; */
+  height: 80vh;
+  right: 0;
+  left: 0;
+  top: 30px !important;
+  bottom: 0;
+}
+.modal-content {
+  position: relative;
+}
+
+.close-btn, .auto-btn  {
+  position: absolute;
+  top: 0;
+}
+
+
+ .prev-btn, .next-btn  {
+  position: absolute;
+  top: 50%;
+}
+
+.close-btn {
+  right: 0;
+}
+
+.prev-btn {
+  left: 0;
+}
+
+.next-btn {
+  right: 0;
+}
+
+
+.auto-btn{
+  left: 0;
+}

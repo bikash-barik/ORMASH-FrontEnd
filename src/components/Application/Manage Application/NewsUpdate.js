@@ -13,12 +13,15 @@ import {
   deleteNewsUpdatesAction,
 } from "../../../Redux/actions/Manage Application/newsUpdateActions";
 
+import axios from "axios";
+import { APIURL } from "../../../Redux/APIURL";
+
 const NewsUpdate = () => {
   const history = useHistory();
 
   const [isChecked, setIsChecked] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
-
+const [errorMsg, setErrorMsg] = useState("");
   const handleCheckAll = () => {
     setIsChecked(!isChecked);
     setSelectedIds(
@@ -101,6 +104,42 @@ const NewsUpdate = () => {
     const printthepage = () =>{
       window.print();
     }
+
+  const updateSet = async (id) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      const dataToUpdate = { status: "some new status" }; // replace with your own data to update
+      await axios.put(
+        `${APIURL}/api/newsUpdates/status/${id}`,
+        dataToUpdate,
+        config
+      );
+      window.location.reload(false);
+    } catch (error) {
+      console.log(error);
+      const msg = error.response?.data?.message;
+      setErrorMsg(msg);
+    }
+  };
+  const setAllSelected = () => {
+    if (window.confirm("Are you sure you want to do all changes in Product?")) {
+      selectedIds.forEach((id) => {
+        dispatch(updateSet(id));
+        window.location.reload(false);
+      });
+      // Clear the ids array after deleting all galleries
+      selectedIds = [];
+      setSelectedIds([]);
+      setIsChecked(false);
+    }
+  };
+
+
   return (
     <div className="p-5 bg-light rounded">
       <div className="">
@@ -113,7 +152,7 @@ const NewsUpdate = () => {
           <div>
             <h3 className="fs-15">
               <i class="bi bi-geo-alt-fill"></i>
-              <span> Home / Manage Application /News /</span>View News
+              <span> Home / Manage Application /Products /</span>View Product
             </h3>
             <div className="mt-5 d-flex justify-content-between">
               <div className="gap-2 d-flex justify-content-between">
@@ -151,6 +190,7 @@ const NewsUpdate = () => {
                   }
                 >
                   <button
+                  onClick={setAllSelected}
                     type="button"
                     style={{
                       borderRadius: "5px",
@@ -176,6 +216,7 @@ const NewsUpdate = () => {
                   }
                 >
                   <button
+                  onClick={setAllSelected}
                     type="button"
                     style={{
                       borderRadius: "5px",
@@ -287,20 +328,21 @@ const NewsUpdate = () => {
                       />
                     </th>
                     <th className="p-2 ">Sl.# </th>
-                    <th className="p-2"> News Headline</th>
-                    <th className="p-2"> Document</th>
-                    <th className="p-2"> Expiry Date </th>
-                    <th className="p-2">Created on</th>
-                    <th className="p-2"> Home Page Status </th>
+                    <th className="p-2"> ProductsHeadline</th>
+                    <th className="p-2"> Product</th>
+                    <th className="p-2"> Description </th>
+                    <th className="p-2">CreatedOn</th>
+                    <th className="p-2">Status </th>
                     <th className="p-2 text-center"> Edit</th>
                     <th className="p-2 text-center"> Delete</th>
                   </tr>
                 </thead>
 
-                {newsUpdates &&
+               
+                    <tbody >
+                    {newsUpdates &&
                   newsUpdates.reverse().map((newsUpdate, i) => (
-                    <tbody key={newsUpdate._id}>
-                      <tr className="">
+                      <tr className="" key={newsUpdate._id}>
                         <td className="p-5">
                           <Form.Check
                             aria-label={`Select news update ${i}`}
@@ -312,7 +354,7 @@ const NewsUpdate = () => {
                         </td>
                         <th className="p-5">{i + 1}</th>
                         <td className="p-5">{newsUpdate.headline}</td>
-                        <td className="p-4">
+                        <td >
                           {" "}
                           <a
                             href={newsUpdate.uploadDocument}
@@ -322,8 +364,8 @@ const NewsUpdate = () => {
                           >
                             {newsUpdate.uploadDocument.type !== "image/jpg" ? (
                               <img
-                                src="https://play-lh.googleusercontent.com/BkRfMfIRPR9hUnmIYGDgHHKjow-g18-ouP6B2ko__VnyUHSi1spcc78UtZ4sVUtBH4g"
-                                height="40px"
+                                src={newsUpdate.uploadDocument}
+                               style={{width:"190px"}}
                               />
                             ) : (
                               "No File"
@@ -332,24 +374,30 @@ const NewsUpdate = () => {
                         </td>
                         <td className="p-5">
                           {" "}
-                          {newsUpdate.expiryDate.substring(0, 10)}
+                          {newsUpdate.description}
                         </td>
                         <td className="p-5">
                           {newsUpdate.createdAt.substring(0, 10)}
                         </td>
                         <td className="p-5 text-center">
                           {
-                            newsUpdate.status == true
-                              ? // <button type="button" class="btn btn-primary px-5">
-                                " Set"
-                              : // </button>
-                                // <button
-                                //   type="button"
-                                //   class="btn btn-outline-primary px-5"
-                                // >
-                                " Unset"
-                            // </button>
-                          }
+                            newsUpdate.status !== true ? (
+                               <button
+                          onClick={() => updateSet(newsUpdate._id)}
+                          type="button"
+                          class="btn btn-danger px-5 text-center"
+                        >
+                          Unset
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => updateSet(newsUpdate._id)}
+                          type="button"
+                          class="btn btn-outline-success px-5 "
+                        >
+                          Set
+                        </button>
+                          )}
                         </td>
                         <td className="p-5">
                           <a href={`/documents/${newsUpdate._id}`}>
@@ -362,20 +410,23 @@ const NewsUpdate = () => {
                           </a>
                         </td>
                       </tr>
+                       ))}
                     </tbody>
-                  ))}
+                 
               </Table>
             </div>
 
             <div className="btn-row">
               <div className="col-md-5 col-12">
                 <button
+                onClick={setAllSelected}
                   type="button"
                   class="btn  btn-outline-secondary p-1 text-dark"
                 >
                   Set Home
                 </button>
                 <button
+                onClick={setAllSelected}
                   type="button"
                   class="btn btn-outline-secondary p-1 m-1 text-dark"
                 >

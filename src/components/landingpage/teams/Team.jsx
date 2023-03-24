@@ -49,7 +49,9 @@ const Team = () => {
     
       <div  className="cards_wrapper">
       {officerProfileDetails &&
-        officerProfileDetails.reverse().filter(item => item.publish_status !== true).map((officerProfileDetail, i) => (
+        officerProfileDetails  .slice()
+        .sort((a, b) => a.serial.localeCompare(b.serial))
+        .filter(item => item.publish_status !== true).map((officerProfileDetail, i) => (
           <div  key={officerProfileDetail._id}>
             {/* first */}
             <div className="profile_card heightcard">

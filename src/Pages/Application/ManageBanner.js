@@ -24,7 +24,7 @@ const ManageBanner = () => {
   const [data, setData] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
-
+  const [errorMsg, setErrorMsg] = useState("");
   const handleCheckAll = () => {
     setIsChecked(!isChecked);
     setSelectedIds(
@@ -45,7 +45,7 @@ const ManageBanner = () => {
   };
 
   const handleDeleteSelected = () => {
-    if (window.confirm("Are you sure you want to delete all galleries?")) {
+    if (window.confirm("Are you sure you want to delete all Banners?")) {
       selectedIds.forEach((id) => {
         dispatch(deleteBannerAction(id));
         window.location.reload(false)
@@ -129,6 +129,42 @@ const ManageBanner = () => {
   window.print();
 }
 
+const updateSet = async (id) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const dataToUpdate = { status: "some new status" }; // replace with your own data to update
+    await axios.put(
+      `${APIURL}/api/banners/status/${id}`,
+      dataToUpdate,
+      config
+    );
+    window.location.reload(false);
+  } catch (error) {
+    console.log(error);
+    const msg = error.response?.data?.message;
+    setErrorMsg(msg);
+  }
+};
+
+const setAllSelected = () => {
+  if (window.confirm("Are you sure you want to do all changes in Baneer?")) {
+    selectedIds.forEach((id) => {
+      dispatch(updateSet(id));
+      window.location.reload(false);
+    });
+    // Clear the ids array after deleting all galleries
+    selectedIds = [];
+    setSelectedIds([]);
+    setIsChecked(false);
+  }
+};
+
+
   return (
     <div>
       <form action="">
@@ -179,6 +215,7 @@ const ManageBanner = () => {
                 }
               >
                 <button
+                onClick={setAllSelected}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -204,6 +241,7 @@ const ManageBanner = () => {
                 }
               >
                 <button
+                onClick={setAllSelected}
                   type="button"
                   style={{
                     borderRadius: "5px",
@@ -348,17 +386,22 @@ const ManageBanner = () => {
                       </td>
                       <td className="p-5">{item.timestamp.substring(0, 10)}</td>
                       <td className="p-5">
-                      {item.publish_status !== true ? (
-                          // <button type="button" class="btn btn-primary px-5">
-                          " Set"
-                          // </button>
-                        ) : (
-                          // <button
-                          //   type="button"
-                          //   class="btn btn-outline-primary px-5"
-                          // >
-                           " Unset"
-                          // </button>
+                      {item.publish_status !== "set" ? (
+                           <button
+                           onClick={() => updateSet(item._id)}
+                           type="button"
+                           class="  btn btn-outline-success px-5 "
+                         >
+                          Set
+                         </button>
+                       ) : (
+                         <button
+                           onClick={() => updateSet(item._id)}
+                           type="button"
+                           class="btn btn-danger px-5 text-center"
+                         >
+                           Unset
+                         </button>
                         )}
                       </td>
                       <td
@@ -381,12 +424,14 @@ const ManageBanner = () => {
           <div className="btn-row">
             <div className="col-md-5 col-12">
               <button
+              onClick={setAllSelected}
                 type="button"
                 class="btn  btn-outline-secondary p-1 text-dark"
               >
                 Set Home
               </button>
               <button
+              onClick={setAllSelected}
                 type="button"
                 class="btn btn-outline-secondary p-1 m-1 text-dark"
               >

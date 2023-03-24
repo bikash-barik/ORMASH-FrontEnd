@@ -44,6 +44,8 @@ const Gallery = () => {
     }
   };
 
+console.log(selectedIds + "selected ids")
+
   const handleDeleteSelected = () => {
     if (window.confirm("Are you sure you want to delete all galleries?")) {
       selectedIds.forEach((id) => {
@@ -399,7 +401,7 @@ const Gallery = () => {
                         {gallery.createdAt.substring(0, 10)}
                       </td>
                       <td className="p-5 text-center">
-                        {gallery.status == true ? (
+                        {gallery.status !== true ? (
                           <button
                           onClick={() => updateSet(gallery._id)}
                           type="button"
@@ -411,7 +413,7 @@ const Gallery = () => {
                         <button
                           onClick={() => updateSet(gallery._id)}
                           type="button"
-                          class="btn btn-outline-danger px-5 "
+                          class="btn btn-outline-success px-5 "
                         >
                           Set
                         </button>
