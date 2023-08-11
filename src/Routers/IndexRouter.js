@@ -6,7 +6,8 @@ import {
   Redirect,
 } from "react-router-dom";
 import AppRouter from "./AppRouter";
-import Home from "../Pages/UserEnd/Home";
+import Home from "../Pages/SendEmailPagesUI/Pages/Home2";
+// import Home from "../Pages/UserEnd/Home";
 import NotFound from "../Pages/NotFound";
 
 const IndexRouter = () => {

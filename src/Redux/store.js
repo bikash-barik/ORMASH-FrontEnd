@@ -58,6 +58,11 @@ import {
   userUpdateReducer,
 } from "./reducers/userReducers";
 
+import {
+  subuserLoginReducer,
+  subuserRegisterReducer,
+  subuserUpdateReducer,
+} from "./reducers/subuserReducers";
 
 import{
 galleryCreateReducer,
@@ -79,6 +84,12 @@ const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userUpdate: userUpdateReducer,
+
+  // subuser Profile
+  subuserLogin:    subuserLoginReducer,
+  subuserRegister: subuserRegisterReducer,
+  subuserUpdate:   subuserUpdateReducer,
+
   // officerProfileDetail
   officerProfileDetailList: officerProfileDetailListReducer,
   officerProfileDetailCreate: officerProfileDetailCreateReducer,

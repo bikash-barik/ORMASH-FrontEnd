@@ -18,27 +18,27 @@ export const menuItems = [
   {
     name: "Dashboard",
     exact: true,
-    to: "/hub/Dashbord",
+    to: "/user/Dashbord",
     iconClassName: "bi bi-house-door",
   },
-  {
-    name: "Manage User",
-    exact: true,
-    // to: `/Magazines`,
-    iconClassName: "bi bi-people",
-    subMenus: [
-      { name: "User Profile ", to: "/hub/UserProfile" },
-      // { name: "Add New Magazines", to: "/hub/AddNewMagazin" },
-      // { name: "Set Permission", to: "/hub/SetPermission" },
-    ],
-  },
+  // {
+  //   name: "Manage User",
+  //   exact: true,
+  //   // to: `/Magazines`,
+  //   iconClassName: "bi bi-people",
+  //   subMenus: [
+  //     { name: "User Profile ", to: "/user/UserProfile" },
+  //     // { name: "Add New Magazines", to: "/user/AddNewMagazin" },
+  //     // { name: "Set Permission", to: "/user/SetPermission" },
+  //   ],
+  // },
   // {
   //   name: "Coupon",
   //   exact: true,
   //   to: `/Coupan`,
   //   iconClassName: "bi bi-cash",
   //   subMenus: [
-  //     { name: "Free Coupon", to: "/hub/FreeCoupon" },
+  //     { name: "Free Coupon", to: "/user/FreeCoupon" },
   //   ],
   // },
 
@@ -48,8 +48,8 @@ export const menuItems = [
   //   // to: `/Accounts`,
   //   iconClassName: "bi bi-link-45deg",
   //   subMenus: [
-  //     { name: "Global Link", to: "/hub/GlowbalLink" },
-  //     { name: "Primary Link ", to: "/hub/PrimaryLink" },
+  //     { name: "Global Link", to: "/user/GlowbalLink" },
+  //     { name: "Primary Link ", to: "/user/PrimaryLink" },
   //   ],
   // },
 
@@ -59,20 +59,20 @@ export const menuItems = [
   //   // to: `/content-3`,
   //   iconClassName: "bi bi-kanban",
   //   subMenus: [
-  //     { name: "Content ", to: "/hub/ViewContent" },
-  //     { name: "Officer Profile", to: "/hub/OfficerProfileDetails" },
+  //     { name: "Content ", to: "/user/ViewContent" },
+  //     { name: "Officer Profile", to: "/user/OfficerProfileDetails" },
   //   ],
   // },
-  // { name: "Update Bank Details", to: `/hub/UpdateBankDetails`, iconClassName: "bi bi-cash" },
-  // { name: "Tutorials", to: `/hub/Tutorials`, iconClassName: "bi bi-book-half" },
+  // { name: "Update Bank Details", to: `/user/UpdateBankDetails`, iconClassName: "bi bi-cash" },
+  // { name: "Tutorials", to: `/user/Tutorials`, iconClassName: "bi bi-book-half" },
   // {
   //   name: "Promotions",
   //   exact: true,
-  //   to: `/hub/Promotions`,
+  //   to: `/user/Promotions`,
   //   iconClassName: "bi bi-bell",
   //   subMenus: [
-  //     { name: "Promote", to: "/hub/Promote" },
-  //     { name: "Custom Banners", to: "/hub/CustomBanners" },
+  //     { name: "Promote", to: "/user/Promote" },
+  //     { name: "Custom Banners", to: "/user/CustomBanners" },
   //   ],
   // },
 
@@ -82,27 +82,27 @@ export const menuItems = [
   //   // to: ``,
   //   iconClassName: "bi bi-kanban",
   //   subMenus: [
-  //     { name: "Tender", to: "/hub/Tender" },
-  //     { name: "Product", to: "/hub/Product" },
-  //     { name: "Document", to: "/hub/Document" },
-  //     { name: "Important Links", to: "/hub/ImportantLink" },
-  //     { name: "Gallery", to: "/hub/Gallery" },
-  //     { name: "Video", to: "/hub/Video" },
-  //     { name: "Achivements", to: "/hub/Achivement" },
-  //     { name: "Manage Logo", to: "/hub/ManageLogo" },
-  //     { name: "Manage Banner", to: "/hub/ManageBanner" },
-  //     { name: "Whats New", to: "/hub/WhatsNew" },
-  //     { name: "Feedback", to: "/hub/Feedback" },
+  //     { name: "Tender", to: "/user/Tender" },
+  //     { name: "Product", to: "/user/Product" },
+  //     { name: "Document", to: "/user/Document" },
+  //     { name: "Important Links", to: "/user/ImportantLink" },
+  //     { name: "Gallery", to: "/user/Gallery" },
+  //     { name: "Video", to: "/user/Video" },
+  //     { name: "Achivements", to: "/user/Achivement" },
+  //     { name: "Manage Logo", to: "/user/ManageLogo" },
+  //     { name: "Manage Banner", to: "/user/ManageBanner" },
+  //     { name: "Whats New", to: "/user/WhatsNew" },
+  //     { name: "Feedback", to: "/user/Feedback" },
   //   ],
   // },
   // {
   //   name: "Employee",
-  //   to: `/hub/Employee`,
+  //   to: `/user/Employee`,
   //   iconClassName: "bi bi-person",
   // },
   // {
   //   name: "Work",
-  //   to: `/hub/Work`,
+  //   to: `/user/Work`,
   //   iconClassName: "bi bi-list-task",
   // },
   // {
@@ -113,31 +113,31 @@ export const menuItems = [
   {
     name: "Applications",
     exact: true,
-    // to: `/hub/Analytics`,
+    // to: `/user/Analytics`,
     iconClassName: "bi bi-briefcase",
     subMenus: [
-      { name: "Add Domain", to: "/hub/upplan" },
-      { name: "Domain Country", to: "/hub/upplan1" },
-      { name: "E-Mail Extract", to: "/hub/upplan2" },
-      { name: "E-Mail Verify", to: "/hub/upplan3" },
-      { name: "E-Mail Send", to: "/hub/Emailsend" },
+      { name: "Add Domain", to: "/user/upplan" },
+      { name: "Domain Country", to: "/user/upplan1" },
+      { name: "E-Mail Extract", to: "/user/upplan2" },
+      { name: "E-Mail Verify", to: "/user/upplan3" },
+      { name: "E-Mail Send", to: "/user/Emailsend" },
      
     ],
   },
   {
     name: "Settings",
     exact: true,
-    // to: `/hub/Analytics`,
+    // to: `/user/Analytics`,
     iconClassName: "bi bi-gear-fill",
     subMenus: [
-      { name: "Change Password", to: "/hub/PasswordChange" },
-      { name: "View Profile", to: "/hub/profile" },
+      { name: "Change Password", to: "/user/PasswordChange" },
+      { name: "View Profile", to: "/user/profile" },
     ],
   },
   // { name: "E-Mail", to: `https://tanumanasa.com/`, iconClassName: "bi bi-briefcase" },
 ];
 
-const SideMenu = (props) => {
+const SubSideMenu = (props) => {
   const [inactive, setInactive] = useState(false);
   const [date, setDate] = useState(new Date());
   //Login Credentials
@@ -277,7 +277,7 @@ const SideMenu = (props) => {
         </ul>
       </div>
 
-      <a href="/hub/profile">
+      <a href="/user/profile">
         <div className="side-menu-footer">
           <div className="avatar">
             <img src={`${userInfo.pic}`} alt="user" />
@@ -294,4 +294,4 @@ const SideMenu = (props) => {
   );
 };
 
-export default SideMenu;
+export default SubSideMenu;

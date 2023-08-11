@@ -1,5 +1,6 @@
 // import "../App.css";
 import SideMenu, { menuItems } from "../components/SideMenu";
+import SubSideMenu from "../components/SubSideMenu";
 import {
   BrowserRouter as Router,
   Switch,
@@ -51,11 +52,11 @@ import AddManageBanner from "../components/Application/Manage Application/AddMan
 import UpdateContactDetails from "../components/Application/Manage Application/UpdateContactDetails";
 import { useSelector } from "react-redux";
 import NotFound from "../Pages/NotFound";
-import ProfileScreen from "../components/Application/ProfileScreen/ProfileScreen";
+import ProfileScreen from "../components/Application/ProfileScreen/SubProfileScreen";
 import PasswordChange from "../components/Application/ProfileScreen/PasswordChange";
 import Emailsend from "../Pages/SendEmailPagesUI/Componets/EmailSand";
 import UpgradURPlanPart from "../components/Body/UpgradURPlanPart";
-function Hubrouters({ history }) {
+function UserHubrouters({ history }) {
   const [inactive, setInactive] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -75,7 +76,7 @@ function Hubrouters({ history }) {
   return (
     <div className="App">
       <Router>
-        <SideMenu
+        <SubSideMenu
           onCollapse={(inactive) => {
             console.log(inactive);
             setInactive(inactive);
@@ -101,156 +102,156 @@ function Hubrouters({ history }) {
           ))} */}
 
           <Switch>
-            <Route exact path="/hub/Dashbord" component={Dashboard} />
-            <Route exact path="/hub/upplan" component={UpgradURPlanPart} />
-            <Route exact path="/hub/upplan1" component={UpgradURPlanPart} />
-            <Route exact path="/hub/upplan2" component={UpgradURPlanPart} />
-            <Route exact path="/hub/upplan3" component={UpgradURPlanPart} />
-            <Route exact path={"/hub/UserProfile"}>
+            <Route exact path="/user/Dashbord" component={Dashboard} />
+            <Route exact path="/user/upplan" component={UpgradURPlanPart} />
+            <Route exact path="/user/upplan1" component={UpgradURPlanPart} />
+            <Route exact path="/user/upplan2" component={UpgradURPlanPart} />
+            <Route exact path="/user/upplan3" component={UpgradURPlanPart} />
+            <Route exact path={"/user/UserProfile"}>
               <UserProfile />
             </Route>
-            <Route exact path={"/hub/AddUserProfile"}>
+            <Route exact path={"/user/AddUserProfile"}>
               <AddUserProfile />
             </Route>
-            <Route exact path={"/hub/AddUserProfile/:id"}>
+            <Route exact path={"/user/AddUserProfile/:id"}>
               <AddUserProfile />
             </Route>
-            <Route exact path={"/hub/UpdateOfficerProfile/:id"}>
+            <Route exact path={"/user/UpdateOfficerProfile/:id"}>
               <UpdateOfficerProfile />
             </Route>
-            <Route path={"/hub/SetPermission"}>
+            <Route path={"/user/SetPermission"}>
               <SetPermission />
             </Route>
-            <Route exact path={"/hub/GlowbalLink"}>
+            <Route exact path={"/user/GlowbalLink"}>
               <GlowbalLink />
             </Route>
-            <Route exact path={"/hub/PrimaryLink"}>
+            <Route exact path={"/user/PrimaryLink"}>
               <PrimaryLink />
             </Route>
 
-            <Route exact path={"/hub/AddPrimaryLink"}>
+            <Route exact path={"/user/AddPrimaryLink"}>
               <AddPrimaryLink />
             </Route>
-            <Route exact path={"/hub/AddPrimaryLink/:id"}>
+            <Route exact path={"/user/AddPrimaryLink/:id"}>
               <AddPrimaryLink />
             </Route>
-            <Route exact path={"/hub/AddGlobalLink"}>
+            <Route exact path={"/user/AddGlobalLink"}>
               <AddGlobalLink />
             </Route>
-            <Route exact path={"/hub/AddGlobalLink/:id"}>
+            <Route exact path={"/user/AddGlobalLink/:id"}>
               <AddGlobalLink />
             </Route>
-            <Route exact path={"/hub/ViewContent"}>
+            <Route exact path={"/user/ViewContent"}>
               <ViewContent />
             </Route>
-            <Route exact path={"/hub/OfficerProfileDetails"}>
+            <Route exact path={"/user/OfficerProfileDetails"}>
               <OfficerProfileDetails />
             </Route>
-            <Route exact path={"/hub/AddOfficerProfile"}>
+            <Route exact path={"/user/AddOfficerProfile"}>
               <AddOfficerProfile />
             </Route>
-            <Route exact path={"/hub/AddContent"}>
+            <Route exact path={"/user/AddContent"}>
               <AddContent />
             </Route>
-            <Route exact path={"/hub/AddContent/:id"}>
+            <Route exact path={"/user/AddContent/:id"}>
               <AddContent />
             </Route>
-            <Route path={"/hub/Work"}>
+            <Route path={"/user/Work"}>
               <Work />
             </Route>
-            <Route path={"/hub/Assignwork"}>
+            <Route path={"/user/Assignwork"}>
               <Assignwork />
             </Route>
-            <Route path={"/hub/AddEmployee"}>
+            <Route path={"/user/AddEmployee"}>
               <AddEmployee />
             </Route>
-            <Route path={"/hub/Employee"}>
+            <Route path={"/user/Employee"}>
               <Employee />
             </Route>
-            <Route path={"/hub/Tender"}>
+            <Route path={"/user/Tender"}>
               <Tender />
             </Route>
-            <Route path={"/hub/Tender/:id"}>
+            <Route path={"/user/Tender/:id"}>
               <Tender />
             </Route>
-            <Route path={"/hub/AddTender"}>
+            <Route path={"/user/AddTender"}>
               <AddTender />
             </Route>
-            <Route path={"/hub/Addendum"}>
+            <Route path={"/user/Addendum"}>
               <Addendum />
             </Route>
-            <Route path={"/hub/Corrigendum"}>
+            <Route path={"/user/Corrigendum"}>
               <Corrigendum />
             </Route>
-            <Route path={"/hub/Product"}>
+            <Route path={"/user/Product"}>
               <NewsUpdate />
             </Route>
-            <Route path={"/hub/AddNews"}>
+            <Route path={"/user/AddNews"}>
               <AddNews />
             </Route>
-            <Route path={"/hub/Document"}>
+            <Route path={"/user/Document"}>
               <Document />
             </Route>
-            <Route path={"/hub/AddDocument"}>
+            <Route path={"/user/AddDocument"}>
               <AddDocument />
             </Route>
-            <Route path={"/hub/ImportantLink"}>
+            <Route path={"/user/ImportantLink"}>
               <ImportantLink />
             </Route>
-            <Route path={"/hub/AddImportantLink"}>
+            <Route path={"/user/AddImportantLink"}>
               <AddImportantLink />
             </Route>
-            <Route path={"/hub/Gallery"}>
+            <Route path={"/user/Gallery"}>
               <Gallery />
             </Route>
-            <Route path={"/hub/Gallery"}>
+            <Route path={"/user/Gallery"}>
               <Gallery />
             </Route>
-            <Route path={"/hub/AddGallery"}>
+            <Route path={"/user/AddGallery"}>
               <AddGallery />
             </Route>
-            <Route path={"/hub/Video"}>
+            <Route path={"/user/Video"}>
               <Video />
             </Route>
-            <Route path={"/hub/AddVideo"}>
+            <Route path={"/user/AddVideo"}>
               <AddVideo />
             </Route>
-            <Route path={"/hub/Achivement"}>
+            <Route path={"/user/Achivement"}>
               <Achivement />
             </Route>
-            <Route path={"/hub/AddAchivement"}>
+            <Route path={"/user/AddAchivement"}>
               <AddAchivement />
             </Route>
-            <Route path={"/hub/ManageLogo"}>
+            <Route path={"/user/ManageLogo"}>
               <ManageLogo />
             </Route>
-            <Route path={"/hub/WhatsNew"}>
+            <Route path={"/user/WhatsNew"}>
               <WhatsNew />
             </Route>
-            <Route path={"/hub/AddWhatsNew"}>
+            <Route path={"/user/AddWhatsNew"}>
               <AddWhatsNew />
             </Route>
-            <Route path={"/hub/ManageBanner"}>
+            <Route path={"/user/ManageBanner"}>
               <ManageBanner />
             </Route>
-            <Route path={"/hub/AddManageBanner"}>
+            <Route path={"/user/AddManageBanner"}>
               <AddManageBanner />
             </Route>
-            <Route path={"/hub/Feedback"}>
+            <Route path={"/user/Feedback"}>
               <Feedback />
             </Route>
-            <Route path={"/hub/UpdateContactDetails"}>
+            <Route path={"/user/UpdateContactDetails"}>
               <UpdateContactDetails />
             </Route>
-            <Route path={"/hub/PasswordChange"}>
+            <Route path={"/user/PasswordChange"}>
               <PasswordChange />
             </Route>
 
-            <Route path={"/hub/Profile"}>
+            <Route path={"/user/Profile"}>
               <ProfileScreen />
             </Route>
 
-            <Route path="/hub/Emailsend" component={Emailsend} />
+            <Route path="/user/Emailsend" component={Emailsend} />
 
           </Switch>
         </div>
@@ -259,4 +260,4 @@ function Hubrouters({ history }) {
   );
 }
 
-export default Hubrouters;
+export default UserHubrouters;

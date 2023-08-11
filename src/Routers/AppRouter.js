@@ -7,9 +7,11 @@ import {
 import React, { useState } from "react";
 // import LandingPage from "../Pages/LandingPage";
 import LandingPage from "../components/Application/LoginScreen/LoginScreen";
+import LandingPage2 from "../components/Application/SubLoginScreen/LoginScreen";
 import RegisterScreen from "../components/Application/RegisterScreen/RegisterScreen";
 // import Header from '../components/Application/LandingPage/Header';
 import Home from "../Pages/UserEnd/Home";
+import Emailsend from "../Pages/SendEmailPagesUI/Componets/EmailSand";
 import Tender from "../components/UI/Tender/Tender";
 import Navbar from "../components/landingpage/navbar/Navbar";
 import LogoSection from "../components/landingpage/logosection/LogoSection";
@@ -71,7 +73,7 @@ const AppRouter = () => {
     <>
       <Router>
         <span></span>
-        <header
+        {/* <header
           className={
             excludePaths.includes(window.location.pathname) ? "d-none" : style
           }
@@ -222,9 +224,9 @@ const AppRouter = () => {
               </div>
             </div>
           </div>
-        </header>
+        </header> */}
         {/* <Header/> */}
-        <LogoSection className={
+        {/* <LogoSection className={
             excludePaths.includes(window.location.pathname) ? "d-none" : ""
           } style={style} zoomLevel={zoomLevel} />
         <Navbar
@@ -233,14 +235,19 @@ const AppRouter = () => {
           }
           style={style}
           zoomLevel={zoomLevel}
-        />
+        /> */}
         <Switch>
           {/* <Route exact path='/'  component={Home}  /> */}
 
           <Route
             exact
-            path={["/Login", "/Application"]}
+            path={["/Krishna", "/App"]}
             component={LandingPage}
+          />
+          <Route
+            exact
+            path={["/Login", "/Signin"]}
+            component={LandingPage2}
           />
           <Route path="/register" component={RegisterScreen} />
           <Route path="/Tender" component={Tender} />
@@ -268,15 +275,16 @@ const AppRouter = () => {
           <Route path="/ProductsBrochure" component={ProductsBrochure} />
           <Route path="/ExhibitionCalender" component={ExhibitionCalender} />
           <Route path="/Reports" component={Reports} />
+          <Route path="/Emailsend" component={Emailsend} />
 
           <Route path="/error" component={NotFound} />
           {/* Redirect to 404 page for any other URL */}
           <Redirect to="/error" />
         </Switch>
 
-        <Copyright className={
+        {/* <Copyright className={
             excludePaths.includes(window.location.pathname) ? "d-none" : ""
-          } style={style} zoomLevel={zoomLevel} />
+          } style={style} zoomLevel={zoomLevel} /> */}
       </Router>
     </>
   );

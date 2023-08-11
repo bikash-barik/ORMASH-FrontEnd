@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loading from "../../Loading";
 import ErrorMessage from "../../ErrorMessage";
-import { login } from "../../../Redux/actions/userActions";
+import { login } from "../../../Redux/actions/subuserActions";
 import MainScreen from "../../MainScreen";
 import "./LoginScreen.css";
 import headerLogo from "../../../assets/images/header-logo.png";
@@ -15,12 +15,12 @@ function LoginScreen({ history }) {
 
   const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.userLogin);
+  const userLogin = useSelector((state) => state.subuserLogin);
   const { loading, error, userInfo } = userLogin;
 
   useEffect(() => {
     if (userInfo) {
-      history.push("/hub/Dashbord");
+      history.push("/user/Dashbord");
       window.location.reload(false);
     }
   }, [history, userInfo]);

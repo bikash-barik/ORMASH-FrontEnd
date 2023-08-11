@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import headerLogo from "../../assets/images/header-logo.png";
 
-function DashboardPart() {
+function UpgradURPlanPart() {
   const [inactive, setInactive] = useState(false);
   return (
     <>
       <div className={`container ${inactive ? "inactive" : ""}`}></div>
+      <h3>
+        <i class="bi bi-geo-alt-fill"></i>
+        <span> Applications /</span>...
+      </h3>
       <div>
         <div className=" d-flex justify-content-center align-items-center align-item-center mt-15">
           <div className="">
@@ -27,10 +31,10 @@ function DashboardPart() {
                 color: "black",
                 fontSize: "25px",
                 marginTop: "-13px",
-                fontFamily: "Brush Script MT",
+                // fontFamily: "Brush Script MT",
               }}
             >
-              Creating Competence and Email Sending Platform
+             Upgrad Your Plan and Contact With Admin
             </marquee>
           </div>
         </div>
@@ -100,4 +104,4 @@ function DashboardPart() {
   );
 }
 
-export default DashboardPart;
+export default UpgradURPlanPart;

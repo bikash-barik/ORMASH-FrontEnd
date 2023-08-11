@@ -7,6 +7,7 @@ import './App.css';
 
 import React from 'react';
 import Hubrouters from './Routers/Hubrouters';
+import UserHubrouters from './Routers/UserHubrouters';
 import IndexRouter from './Routers/IndexRouter';
 import NotFound from './Pages/NotFound';
 
@@ -15,7 +16,7 @@ function App() {
     <>
       <Router>
         <Switch>
-          {/* <Route path="/" component={HomeRouter} /> */}
+          <Route path="/user" component={UserHubrouters} />
           <Route path='/hub' component={Hubrouters} />
           
           <IndexRouter />
@@ -28,7 +29,7 @@ function App() {
 
 export default App;
 
-// "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+// "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",  .. new Bikash
 // "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build"
 
 
